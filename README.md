@@ -54,6 +54,12 @@ GET /wp-json/apartments/v1/{id}
 
 Ein Custom Block zum Anzeigen von Apartments im WordPress-Editor.
 
+### Voraussetzungen
+
+- **Advanced Custom Fields (ACF)**: Erforderlich für die Apartment-Felder
+- WordPress 6.0+
+- PHP 8.0+
+
 ### Plugin-Struktur
 
 ```
