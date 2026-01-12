@@ -427,3 +427,21 @@ function get_single_apartment_with_acf($request)
 
     return new WP_REST_Response($apartment, 200);
 }
+
+// Enqueue Styles and Scripts
+add_action('wp_enqueue_scripts', function () {
+    wp_enqueue_style(
+        'sell-index',
+        get_stylesheet_directory_uri() . '/assets/styles/sell-index.css',
+        [],
+        filemtime(get_stylesheet_directory() . '/assets/styles/sell-index.css')
+    );
+
+    wp_enqueue_script(
+        'sell-index',
+        get_stylesheet_directory_uri() . '/assets/scripts/sell-index.js',
+        [],
+        filemtime(get_stylesheet_directory() . '/assets/scripts/sell-index.js'),
+        true
+    );
+});

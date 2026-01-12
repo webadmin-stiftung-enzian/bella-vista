@@ -49,39 +49,41 @@ export default function Edit() {
 	}, []);
 
 	return (
-		<div { ...useBlockProps() }>
+		<div {...useBlockProps()}>
 			{loading ? (
 				<p>{__('Lädt Apartments...', 'sell-index')}</p>
 			) : (
 				<>
-					<table className="sell-index-table">
-						<thead>
-							<tr>
-								<th>{__('Etage/Wohnung', 'sell-index')}</th>
-								<th>{__('Zimmer', 'sell-index')}</th>
-								<th>{__('Wohnfläche', 'sell-index')}</th>
-								<th>{__('Terrasse/Balkon', 'sell-index')}</th>
-								<th>{__('Garten', 'sell-index')}</th>
-								<th>{__('Keller', 'sell-index')}</th>
-								<th>{__('Preis', 'sell-index')}</th>
-								<th>{__('Grundriss', 'sell-index')}</th>
-							</tr>
-						</thead>
-						<tbody>
-							{apartments.map((apartment) => (
-								<tr key={apartment.slug}>
-									<td>{apartment.details.level}</td>
-									<td>{apartment.details.rooms}</td>
-									<td>{apartment.details.living_space} m²</td>
-									<td>{apartment.details.terrace_balcony} m²</td>
-									<td>{apartment.details.garden} m²</td>
-									<td>{apartment.details.basement} m²</td>
-									{apartment.details.status !== 'Verfügbar' ? <td>{apartment.details.status}</td> : <td>{apartment.details.price}</td>}
-									<td>{apartment.details.floor_plan_url}</td>
+					<section className="sell-index">
+						<table className="sell-index-table">
+							<thead>
+								<tr>
+									<th>{__('Etage/Wohnung', 'sell-index')}</th>
+									<th>{__('Zimmer', 'sell-index')}</th>
+									<th>{__('Wohnfläche', 'sell-index')}</th>
+									<th>{__('Terrasse/Balkon', 'sell-index')}</th>
+									<th>{__('Garten', 'sell-index')}</th>
+									<th>{__('Keller', 'sell-index')}</th>
+									<th>{__('Preis', 'sell-index')}</th>
+									<th>{__('Grundriss', 'sell-index')}</th>
 								</tr>
-							))}
-						</tbody>
-					</table>	
+							</thead>
+							<tbody>
+								{apartments.map((apartment) => (
+									<tr key={apartment.slug}>
+										<td>{apartment.details.level}</td>
+										<td>{apartment.details.rooms}</td>
+										<td>{apartment.details.living_space} m²</td>
+										<td>{apartment.details.terrace_balcony} m²</td>
+										<td>{apartment.details.garden} m²</td>
+										<td>{apartment.details.basement} m²</td>
+										{apartment.details.status !== 'Verfügbar' ? <td>{apartment.details.status}</td> : <td>{apartment.details.price}</td>}
+										<td>{apartment.details.floor_plan_url}</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</section>
 				</>
 			)}
 		</div>

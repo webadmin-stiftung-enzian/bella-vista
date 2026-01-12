@@ -1,0 +1,40 @@
+
+.wp-block-enzian-sell-index svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.wp-block-enzian-sell-index svg #bella-vista > g {
+    transition: transform 0.3s ease;
+    transform: translateY(0px);
+}
+
+.wp-block-enzian-sell-index svg [id*="Overlay_Shades"] {
+    fill-opacity: 0;
+}
+
+.wp-block-enzian-sell-index svg [id*="Overlay_Shades"].highlight{
+    fill-opacity: 1;
+    transition: fill-opacity 0.3s ease;
+}
+
+.wp-block-enzian-sell-index svg #bella-vista > g.translate {
+    transform: translateY(-12rem);
+}
+
+.sell-index {}
+
+.sell-index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: transparent;
+}
+
+.sell-index-table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+
