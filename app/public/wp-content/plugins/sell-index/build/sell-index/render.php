@@ -54,14 +54,21 @@ if (!is_wp_error($response) && wp_remote_retrieve_response_code($response) === 2
 							<td><?php echo esc_html($apartment['details']['terrace_balcony']) . ' m²'; ?></td>
 							<td><?php echo esc_html($apartment['details']['garden']) . ' m²'; ?></td>
 							<td><?php echo esc_html($apartment['details']['basement']) . ' m²'; ?></td>
-							<?php if (!$apartment['details']['status'] === 'Verfügbar'): ?>
-								<td><?php esc_html_e($apartment['details']['status'], 'sell-index'); ?></td>
-							<?php else: ?>
+							<?php if ($apartment['details']['status'] === 'Verfügbar'): ?>
 								<td><?php echo esc_html($apartment['details']['price'] . ' CHF'); ?></td>
+							<?php else: ?>
+								<td><?php echo esc_html($apartment['details']['status']); ?></td>
 							<?php endif; ?>
 							<td>
 								<?php if (!empty($apartment['details']['floor_plan_url'])): ?>
-									<a href="<?php echo esc_url($apartment['details']['floor_plan_url']); ?>" target="_blank"><?php esc_html_e('View', 'sell-index'); ?></a>
+									<a class="sell-index-table-download-pdf" href="<?php echo esc_url($apartment['details']['floor_plan_url']); ?>" target="_blank" aria-label="<?php esc_attr_e('Grundriss ansehen', 'sell-index'); ?>">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-down-icon lucide-file-down">
+											<path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+											<path d="M14 2v5a1 1 0 0 0 1 1h5" />
+											<path d="M12 18v-6" />
+											<path d="m9 15 3 3 3-3" />
+										</svg>
+									</a>
 								<?php else: ?>
 									<?php esc_html_e('N/A', 'sell-index'); ?>
 								<?php endif; ?>
