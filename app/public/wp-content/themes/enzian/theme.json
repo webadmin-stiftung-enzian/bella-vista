@@ -59,106 +59,405 @@
 					"slug": "system-font"
 				},
 				{
-					"fontFamily": "'Montserrat', sans-serif",
-					"name": "Montserrat",
-					"slug": "montserrat",
+					"fontFamily": "'PP Neue Montreal', sans-serif",
+					"name": "PP Neue Montreal",
+					"slug": "pp-neue-montreal",
 					"fontFace": [
 						{
-							"fontFamily": "Montserrat",
+							"fontFamily": "PP Neue Montreal",
+							"fontWeight": "100",
+							"fontStyle": "normal",
+							"src": [
+								"file:./assets/files/fonts/PPNeueMontreal-Thin.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Neue Montreal",
+							"fontWeight": "100",
+							"fontStyle": "italic",
+							"src": [
+								"file:./assets/files/fonts/PPNeueMontreal-ThinItalic.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Neue Montreal",
 							"fontWeight": "300",
 							"fontStyle": "normal",
 							"src": [
-								"file:./assets/fonts/montserrat-300.woff2"
+								"file:./assets/files/fonts/PPNeueMontreal-Light.woff2"
 							]
 						},
 						{
-							"fontFamily": "Montserrat",
+							"fontFamily": "PP Neue Montreal",
 							"fontWeight": "400",
 							"fontStyle": "normal",
 							"src": [
-								"file:./assets/fonts/montserrat-400.woff2"
+								"file:./assets/files/fonts/PPNeueMontreal-Regular.woff2"
 							]
 						},
 						{
-							"fontFamily": "Montserrat",
+							"fontFamily": "PP Neue Montreal",
+							"fontWeight": "400",
+							"fontStyle": "italic",
+							"src": [
+								"file:./assets/files/fonts/PPNeueMontreal-Italic.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Neue Montreal",
+							"fontWeight": "450",
+							"fontStyle": "normal",
+							"src": [
+								"file:./assets/files/fonts/PPNeueMontreal-Book.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Neue Montreal",
 							"fontWeight": "500",
 							"fontStyle": "normal",
 							"src": [
-								"file:./assets/fonts/montserrat-500.woff2"
+								"file:./assets/files/fonts/PPNeueMontreal-Medium.woff2"
 							]
 						},
 						{
-							"fontFamily": "Montserrat",
-							"fontWeight": "600",
-							"fontStyle": "normal",
-							"src": [
-								"file:./assets/fonts/montserrat-600.woff2"
-							]
-						},
-						{
-							"fontFamily": "Montserrat",
+							"fontFamily": "PP Neue Montreal",
 							"fontWeight": "700",
 							"fontStyle": "normal",
 							"src": [
-								"file:./assets/fonts/montserrat-700.woff2"
+								"file:./assets/files/fonts/PPNeueMontreal-Bold.woff2"
 							]
 						},
 						{
-							"fontFamily": "Montserrat",
-							"fontWeight": "800",
-							"fontStyle": "normal",
+							"fontFamily": "PP Neue Montreal",
+							"fontWeight": "700",
+							"fontStyle": "italic",
 							"src": [
-								"file:./assets/fonts/montserrat-800.woff2"
-							]
-						},
-						{
-							"fontFamily": "Montserrat",
-							"fontWeight": "900",
-							"fontStyle": "normal",
-							"src": [
-								"file:./assets/fonts/montserrat-900.woff2"
+								"file:./assets/files/fonts/PPNeueMontreal-BoldItalic.woff2"
 							]
 						}
 					]
 				},
 				{
-					"fontFamily": "'PT Serif', serif",
-					"name": "PT Serif",
-					"slug": "pt-serif",
+					"fontFamily": "'PP Fragment Sans', sans-serif",
+					"name": "PP Fragment Sans",
+					"slug": "pp-fragment-sans",
 					"fontFace": [
 						{
-							"fontFamily": "PT Serif",
+							"fontFamily": "PP Fragment Sans",
+							"fontWeight": "100",
+							"fontStyle": "normal",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-SansThin.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Fragment Sans",
+							"fontWeight": "100",
+							"fontStyle": "italic",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-SansThinitalic.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Fragment Sans",
+							"fontWeight": "300",
+							"fontStyle": "normal",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-SansLight.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Fragment Sans",
+							"fontWeight": "300",
+							"fontStyle": "italic",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-SansLightItalic.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Fragment Sans",
 							"fontWeight": "400",
 							"fontStyle": "normal",
 							"src": [
-								"file:./assets/fonts/pt-serif-400.woff2"
+								"file:./assets/files/fonts/PPFragment-SansRegular.woff2"
 							]
 						},
 						{
-							"fontFamily": "PT Serif",
+							"fontFamily": "PP Fragment Sans",
 							"fontWeight": "400",
 							"fontStyle": "italic",
 							"src": [
-								"file:./assets/fonts/pt-serif-400-italic.woff2"
+								"file:./assets/files/fonts/PPFragment-SansRegularitalic.woff2"
 							]
 						},
 						{
-							"fontFamily": "PT Serif",
-							"fontWeight": "700",
+							"fontFamily": "PP Fragment Sans",
+							"fontWeight": "800",
 							"fontStyle": "normal",
 							"src": [
-								"file:./assets/fonts/pt-serif-700.woff2"
+								"file:./assets/files/fonts/PPFragment-SansExtraBold.woff2"
 							]
 						},
 						{
-							"fontFamily": "PT Serif",
-							"fontWeight": "700",
+							"fontFamily": "PP Fragment Sans",
+							"fontWeight": "800",
 							"fontStyle": "italic",
 							"src": [
-								"file:./assets/fonts/pt-serif-700-italic.woff2"
+								"file:./assets/files/fonts/PPFragment-SansExtraBoldItalic.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Fragment Sans",
+							"fontWeight": "900",
+							"fontStyle": "normal",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-SansBlack.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Fragment Sans",
+							"fontWeight": "900",
+							"fontStyle": "italic",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-SansBlackItalic.woff2"
 							]
 						}
 					]
+				},
+				{
+					"fontFamily": "'PP Fragment Serif', serif",
+					"name": "PP Fragment Serif",
+					"slug": "pp-fragment-serif",
+					"fontFace": [
+						{
+							"fontFamily": "PP Fragment Serif",
+							"fontWeight": "100",
+							"fontStyle": "normal",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-SerifThin.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Fragment Serif",
+							"fontWeight": "100",
+							"fontStyle": "italic",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-SerifThinItalic.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Fragment Serif",
+							"fontWeight": "300",
+							"fontStyle": "normal",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-SerifLight.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Fragment Serif",
+							"fontWeight": "300",
+							"fontStyle": "italic",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-SerifLightItalic.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Fragment Serif",
+							"fontWeight": "400",
+							"fontStyle": "normal",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-SerifRegular.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Fragment Serif",
+							"fontWeight": "400",
+							"fontStyle": "italic",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-SerifRegularItalic.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Fragment Serif",
+							"fontWeight": "800",
+							"fontStyle": "normal",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-SerifExtraBold.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Fragment Serif",
+							"fontWeight": "800",
+							"fontStyle": "italic",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-SerifExtraBoldItalic.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Fragment Serif",
+							"fontWeight": "900",
+							"fontStyle": "normal",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-SerifBlack.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Fragment Serif",
+							"fontWeight": "900",
+							"fontStyle": "italic",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-SerifBlackItalic.woff2"
+							]
+						}
+					]
+				},
+				{
+					"fontFamily": "'PP Fragment Text', serif",
+					"name": "PP Fragment Text",
+					"slug": "pp-fragment-text",
+					"fontFace": [
+						{
+							"fontFamily": "PP Fragment Text",
+							"fontWeight": "400",
+							"fontStyle": "normal",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-TextRegular.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Fragment Text",
+							"fontWeight": "400",
+							"fontStyle": "italic",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-TextRegularItalic.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Fragment Text",
+							"fontWeight": "700",
+							"fontStyle": "normal",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-TextBold.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Fragment Text",
+							"fontWeight": "700",
+							"fontStyle": "italic",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-TextBoldItalic.woff2"
+							]
+						}
+					]
+				},
+				{
+					"fontFamily": "'PP Fragment Glare', sans-serif",
+					"name": "PP Fragment Glare",
+					"slug": "pp-fragment-glare",
+					"fontFace": [
+						{
+							"fontFamily": "PP Fragment Glare",
+							"fontWeight": "100",
+							"fontStyle": "normal",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-GlareThin.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Fragment Glare",
+							"fontWeight": "100",
+							"fontStyle": "italic",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-GlareThinItalic.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Fragment Glare",
+							"fontWeight": "300",
+							"fontStyle": "normal",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-GlareLight.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Fragment Glare",
+							"fontWeight": "300",
+							"fontStyle": "italic",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-GlareLightItalic.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Fragment Glare",
+							"fontWeight": "400",
+							"fontStyle": "normal",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-GlareRegular.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Fragment Glare",
+							"fontWeight": "400",
+							"fontStyle": "italic",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-GlareRegularItalic.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Fragment Glare",
+							"fontWeight": "800",
+							"fontStyle": "normal",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-GlareExtraBold.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Fragment Glare",
+							"fontWeight": "800",
+							"fontStyle": "italic",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-GlareExtraBoldItalic.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Fragment Glare",
+							"fontWeight": "900",
+							"fontStyle": "normal",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-GlareBlack.woff2"
+							]
+						},
+						{
+							"fontFamily": "PP Fragment Glare",
+							"fontWeight": "900",
+							"fontStyle": "italic",
+							"src": [
+								"file:./assets/files/fonts/PPFragment-GlareBlackItalic.woff2"
+							]
+						}
+					]
+				}
+			],
+			"fontSizes": [
+				{
+					"name": "Small",
+					"slug": "small",
+					"size": "13px"
+				},
+				{
+					"name": "Medium",
+					"slug": "medium",
+					"size": "20px"
+				},
+				{
+					"name": "Large",
+					"slug": "large",
+					"size": "36px"
+				},
+				{
+					"name": "Extra Large",
+					"slug": "x-large",
+					"size": "42px"
 				}
 			]
 		},
@@ -166,13 +465,13 @@
 	},
 	"styles": {
 		"typography": {
-			"fontSize": "1.2rem",
+			"fontSize": "1rem",
 			"lineHeight": "1.25"
 		},
 		"elements": {
 			"h1": {
 				"typography": {
-					"fontFamily": "montserrat",
+					"fontFamily": "PP Fragment Glare",
 					"fontWeight": "300",
 					"fontSize": "4rem",
 					"lineHeight": "1.25"
@@ -180,14 +479,14 @@
 			},
 			"h2": {
 				"typography": {
-					"fontFamily": "montserrat",
+					"fontFamily": "PP Fragment Glare",
 					"fontWeight": "300",
 					"lineHeight": "1.25"
 				}
 			},
 			"h3": {
 				"typography": {
-					"fontFamily": "montserrat",
+					"fontFamily": "PP Fragment Glare",
 					"fontWeight": "300",
 					"fontSize": "2rem",
 					"lineHeight": "1.25"
@@ -195,7 +494,7 @@
 			},
 			"h4": {
 				"typography": {
-					"fontFamily": "montserrat",
+					"fontFamily": "PP Fragment Glare",
 					"fontWeight": "300",
 					"lineHeight": "1.25"
 				}
@@ -205,7 +504,7 @@
 					"radius": "25px"
 				},
 				"typography": {
-					"fontFamily": "montserrat",
+					"fontFamily": "PP Fragment Glare",
 					"fontWeight": "300"
 				},
 				"color": {
@@ -242,7 +541,7 @@
 					"radius": "25px"
 				},
 				"typography": {
-					"fontFamily": "montserrat",
+					"fontFamily": "PP Fragment Glare",
 					"fontWeight": "300"
 				},
 				"color": {
@@ -252,7 +551,7 @@
 			},
 			"core/heading": {
 				"typography": {
-					"fontFamily": "montserrat",
+					"fontFamily": "PP Fragment Glare",
 					"fontWeight": "300",
 					"lineHeight": "md"
 				}
@@ -260,7 +559,7 @@
 			"core/paragraph": {
 				"typography": {
 					"lineHeight": "lg",
-					"fontFamily": "pt-serif",
+					"fontFamily": "PP Fragment Glare",
 					"fontWeight": "400"
 				}
 			}

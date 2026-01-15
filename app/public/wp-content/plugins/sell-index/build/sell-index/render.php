@@ -40,7 +40,6 @@ if (!is_wp_error($response) && wp_remote_retrieve_response_code($response) === 2
 						<th><?php esc_html_e('Wohnfläche', 'sell-index'); ?></th>
 						<th><?php esc_html_e('Terrasse/Balkon', 'sell-index'); ?></th>
 						<th><?php esc_html_e('Garten', 'sell-index'); ?></th>
-						<th><?php esc_html_e('Keller', 'sell-index'); ?></th>
 						<th><?php esc_html_e('Preis', 'sell-index'); ?></th>
 						<th><?php esc_html_e('Grundriss', 'sell-index'); ?></th>
 					</tr>
@@ -51,11 +50,18 @@ if (!is_wp_error($response) && wp_remote_retrieve_response_code($response) === 2
 							<td><?php echo esc_html($apartment['details']['level']); ?></td>
 							<td><?php echo esc_html($apartment['details']['rooms']); ?></td>
 							<td><?php echo esc_html($apartment['details']['living_space']) . ' m²'; ?></td>
-							<td><?php echo esc_html($apartment['details']['terrace_balcony']) . ' m²'; ?></td>
-							<td><?php echo esc_html($apartment['details']['garden']) . ' m²'; ?></td>
-							<td><?php echo esc_html($apartment['details']['basement']) . ' m²'; ?></td>
+							<?php if ($apartment['details']['terrace_balcony'] === '' || $apartment['details']['terrace_balcony'] === "0") : ?>
+								<td><?php echo esc_html('—'); ?></td>
+							<?php else : ?>
+								<td><?php echo esc_html($apartment['details']['terrace_balcony']) . ' m²'; ?></td>
+							<?php endif; ?>
+							<?php if ($apartment['details']['garden'] === '' || $apartment['details']['garden'] === "0") : ?>
+								<td><?php echo esc_html('—'); ?></td>
+							<?php else : ?>
+								<td><?php echo esc_html($apartment['details']['garden']) . ' m²'; ?></td>
+							<?php endif; ?>
 							<?php if ($apartment['details']['status'] === 'Verfügbar'): ?>
-								<td><?php echo esc_html($apartment['details']['price'] . ' CHF'); ?></td>
+								<td><?php echo esc_html($apartment['details']['price']); ?></td>
 							<?php else: ?>
 								<td><?php echo esc_html($apartment['details']['status']); ?></td>
 							<?php endif; ?>

@@ -1,5 +1,13 @@
 <?php
 
+// ACF Google Maps API Key setzen
+function my_acf_google_map_api($api)
+{
+    $api['key'] = 'AIzaSyAXRY70-7Z9a82LKiSTf2D0GevIfdowI38';
+    return $api;
+}
+add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
+
 add_action('acf/include_fields', function () {
     if (! function_exists('acf_add_local_field_group')) {
         return;
@@ -35,7 +43,7 @@ add_action('acf/include_fields', function () {
                 'label' => 'Zimmer',
                 'name' => 'apartments_rooms',
                 'aria-label' => '',
-                'type' => 'number',
+                'type' => 'text',
                 'instructions' => '',
                 'required' => 0,
                 'conditional_logic' => 0,
@@ -58,7 +66,7 @@ add_action('acf/include_fields', function () {
                 'label' => 'Wohnfläche in m²',
                 'name' => 'apartments_living_space',
                 'aria-label' => '',
-                'type' => 'number',
+                'type' => 'text',
                 'instructions' => '',
                 'required' => 0,
                 'conditional_logic' => 0,
@@ -81,7 +89,7 @@ add_action('acf/include_fields', function () {
                 'label' => 'Balkon/Terrasse in m²',
                 'name' => 'apartments_terrace_balcony',
                 'aria-label' => '',
-                'type' => 'number',
+                'type' => 'text',
                 'instructions' => '',
                 'required' => 0,
                 'conditional_logic' => 0,
@@ -104,7 +112,7 @@ add_action('acf/include_fields', function () {
                 'label' => 'Garten in m²',
                 'name' => 'apartments_garden',
                 'aria-label' => '',
-                'type' => 'number',
+                'type' => 'text',
                 'instructions' => '',
                 'required' => 0,
                 'conditional_logic' => 0,
@@ -127,7 +135,7 @@ add_action('acf/include_fields', function () {
                 'label' => 'Keller in m²',
                 'name' => 'apartments_basement',
                 'aria-label' => '',
-                'type' => 'number',
+                'type' => 'text',
                 'instructions' => '',
                 'required' => 0,
                 'conditional_logic' => 0,
@@ -363,11 +371,11 @@ function get_apartments_with_acf($request)
                 'featured_image' => get_the_post_thumbnail_url($post_id, 'full'),
                 'details' => [
                     'level' => get_field('apartments_level', $post_id),
-                    'rooms' => (int) get_field('apartments_rooms', $post_id),
-                    'living_space' => (float) get_field('apartments_living_space', $post_id),
-                    'terrace_balcony' => (float) get_field('apartments_terrace_balcony', $post_id),
-                    'garden' => (float) get_field('apartments_garden', $post_id),
-                    'basement' => (float) get_field('apartments_basement', $post_id),
+                    'rooms' => get_field('apartments_rooms', $post_id),
+                    'living_space' => get_field('apartments_living_space', $post_id),
+                    'terrace_balcony' => get_field('apartments_terrace_balcony', $post_id),
+                    'garden' => get_field('apartments_garden', $post_id),
+                    'basement' => get_field('apartments_basement', $post_id),
                     'status' => get_field('apartments_state', $post_id),
                     'price' => get_field('apartments_price', $post_id),
                     'floor_plan_url' => $floor_plan_url
@@ -414,11 +422,11 @@ function get_single_apartment_with_acf($request)
         'featured_image' => get_the_post_thumbnail_url($post_id, 'full'),
         'details' => [
             'level' => get_field('apartments_level', $post_id),
-            'rooms' => (int) get_field('apartments_rooms', $post_id),
-            'living_space' => (float) get_field('apartments_living_space', $post_id),
-            'terrace_balcony' => (float) get_field('apartments_terrace_balcony', $post_id),
-            'garden' => (float) get_field('apartments_garden', $post_id),
-            'basement' => (float) get_field('apartments_basement', $post_id),
+            'rooms' => get_field('apartments_rooms', $post_id),
+            'living_space' => get_field('apartments_living_space', $post_id),
+            'terrace_balcony' => get_field('apartments_terrace_balcony', $post_id),
+            'garden' => get_field('apartments_garden', $post_id),
+            'basement' => get_field('apartments_basement', $post_id),
             'status' => get_field('apartments_state', $post_id),
             'price' => get_field('apartments_price', $post_id),
             'floor_plan' => $floor_plan_data
@@ -426,6 +434,41 @@ function get_single_apartment_with_acf($request)
     ];
 
     return new WP_REST_Response($apartment, 200);
+}
+
+// Funktion, um Kartendaten anhand des Titels abzurufen
+function get_map_data_by_name($map_title = 'Map 1')
+{
+    // 1. WP_Query startet
+    $args = array(
+        'post_type'  => 'maps',
+        'title'      => $map_title,
+        'posts_per_page' => 1
+    );
+
+    $query = new WP_Query($args);
+    $all_locations = [];
+
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+
+            // 2. Repeater-Felder abgreifen
+            $locations = get_field('locations');
+            if ($locations) {
+                foreach ($locations as $location) {
+                    $all_locations[] = [
+                        'title' => $location['locations_title'],
+                        'description' => $location['locations_description'],
+                        'lat'  => $location['locations_coordinates']['lat'],
+                        'lng'  => $location['locations_coordinates']['lng']
+                    ];
+                }
+            }
+        }
+        wp_reset_postdata();
+    }
+    return $all_locations;
 }
 
 // Enqueue Styles and Scripts
@@ -444,4 +487,40 @@ add_action('wp_enqueue_scripts', function () {
         filemtime(get_stylesheet_directory() . '/assets/scripts/sell-index.js'),
         true
     );
+
+    // Google Maps API laden
+    wp_enqueue_script(
+        'google-maps-api',
+        'https://maps.googleapis.com/maps/api/js?key=AIzaSyAXRY70-7Z9a82LKiSTf2D0GevIfdowI38',
+        [],
+        null,
+        true
+    );
+
+    // Map Script mit Daten laden
+    wp_enqueue_script(
+        'map',
+        get_stylesheet_directory_uri() . '/assets/scripts/map.js',
+        array('google-maps-api'),
+        filemtime(get_stylesheet_directory() . '/assets/scripts/map.js'),
+        true
+    );
+
+    $locations_from_posttype = get_map_data_by_name('Bella Vista');
+    wp_localize_script('map', 'mapDataFromServer', array(
+        'locations' => $locations_from_posttype
+    ));
 });
+
+// Erstelle Shortcode um eine Karte anzuzeigen
+function render_map_shortcode($atts)
+{
+    $atts = shortcode_atts(array(
+        'width' => '100%',
+        'height' => '400px',
+    ), $atts, 'render_map');
+
+    // Erstelle das Div-Element für die Karte mit fester ID
+    return '<div id="map-canvas" style="width:' . esc_attr($atts['width']) . '; height:' . esc_attr($atts['height']) . ';"></div>';
+}
+add_shortcode('render_map', 'render_map_shortcode');

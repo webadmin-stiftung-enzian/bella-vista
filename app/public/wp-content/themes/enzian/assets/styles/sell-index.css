@@ -1,12 +1,17 @@
+.wp-block-enzian-sell-index {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+}
 
 .wp-block-enzian-sell-index svg {
-    width: 100%;
+    width: auto;
     height: auto;
     display: block;
     margin: 0 auto;
 }
 
-.wp-block-enzian-sell-index svg #bella-vista > g {
+.wp-block-enzian-sell-index svg #bella-vista>g {
     transition: transform 0.3s ease;
     transform: translateY(0px);
 }
@@ -15,23 +20,34 @@
     fill-opacity: 0;
 }
 
-.wp-block-enzian-sell-index svg [id*="Overlay_Shades"].highlight{
+.wp-block-enzian-sell-index svg [id*="Overlay_Shades"].highlight {
     fill-opacity: 1;
     transition: fill-opacity 0.3s ease;
 }
 
-.wp-block-enzian-sell-index svg #bella-vista > g.translate {
+.wp-block-enzian-sell-index svg #bella-vista>g.translate {
     transform: translateY(-12rem);
 }
 
-.sell-index {}
+.sell-index {
+    margin-bottom: 5rem;
+}
 
 .sell-index-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
     background-color: transparent;
-    
+
+}
+
+.sell-index-table thead th {
+    text-align: center;
+    font-family: 'PP Neue Montreal', sans-serif ;
+    font-weight: 600;
+    font-weight: normal;
+    font-size: 1rem;
+    min-width: 5rem;
 }
 
 .sell-index-table tr {
@@ -39,7 +55,7 @@
     height: 3rem;
 }
 
-.sell-index-table tr:hover{
+.sell-index-table tr:hover {
     background-color: rgba(0, 0, 0, 0.25);
     cursor: pointer;
 }
@@ -47,6 +63,7 @@
 .sell-index-table td {
     text-align: center;
     padding: 0.5rem;
+     font-family: 'PP Neue Montreal', sans-serif;
     font-size: 0.875rem;
     color: rgba(0, 0, 0, 0.75);
 }
