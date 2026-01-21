@@ -38,10 +38,141 @@ function initMap() {
         return;
     }
 
-    const map = new google.maps.Map(document.getElementById('map-canvas'), {
-        zoom: 8,
-        center: { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lng) }
+    // Zoom-Level aus data-Attribut lesen oder Standardwert verwenden
+    const mapElement = document.getElementById('map-canvas');
+    const zoomLevel = parseInt(mapElement.getAttribute('data-zoom')) || 17;
+
+    // Map Style - Minimalistisches helles Design
+    const mapStyle = [
+        {
+            "featureType": "water",
+            "elementType": "geometry",
+            "stylers": [{"color": "#c1c1c1"}]
+        },
+        {
+            "featureType": "landscape",
+            "elementType": "geometry",
+            "stylers": [{"color": "#f9f9f9"}]
+        },
+        {
+            "featureType": "landscape.man_made",
+            "elementType": "geometry",
+            "stylers": [{"color": "#efefef"}]
+        },
+        {
+            "featureType": "landscape.natural.terrain",
+            "elementType": "geometry",
+            "stylers": [{"color": "#eaeaea"}]
+        },
+        {
+            "featureType": "road.highway",
+            "elementType": "geometry.fill",
+            "stylers": [{"color": "#e5e5e5"}]
+        },
+        {
+            "featureType": "road.highway",
+            "elementType": "geometry.stroke",
+            "stylers": [{"color": "#cccccc"}]
+        },
+        {
+            "featureType": "road.arterial",
+            "elementType": "geometry.fill",
+            "stylers": [{"color": "#e5e5e5"}]
+        },
+        {
+            "featureType": "road.arterial",
+            "elementType": "geometry.stroke",
+            "stylers": [{"color": "#cccccc"}]
+        },
+        {
+            "featureType": "road.local",
+            "elementType": "geometry.fill",
+            "stylers": [{"color": "#e5e5e5"}]
+        },
+        {
+            "featureType": "road.local",
+            "elementType": "geometry.stroke",
+            "stylers": [{"color": "#cccccc"}]
+        },
+        {
+            "featureType": "water",
+            "elementType": "labels.text.fill",
+            "stylers": [{"color": "#666666"}]
+        },
+        {
+            "featureType": "poi.business",
+            "elementType": "geometry",
+            "stylers": [{"visibility": "on"}]
+        },
+        {
+            "featureType": "poi.park",
+            "elementType": "labels",
+            "stylers": [{"visibility": "on"}]
+        },
+        {
+            "featureType": "poi.park",
+            "elementType": "labels.icon",
+            "stylers": [{"visibility": "on"}]
+        },
+        {
+            "featureType": "poi.medical",
+            "elementType": "labels",
+            "stylers": [{"visibility": "on"}]
+        },
+        {
+            "featureType": "poi.medical",
+            "elementType": "labels.icon",
+            "stylers": [{"visibility": "on"}]
+        },
+        {
+            "featureType": "poi.school",
+            "elementType": "labels",
+            "stylers": [{"visibility": "on"}]
+        },
+        {
+            "featureType": "poi.school",
+            "elementType": "labels.icon",
+            "stylers": [{"visibility": "on"}]
+        },
+        {
+            "featureType": "poi.store",
+            "elementType": "labels",
+            "stylers": [{"visibility": "on"}]
+        },
+        {
+            "featureType": "poi.store",
+            "elementType": "labels.icon",
+            "stylers": [{"visibility": "on"}]
+        },
+        {
+            "featureType": "poi.sports_complex",
+            "elementType": "geometry",
+            "stylers": [{"visibility": "off"}]
+        },
+        {
+            "featureType": "transit",
+            "elementType": "geometry",
+            "stylers": [{"color": "#e5e5e5"}]
+        }
+    ];
+
+    const map = new google.maps.Map(mapElement, {
+        zoom: zoomLevel,
+        center: { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lng) },
+        styles: mapStyle,
+        disableDefaultUI: false,
+        zoomControl: true,
+        mapTypeControl: false,
+        scaleControl: false,
+        streetViewControl: false,
+        rotateControl: true,  // Ermöglicht 3D-Ansicht Rotation
+        fullscreenControl: false,
+        tilt: 45,  // 3D-Gebäudeansicht aktivieren
+        mapId: null  // Standard Map für Gebäudeanzeige
     });
+
+    // Explizit Gebäude-Layer aktivieren
+    map.setTilt(45);
 
     map.markers = [];
 
@@ -71,7 +202,7 @@ function centerMap(map) {
     // Case: Single marker.
     if (map.markers.length == 1) {
         map.setCenter(bounds.getCenter());
-        map.setZoom(12);
+        // Zoom-Level beibehalten aus initMap
 
         // Case: Multiple markers.
     } else {

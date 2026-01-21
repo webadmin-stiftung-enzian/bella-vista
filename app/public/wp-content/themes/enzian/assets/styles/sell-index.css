@@ -11,6 +11,10 @@
     margin: 0 auto;
 }
 
+.wp-block-enzian-sell-index svg g#Umgebung polygon {
+    fill: var(--wp--preset--color--brown-grey) !important;
+}
+
 .wp-block-enzian-sell-index svg #bella-vista>g {
     transition: transform 0.3s ease;
     transform: translateY(0px);
@@ -23,6 +27,10 @@
 .wp-block-enzian-sell-index svg [id*="Overlay_Shades"].highlight {
     fill-opacity: 1;
     transition: fill-opacity 0.3s ease;
+}
+
+.wp-block-enzian-sell-index svg [id*="Overlay_Shades"].highlight polygon {
+    fill: var(--wp--preset--color--accent-orange) !important;
 }
 
 .wp-block-enzian-sell-index svg #bella-vista>g.translate {
@@ -53,10 +61,11 @@
 .sell-index-table tr {
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
     height: 3rem;
+    transition: background-color 0.3s ease;
 }
 
 .sell-index-table tr:hover {
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: var(--wp--preset--color--accent-orange);
     cursor: pointer;
 }
 

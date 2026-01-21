@@ -6,6 +6,42 @@
 			"contentSize": "1200px",
 			"wideSize": "1440px"
 		},
+		"spacing": {
+			"blockGap": true,
+			"customSpacingSize": true,
+			"margin": false,
+			"padding": false,
+			"spacingScale": {
+				"operator": "*",
+				"increment": 2,
+				"steps": 7,
+				"mediumStep": 2,
+				"unit": "rem"
+			},
+			"spacingSizes": [],
+			"units": [
+				"px",
+				"em",
+				"rem",
+				"vh",
+				"vw",
+				"%"
+			]
+		},
+		"blocks": {
+			"core/image": {
+				"dimensions": {
+					"units": [
+						"px",
+						"em",
+						"rem",
+						"vh",
+						"vw",
+						"%"
+					]
+				}
+			}
+		},
 		"color": {
 			"defaultDuotone": false,
 			"defaultGradients": false,
@@ -13,8 +49,8 @@
 			"palette": [
 				{
 					"color": "#272727",
-					"name": "dark gray",
-					"slug": "dark-gray"
+					"name": "dark grey",
+					"slug": "dark-grey"
 				},
 				{
 					"color": "#FFFFFF",
@@ -23,13 +59,33 @@
 				},
 				{
 					"color": "#F5F5F5",
-					"name": "light gray",
-					"slug": "light-gray"
+					"name": "light grey",
+					"slug": "light-grey"
 				},
 				{
 					"color": "#000000",
 					"name": "black",
 					"slug": "black"
+				},
+				{
+					"color": "#EFE9E7",
+					"name": "brown grey",
+					"slug": "brown-grey"
+				},
+				{
+					"color": "#DFD3CF",
+					"name": "light brown grey",
+					"slug": "light-brown-grey"
+				},
+				{
+					"color": "#090402",
+					"name": "dark brown",
+					"slug": "dark-brown"
+				},
+				{
+					"color": "#FF6D2F",
+					"name": "accent orange",
+					"slug": "accent orange"
 				}
 			]
 		},
@@ -466,7 +522,26 @@
 	"styles": {
 		"typography": {
 			"fontSize": "1rem",
-			"lineHeight": "1.25"
+			"lineHeight": "1.2"
+		},
+		"color": {
+			"text": "#090402",
+			"background": "#EFE9E7",
+			"link": "#38160A"
+		},
+		"spacing": {
+			"blockGap": "2rem",
+			"margin": {
+				"blockStart": "2rem",
+				"blockEnd": "2rem",
+				"left": "0",
+				"top": "2rem",
+				"bottom": "2rem"
+			},
+			"padding": {
+				"left": "2rem",
+				"right": "2rem"
+			}
 		},
 		"elements": {
 			"h1": {
@@ -480,6 +555,7 @@
 			"h2": {
 				"typography": {
 					"fontFamily": "PP Fragment Glare",
+					"fontSize": "3rem",
 					"fontWeight": "300",
 					"lineHeight": "1.25"
 				}
@@ -508,8 +584,14 @@
 					"fontWeight": "300"
 				},
 				"color": {
-					"text": "#000000",
+					"text": "#090402",
 					"background": "#ffffff"
+				},
+				":hover": {
+					"color": {
+						"text": "#090402",
+						"background": "#FF6D2F"
+					}
 				}
 			},
 			"link": {
@@ -532,21 +614,29 @@
 		"blocks": {
 			"core/group": {
 				"color": {
-					"text": "#000000",
+					"text": "#090402",
 					"link": "#777777"
 				}
 			},
 			"core/button": {
-				"border": {
-					"radius": "25px"
-				},
-				"typography": {
-					"fontFamily": "PP Fragment Glare",
-					"fontWeight": "300"
-				},
-				"color": {
-					"text": "#000000",
-					"background": "#ffffff"
+				"variations": {
+					"outline": {
+						"border": {
+							"color": "#090402",
+							"style": "solid",
+							"width": "1px"
+						},
+						"color": {
+							"text": "#090402",
+							"background": "transparent"
+						},
+						":hover": {
+							"color": {
+								"text": "#ffffff",
+								"background": "#090402"
+							}
+						}
+					}
 				}
 			},
 			"core/heading": {
@@ -561,6 +651,38 @@
 					"lineHeight": "lg",
 					"fontFamily": "PP Fragment Glare",
 					"fontWeight": "400"
+				}
+			},
+			"core/details": {
+				"typography": {
+					"fontFamily": "PP Fragment Glare",
+					"fontWeight": "300",
+					"lineHeight": "md"
+				},
+				"border": {
+					"bottom": {
+						"color": "#090402",
+						"style": "solid",
+						"width": "1px"
+					}
+				},
+				"spacing": {
+					"padding": {
+						"top": "1rem",
+						"bottom": "1rem",
+						"left": "1rem",
+						"right": "1rem"
+					}
+				}
+			},
+			"core/image": {
+				"css": "& img { width: 100%; height: auto; }"
+			},
+			"core/navigation": {
+				"typography": {
+					"fontFamily": "PP Fragment Glare",
+					"fontWeight": "300",
+					"fontSize": "1rem"
 				}
 			}
 		}

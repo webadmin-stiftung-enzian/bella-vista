@@ -480,11 +480,34 @@ add_action('wp_enqueue_scripts', function () {
         filemtime(get_stylesheet_directory() . '/assets/styles/sell-index.css')
     );
 
+    wp_enqueue_style(
+        "stylesheet",
+        get_stylesheet_directory_uri() . '/assets/styles/style.css',
+        [],
+        filemtime(get_stylesheet_directory() . '/assets/styles/style.css')
+    );
+
     wp_enqueue_script(
         'sell-index',
         get_stylesheet_directory_uri() . '/assets/scripts/sell-index.js',
         [],
         filemtime(get_stylesheet_directory() . '/assets/scripts/sell-index.js'),
+        true
+    );
+
+    wp_enqueue_script(
+        'nav',
+        get_stylesheet_directory_uri() . '/assets/scripts/nav.js',
+        [],
+        filemtime(get_stylesheet_directory() . '/assets/scripts/nav.js'),
+        true
+    );
+
+    wp_enqueue_script(
+        'details-animation',
+        get_stylesheet_directory_uri() . '/assets/scripts/details-animation.js',
+        [],
+        filemtime(get_stylesheet_directory() . '/assets/scripts/details-animation.js'),
         true
     );
 
@@ -517,10 +540,23 @@ function render_map_shortcode($atts)
 {
     $atts = shortcode_atts(array(
         'width' => '100%',
-        'height' => '400px',
+        'height' => '600px',
+        'zoom' => '17',
     ), $atts, 'render_map');
 
     // Erstelle das Div-Element für die Karte mit fester ID
-    return '<div id="map-canvas" style="width:' . esc_attr($atts['width']) . '; height:' . esc_attr($atts['height']) . ';"></div>';
+    return '<div id="map-canvas" data-zoom="' . esc_attr($atts['zoom']) . '" style="width:' . esc_attr($atts['width']) . '; height:' . esc_attr($atts['height']) . ';"></div>';
 }
 add_shortcode('render_map', 'render_map_shortcode');
+
+// Enqueue Block Editor Assets (Format Filter)
+function my_theme_enqueue_format_assets()
+{
+    wp_enqueue_script(
+        'my-custom-format',
+        get_template_directory_uri() . '/assets/scripts/format-filter.js',
+        array('wp-rich-text', 'wp-element', 'wp-editor', 'wp-format-library'),
+        filemtime(get_template_directory() . '/assets/scripts/format-filter.js')
+    );
+}
+add_action('enqueue_block_editor_assets', 'my_theme_enqueue_format_assets');
