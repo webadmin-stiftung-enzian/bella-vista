@@ -11,15 +11,38 @@
  * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
  */
 
-// Apartments vom API Endpunkt abrufen
+// Apartments via WP_Query abrufen
 $svg_file = get_stylesheet_directory() . '/assets/files/bella-vista.svg';
-$api_url = home_url('/wp-json/apartments/v1/');
-$response = wp_remote_get($api_url);
+
+$query = new WP_Query([
+	'post_type' => 'apartments',
+	'posts_per_page' => -1,
+	'orderby' => 'title',
+	'order' => 'ASC'
+]);
+
 $apartments = [];
 
-if (!is_wp_error($response) && wp_remote_retrieve_response_code($response) === 200) {
-	$body = wp_remote_retrieve_body($response);
-	$apartments = json_decode($body, true);
+if ($query->have_posts()) {
+	while ($query->have_posts()) {
+		$query->the_post();
+		$post_id = get_the_ID();
+
+		$apartments[] = [
+			'slug' => get_post_field('post_name', $post_id),
+			'details' => [
+				'level' => get_field('apartments_level', $post_id) ?: '',
+				'rooms' => get_field('apartments_rooms', $post_id) ?: '',
+				'living_space' => get_field('apartments_living_space', $post_id) ?: '',
+				'terrace_balcony' => get_field('apartments_terrace_balcony', $post_id) ?: '',
+				'garden' => get_field('apartments_garden', $post_id) ?: '',
+				'price' => get_field('apartments_price', $post_id) ?: '',
+				'status' => get_field('apartments_status', $post_id) ?: '',
+				'floor_plan_url' => get_field('apartments_floorplan', $post_id) ?: ''
+			]
+		];
+	}
+	wp_reset_postdata();
 }
 ?>
 <div <?php echo get_block_wrapper_attributes(); ?>>
