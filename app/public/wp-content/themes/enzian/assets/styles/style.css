@@ -150,7 +150,7 @@ p {
 }
 
 /* Link Styles */
-a {
+footer a {
     position: relative;
     display: inline-block;
     color: var(--wp--preset--color--dark-brown);
@@ -158,11 +158,11 @@ a {
     transition: color 0.3s ease;
 }
 
-a:hover {
+footer a:hover {
     color: var(--wp--preset--color--accent-orange);
 }
 
-a::after {
+footer a::after {
     content: '';
     position: absolute;
     bottom: -2px;
@@ -175,7 +175,7 @@ a::after {
     transition: transform 0.3s ease;
 }
 
-a:hover::after {
+footer a:hover::after {
     transform: scaleX(1);
 }
 
