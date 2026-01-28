@@ -37,8 +37,8 @@ if ($query->have_posts()) {
 				'terrace_balcony' => get_field('apartments_terrace_balcony', $post_id) ?: '',
 				'garden' => get_field('apartments_garden', $post_id) ?: '',
 				'price' => get_field('apartments_price', $post_id) ?: '',
-				'status' => get_field('apartments_status', $post_id) ?: '',
-				'floor_plan_url' => get_field('apartments_floorplan', $post_id) ?: ''
+				'status' => get_field('apartments_state', $post_id) ?: '',
+				'floor_plan_url' => get_field('apartments_floor_plan', $post_id)['url'] ?? ''
 			]
 		];
 	}
