@@ -16,8 +16,11 @@
     grid-column: 1 / span 6;
     grid-row: 1 / span 3;
     align-self: self-end;
-    transform: translateY(+1rem);
     overflow: visible;
+}
+
+.wp-block-enzian-sell-index svg:not(.lucide) {
+    transform: translateY(+1rem);
 }
 
 .wp-block-enzian-sell-index svg>g {
@@ -91,6 +94,12 @@
     font-family: 'PP Neue Montreal', sans-serif;
     font-size: 0.875rem;
     color: rgba(0, 0, 0, 0.75);
+}
+
+.sell-index-table td a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
 }
 
 .sell-index-table-download-pdf svg {

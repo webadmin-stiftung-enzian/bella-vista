@@ -519,6 +519,23 @@ add_action('wp_enqueue_scripts', function () {
         true
     );
 
+    // GSAP Library
+    wp_enqueue_script(
+        'gsap',
+        'https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js',
+        [],
+        '3.12.5',
+        true
+    );
+
+    wp_enqueue_script(
+        'counter',
+        get_stylesheet_directory_uri() . '/assets/scripts/counter.js',
+        array('gsap'), // GSAP als Dependency
+        filemtime(get_stylesheet_directory() . '/assets/scripts/counter.js'),
+        true
+    );
+
     // Google Maps API laden
     wp_enqueue_script(
         'google-maps-api',

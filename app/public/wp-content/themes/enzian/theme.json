@@ -73,9 +73,14 @@
 					"slug": "brown-grey"
 				},
 				{
-					"color": "#DFD3CF",
+					"color": "#FAF8F8",
 					"name": "light brown grey",
 					"slug": "light-brown-grey"
+				},
+				{
+					"color": "#DFD3CF",
+					"name": "dark brown grey",
+					"slug": "dark-brown-grey"
 				},
 				{
 					"color": "#090402",
@@ -585,7 +590,7 @@
 				},
 				"color": {
 					"text": "#090402",
-					"background": "#ffffff"
+					"background": "#FAF8F8"
 				},
 				":hover": {
 					"color": {
@@ -596,7 +601,7 @@
 			},
 			"link": {
 				"color": {
-					"text": "#ffffff"
+					"text": "#FAF8F8"
 				},
 				"typography": {
 					"textDecoration": "none"
@@ -632,7 +637,7 @@
 						},
 						":hover": {
 							"color": {
-								"text": "#ffffff",
+								"text": "#FAF8F8",
 								"background": "#090402"
 							}
 						}
