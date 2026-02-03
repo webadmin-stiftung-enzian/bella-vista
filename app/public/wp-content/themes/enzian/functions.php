@@ -528,11 +528,28 @@ add_action('wp_enqueue_scripts', function () {
         true
     );
 
+    // GSAP ScrollTrigger Plugin
+    wp_enqueue_script(
+        'gsap-scrolltrigger',
+        'https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js',
+        array('gsap'),
+        '3.12.5',
+        true
+    );
+
     wp_enqueue_script(
         'counter',
         get_stylesheet_directory_uri() . '/assets/scripts/counter.js',
         array('gsap'), // GSAP als Dependency
         filemtime(get_stylesheet_directory() . '/assets/scripts/counter.js'),
+        true
+    );
+
+    wp_enqueue_script(
+        'parallax',
+        get_stylesheet_directory_uri() . '/assets/scripts/parallax.js',
+        array('gsap', 'gsap-scrolltrigger'), // GSAP + ScrollTrigger als Dependencies
+        filemtime(get_stylesheet_directory() . '/assets/scripts/parallax.js'),
         true
     );
 

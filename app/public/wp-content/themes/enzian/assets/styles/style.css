@@ -246,7 +246,7 @@ div.wp-block-group:has(>nav).nav-visible {
 
 /* Sections */
 
-section#lage .is-layout-grid {
+section.zitat {
     display: grid;
     grid-template-columns: repeat(12, minmax(auto, 1fr));
     grid-template-rows: repeat(3, auto);
@@ -256,27 +256,89 @@ section#lage .is-layout-grid {
     margin-right: auto;
 }
 
+section.zitat blockquote {
+    grid-column: 1 / span 6;
+    grid-row: 3 / span 1;
+    margin-left: 0 !important;
+}
+
+section.zitat figure:nth-of-type(1) {
+    grid-column: 2 / span 6;
+    grid-row: 2 / span 1;
+    margin-left: 0 !important;
+}
+
+section.zitat figure:nth-of-type(1) img {
+    max-height: 20rem;
+    width: auto;
+}
+
+section.zitat figure:nth-of-type(2) {
+    grid-column: 7 / span 6;
+    grid-row: 1 / span 3;
+}
+
+section#lage {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(auto, 1fr));
+    grid-template-rows: repeat(3, auto);
+    gap: 2rem;
+    max-width: var(--wp--style--global--wide-size);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+section#lage .is-layout-grid {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-template-rows: repeat(4, auto);
+    gap: 2rem;
+    max-width: var(--wp--style--global--wide-size);
+    margin-left: auto;
+    margin-right: auto;
+}
+
 section#lage .is-layout-grid h2 {
-    grid-column: 4 / span 6;
+    grid-column: 1 / span 9;
     grid-row: 1 / span 1;
     margin-left: 0 !important;
     margin-top: 5rem;
 }
 
 section#lage .is-layout-grid p {
-    grid-column: 4 / span 6;
+    grid-column: 1 / span 8;
     grid-row: 2 / span 1;
 }
 
+section#lage .is-layout-grid figure {
+    grid-column: 7 / span 3;
+    grid-row: 1 / span 1;
+    margin-left: 0 !important;
+}
+
+section#lage .is-layout-grid figure img {
+    max-height: 10rem;
+    width: auto;
+}
+
 section#lage>div:first-of-type {
+    grid-column: 1 / span 12;
+    grid-row: 1 / span 1;
     display: grid;
     grid-template-columns: repeat(12, minmax(auto, 1fr));
     gap: 2rem;
 }
 
 section#lage>div:first-of-type>h1 {
-    grid-column: 1 / span 8;
+    grid-column: 3 / span 8;
     grid-row: 1 / span 1;
+    z-index: 3;
+}
+
+section#lage>div:first-of-type>figure {
+    grid-column: 1 / span 5;
+    grid-row: 3 / span 3;
+    max-width: 100%;
     z-index: 3;
 }
 
@@ -300,6 +362,121 @@ section#lage>div:first-of-type>div.cb-carousel-block {
     grid-column: 3 / span 10;
     grid-row: 3 / span 1;
     max-width: 100%;
+}
+
+section#lage>div:nth-of-type(2) {
+    grid-column: 3 / span 9;
+    grid-row: 2 / span 1;
+    z-index: 1;
+    width: 100%;
+    height: auto;
+}
+
+section#lage>figure:nth-of-type(1) {
+    grid-column: 1 / span 12;
+    grid-row: 3 / span 1;
+    width: 100%;
+    height: auto;
+}
+
+section#lage>figure:nth-of-type(2) {
+    grid-column: 7 / span 4;
+    grid-row: 4 / span 1;
+    width: 100%;
+    height: auto;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin: 0;
+    padding: 0;
+}
+
+section#lage>figure:nth-of-type(2) table thead {
+    border-bottom: 1px solid;
+}
+
+section#lage>figure:nth-of-type(2) table thead tr,
+section#lage>figure:nth-of-type(2) table tbody tr {
+    border-bottom: 1px solid;
+    height: 3rem;
+}
+
+section#lage>figure:nth-of-type(2) table thead tr th,
+section#lage>figure:nth-of-type(2) table tbody tr td {
+    text-align: left;
+    font-family: 'PP Neue Montreal', sans-serif;
+    font-weight: normal;
+    min-width: 5rem;
+    padding: 0.5rem;
+    border: none;
+}
+
+section#lage>figure:nth-of-type(2) table thead tr th {
+    font-size: 1rem;
+    width: 50%;
+}
+
+section#lage>figure:nth-of-type(2) table tbody tr td{
+    width: 50%;
+}
+
+section#lage>figure:nth-of-type(2) table tbody tr td:nth-of-type(2),
+section#lage>figure:nth-of-type(2) table thead tr th:nth-of-type(2) {
+    width: 25%;
+    text-align: center;
+}
+
+section#lage>figure:nth-of-type(2) table tbody tr td:nth-of-type(3),
+section#lage>figure:nth-of-type(2) table thead tr th:nth-of-type(3) {
+    width: 25%;
+    text-align: center;
+}
+
+section#lage>figure:nth-of-type(2) table thead tr th:nth-of-type(1)::after {
+    content: url('data:image/svg+xml,<svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 10C8.55 10 9.02083 9.80417 9.4125 9.4125C9.80417 9.02083 10 8.55 10 8C10 7.45 9.80417 6.97917 9.4125 6.5875C9.02083 6.19583 8.55 6 8 6C7.45 6 6.97917 6.19583 6.5875 6.5875C6.19583 6.97917 6 7.45 6 8C6 8.55 6.19583 9.02083 6.5875 9.4125C6.97917 9.80417 7.45 10 8 10ZM8 17.35C10.0333 15.4833 11.5417 13.7875 12.525 12.2625C13.5083 10.7375 14 9.38333 14 8.2C14 6.38333 13.4208 4.89583 12.2625 3.7375C11.1042 2.57917 9.68333 2 8 2C6.31667 2 4.89583 2.57917 3.7375 3.7375C2.57917 4.89583 2 6.38333 2 8.2C2 9.38333 2.49167 10.7375 3.475 12.2625C4.45833 13.7875 5.96667 15.4833 8 17.35ZM8 20C5.31667 17.7167 3.3125 15.5958 1.9875 13.6375C0.6625 11.6792 0 9.86667 0 8.2C0 5.7 0.804167 3.70833 2.4125 2.225C4.02083 0.741667 5.88333 0 8 0C10.1167 0 11.9792 0.741667 13.5875 2.225C15.1958 3.70833 16 5.7 16 8.2C16 9.86667 15.3375 11.6792 14.0125 13.6375C12.6875 15.5958 10.6833 17.7167 8 20Z" fill="%23090402"/></svg>');
+    /* margin-left: 0.75rem; */
+    /* margin-right: 0; */
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    height: 1.5rem;
+}
+
+section#lage>figure:nth-of-type(2) table thead tr th:nth-of-type(2)::after {
+    content: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 19V20C6 20.2833 5.90417 20.5208 5.7125 20.7125C5.52083 20.9042 5.28333 21 5 21H4C3.71667 21 3.47917 20.9042 3.2875 20.7125C3.09583 20.5208 3 20.2833 3 20V12L5.1 6C5.2 5.7 5.37917 5.45833 5.6375 5.275C5.89583 5.09167 6.18333 5 6.5 5H17.5C17.8167 5 18.1042 5.09167 18.3625 5.275C18.6208 5.45833 18.8 5.7 18.9 6L21 12V20C21 20.2833 20.9042 20.5208 20.7125 20.7125C20.5208 20.9042 20.2833 21 20 21H19C18.7167 21 18.4792 20.9042 18.2875 20.7125C18.0958 20.5208 18 20.2833 18 20V19H6ZM5.8 10H18.2L17.15 7H6.85L5.8 10ZM7.5 16C7.91667 16 8.27083 15.8542 8.5625 15.5625C8.85417 15.2708 9 14.9167 9 14.5C9 14.0833 8.85417 13.7292 8.5625 13.4375C8.27083 13.1458 7.91667 13 7.5 13C7.08333 13 6.72917 13.1458 6.4375 13.4375C6.14583 13.7292 6 14.0833 6 14.5C6 14.9167 6.14583 15.2708 6.4375 15.5625C6.72917 15.8542 7.08333 16 7.5 16ZM16.5 16C16.9167 16 17.2708 15.8542 17.5625 15.5625C17.8542 15.2708 18 14.9167 18 14.5C18 14.0833 17.8542 13.7292 17.5625 13.4375C17.2708 13.1458 16.9167 13 16.5 13C16.0833 13 15.7292 13.1458 15.4375 13.4375C15.1458 13.7292 15 14.0833 15 14.5C15 14.9167 15.1458 15.2708 15.4375 15.5625C15.7292 15.8542 16.0833 16 16.5 16ZM5 17H19V12H5V17Z" fill="%23090402"/></svg>');
+    /* margin-left: 0.75rem; */
+    /* margin-right: 0; */
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    height: 1.5rem;
+}
+
+section#lage>figure:nth-of-type(2) table thead tr th:nth-of-type(3)::after {
+    content: url('data:image/svg+xml,<svg width="49" height="25" viewBox="0 0 49 25" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(%23clip0_377_9)"><path d="M31 22C30.7167 22 30.4792 21.9042 30.2875 21.7125C30.0958 21.5208 30 21.2833 30 21V18.95C29.7 18.6167 29.4583 18.2458 29.275 17.8375C29.0917 17.4292 29 16.9833 29 16.5V7C29 5.61667 29.6417 4.60417 30.925 3.9625C32.2083 3.32083 34.2333 3 37 3C39.8667 3 41.9167 3.30833 43.15 3.925C44.3833 4.54167 45 5.56667 45 7V16.5C45 16.9833 44.9083 17.4292 44.725 17.8375C44.5417 18.2458 44.3 18.6167 44 18.95V21C44 21.2833 43.9042 21.5208 43.7125 21.7125C43.5208 21.9042 43.2833 22 43 22H42C41.7167 22 41.4792 21.9042 41.2875 21.7125C41.0958 21.5208 41 21.2833 41 21V20H33V21C33 21.2833 32.9042 21.5208 32.7125 21.7125C32.5208 21.9042 32.2833 22 32 22H31ZM37.05 6H42.65H31.45H37.05ZM41 13H31H43H41ZM31 11H43V8H31V11ZM33.5 17C33.9167 17 34.2708 16.8542 34.5625 16.5625C34.8542 16.2708 35 15.9167 35 15.5C35 15.0833 34.8542 14.7292 34.5625 14.4375C34.2708 14.1458 33.9167 14 33.5 14C33.0833 14 32.7292 14.1458 32.4375 14.4375C32.1458 14.7292 32 15.0833 32 15.5C32 15.9167 32.1458 16.2708 32.4375 16.5625C32.7292 16.8542 33.0833 17 33.5 17ZM40.5 17C40.9167 17 41.2708 16.8542 41.5625 16.5625C41.8542 16.2708 42 15.9167 42 15.5C42 15.0833 41.8542 14.7292 41.5625 14.4375C41.2708 14.1458 40.9167 14 40.5 14C40.0833 14 39.7292 14.1458 39.4375 14.4375C39.1458 14.7292 39 15.0833 39 15.5C39 15.9167 39.1458 16.2708 39.4375 16.5625C39.7292 16.8542 40.0833 17 40.5 17ZM31.45 6H42.65C42.4 5.71667 41.8625 5.47917 41.0375 5.2875C40.2125 5.09583 38.8833 5 37.05 5C35.2667 5 33.9625 5.10417 33.1375 5.3125C32.3125 5.52083 31.75 5.75 31.45 6ZM33 18H41C41.55 18 42.0208 17.8042 42.4125 17.4125C42.8042 17.0208 43 16.55 43 16V13H31V16C31 16.55 31.1958 17.0208 31.5875 17.4125C31.9792 17.8042 32.45 18 33 18Z" fill="%23090402"/><path d="M4 16.5V7C4 6.11667 4.22917 5.4125 4.6875 4.8875C5.14583 4.3625 5.75 3.9625 6.5 3.6875C7.25 3.4125 8.10417 3.22917 9.0625 3.1375C10.0208 3.04583 11 3 12 3C13.1 3 14.1375 3.04583 15.1125 3.1375C16.0875 3.22917 16.9375 3.4125 17.6625 3.6875C18.3875 3.9625 18.9583 4.3625 19.375 4.8875C19.7917 5.4125 20 6.11667 20 7V16.5C20 17.4833 19.6625 18.3125 18.9875 18.9875C18.3125 19.6625 17.4833 20 16.5 20L18 21.5V22H16L14 20H10L8 22H6V21.5L7.5 20C6.51667 20 5.6875 19.6625 5.0125 18.9875C4.3375 18.3125 4 17.4833 4 16.5ZM12 5C10.2333 5 8.94167 5.10417 8.125 5.3125C7.30833 5.52083 6.75 5.75 6.45 6H17.65C17.4 5.71667 16.8625 5.47917 16.0375 5.2875C15.2125 5.09583 13.8667 5 12 5ZM6 11H11V8H6V11ZM16.5 13H6H18H16.5ZM13 11H18V8H13V11ZM8.5 17C8.93333 17 9.29167 16.8583 9.575 16.575C9.85833 16.2917 10 15.9333 10 15.5C10 15.0667 9.85833 14.7083 9.575 14.425C9.29167 14.1417 8.93333 14 8.5 14C8.06667 14 7.70833 14.1417 7.425 14.425C7.14167 14.7083 7 15.0667 7 15.5C7 15.9333 7.14167 16.2917 7.425 16.575C7.70833 16.8583 8.06667 17 8.5 17ZM15.5 17C15.9333 17 16.2917 16.8583 16.575 16.575C16.8583 16.2917 17 15.9333 17 15.5C17 15.0667 16.8583 14.7083 16.575 14.425C16.2917 14.1417 15.9333 14 15.5 14C15.0667 14 14.7083 14.1417 14.425 14.425C14.1417 14.7083 14 15.0667 14 15.5C14 15.9333 14.1417 16.2917 14.425 16.575C14.7083 16.8583 15.0667 17 15.5 17ZM7.5 18H16.5C16.9333 18 17.2917 17.8583 17.575 17.575C17.8583 17.2917 18 16.9333 18 16.5V13H6V16.5C6 16.9333 6.14167 17.2917 6.425 17.575C6.70833 17.8583 7.06667 18 7.5 18ZM12 6H17.65H6.45H12Z" fill="%23090402"/><line x1="24.5" x2="24.5" y2="25" stroke="%23090402"/></g><defs><clipPath id="clip0_377_9"><rect width="49" height="25" fill="white"/></clipPath></defs></svg>');
+    /* margin-left: 0.75rem; */
+    /* margin-right: 0; */
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    height: 1.5rem;
+}
+
+section#lage>figure.parallax {
+    grid-column: 3 / span 3;
+    grid-row: 4 / span 1;
+    width: 100%;
+    height: auto;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin: 0;
+    padding: 0;
+}
+
+section#lage>figure.parallax img {
+    max-height: 20rem;
+    width: auto;
+    position: absolute;
+    top: 14rem;
 }
 
 section#wohnungen {
@@ -341,9 +518,14 @@ section.hero>figure:nth-of-type(1) {
 
 section.hero>figure:nth-of-type(2) {
     grid-column: 7 / span 5;
-    grid-row: 4 / span 1;
+    grid-row: 5 / span 2;
     z-index: 3;
 }
+
+section.hero>figure:nth-of-type(2) img {
+    max-height: 27rem;
+}
+
 
 section.hero>figure:nth-of-type(3) {
     grid-column: 8 / span 5;
@@ -367,7 +549,7 @@ section#facts-figures {
     margin-right: auto;
 }
 
-section#facts-figures > h2 {
+section#facts-figures>h2 {
     grid-column: 2 / span 6;
     grid-row: 1 / span 1;
     margin-left: 0 !important;
@@ -392,7 +574,7 @@ section#facts-figures div.wp-block-cb-carousel-v2 {
     grid-row: 3 / span 1;
 }
 
-section#facts-figures > div.is-layout-flex {
+section#facts-figures>div.is-layout-flex {
     grid-column: 2 / span 10;
     grid-row: 4 / span 1;
     width: 100%;
@@ -405,7 +587,7 @@ section#facts-figures > div.is-layout-flex {
 section#facts-figures div:has(> h3):nth-of-type(1) {
     grid-column: 2 / span 3;
     grid-row: 1 / span 1;
-    
+
 }
 
 section#facts-figures div:has(> h3):nth-of-type(2) {
@@ -433,8 +615,16 @@ section#facts-figures div:has(> h3):nth-of-type(5) {
     grid-row: 3 / span 1;
 } */
 
-section#facts-figures div.wp-block-group > h3 {
+section#facts-figures div.wp-block-group>h3 {
     font-size: 8rem;
+}
+
+section#facts-figures > figure {
+    grid-column: 10 / span 3;
+    grid-row: 2 / span 1;
+    width: auto;
+    height: 20rem;
+    align-self: self-end;
 }
 
 section#dokumentation {
@@ -447,18 +637,18 @@ section#dokumentation {
     margin-right: auto;
 }
 
-section#dokumentation > h2 {
+section#dokumentation>h2 {
     grid-column: 2 / span 8;
     grid-row: 1 / span 1;
     margin-left: 0 !important;
 }
 
-section#dokumentation > p {
+section#dokumentation>p {
     grid-column: 2 / span 8;
     grid-row: 2 / span 1;
 }
 
-section#dokumentation > .wp-block-buttons {
+section#dokumentation>.wp-block-buttons {
     grid-column: 2 / span 8;
     grid-row: 3 / span 1;
     margin-left: 0 !important;
@@ -474,23 +664,24 @@ section#kontakt {
     margin-right: auto;
 }
 
-section#kontakt > h2 {
+section#kontakt>h2 {
     grid-column: 2 / span 8;
     grid-row: 1 / span 1;
     margin-left: 0 !important;
 }
 
-section#kontakt > p {
+section#kontakt>p {
     grid-column: 2 / span 8;
     grid-row: 2 / span 1;
 }
 
-section#kontakt > div.wp-block-contact-form-7-contact-form-selector {
+section#kontakt>div.wp-block-contact-form-7-contact-form-selector {
     grid-column: 2 / span 8;
     grid-row: 3 / span 1;
     margin-left: 0 !important;
     margin-right: 0 !important;
 }
+
 /* footer styles */
 footer p {
     line-height: 150%;

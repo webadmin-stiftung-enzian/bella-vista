@@ -689,6 +689,32 @@
 					"fontWeight": "300",
 					"fontSize": "1rem"
 				}
+			},
+			"core/table": {
+				"typography": {
+					"fontFamily": "'PP Neue Montreal', sans-serif",
+					"lineHeight": "md",
+					"fontSize": "0.875rem"
+				},
+				"color": {
+					"text": "rgba(0, 0, 0, 0.75)",
+					"background": "transparent"
+				},
+				"spacing": {
+					"padding": {
+						"top": "0.5rem",
+						"bottom": "0.5rem",
+						"left": "0.5rem",
+						"right": "0.5rem"
+					}
+				},
+				"border": {
+					"bottom": {
+						"color": "rgba(0, 0, 0, 0.5)",
+						"style": "solid",
+						"width": "1px"
+					}
+				}
 			}
 		}
 	},
