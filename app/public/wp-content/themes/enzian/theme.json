@@ -627,18 +627,35 @@
 				"variations": {
 					"outline": {
 						"border": {
+							"color": "#FF6D2F",
+							"style": "solid",
+							"width": "1px"
+						},
+						"color": {
+							"text": "#FF6D2F",
+							"background": "transparent"
+						},
+						":hover": {
+							"color": {
+								"text": "#090402",
+								"background": "#FF6D2F"
+							}
+						}
+					},
+					"outline-2": {
+						"border": {
 							"color": "#090402",
 							"style": "solid",
 							"width": "1px"
 						},
 						"color": {
-							"text": "#090402",
+							"text": "##090402",
 							"background": "transparent"
 						},
 						":hover": {
 							"color": {
-								"text": "#FAF8F8",
-								"background": "#090402"
+								"text": "#090402",
+								"background": "#FF6D2F"
 							}
 						}
 					}

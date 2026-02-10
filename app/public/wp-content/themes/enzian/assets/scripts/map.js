@@ -1,211 +1,66 @@
 console.log('Map script loaded');
 
-// Warte auf DOM und Google Maps API
-function waitForGoogleMaps(callback) {
-    if (typeof google !== 'undefined' && google.maps) {
-        callback();
-    } else {
-        setTimeout(() => waitForGoogleMaps(callback), 100);
-    }
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-    // Prüfe ob Element existiert
-    const mapElement = document.getElementById('map-canvas');
+document.addEventListener('DOMContentLoaded', function() {
+    const mapElements = ["bahnhof", "primarschule", "verwaltung", "sport", "lebensmittel", "kirche"];
     
-    if (!mapElement) {
-        console.log('Map element not found on this page');
-        return;
+    // Funktion zum Entfernen aller Highlights
+    function removeAllHighlights() {
+        document.querySelectorAll('.highlight').forEach(el => {
+            el.classList.remove('highlight');
+        });
     }
-
-    // Warte auf Daten und Google Maps
-    if (typeof mapDataFromServer === 'undefined') {
-        console.error('Map data not loaded');
-        return;
+    
+    // Funktion zum Hinzufügen von Highlight
+    function addHighlight(element, elementInList) {
+        // Prüfe ob bereits aktiv - wenn ja, entferne alle Highlights
+        if (element?.classList.contains('highlight') || elementInList?.classList.contains('highlight')) {
+            removeAllHighlights();
+        } else {
+            removeAllHighlights();
+            if (element) element.classList.add('highlight');
+            if (elementInList) elementInList.classList.add('highlight');
+        }
     }
-
-    waitForGoogleMaps(() => {
-        console.log('Initializing map...');
-        initMap();
+    
+    mapElements.forEach(id => {
+        const element = document.getElementById(id);
+        const elementInList = document.querySelector(`g[data-name="${id}"]`);
+        
+        if (element && elementInList) {
+            // Click-Event für beide Elemente
+            element.addEventListener('click', function(e) {
+                e.preventDefault();
+                addHighlight(element, elementInList);
+            });
+            
+            elementInList.addEventListener('click', function(e) {
+                e.preventDefault();
+                addHighlight(element, elementInList);
+            });
+            
+            // Touch-Event für mobile Geräte
+            element.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                addHighlight(element, elementInList);
+            });
+            
+            elementInList.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                addHighlight(element, elementInList);
+            });
+        }
+    });
+    
+    // Optional: Highlights entfernen bei Klick außerhalb
+    document.addEventListener('click', function(e) {
+        const isMapElement = mapElements.some(id => {
+            const element = document.getElementById(id);
+            const elementInList = document.querySelector(`g[data-name="${id}"]`);
+            return element?.contains(e.target) || elementInList?.contains(e.target);
+        });
+        
+        if (!isMapElement) {
+            removeAllHighlights();
+        }
     });
 });
-
-function initMap() {
-    const data = mapDataFromServer.locations;
-
-    if (!data || data.length === 0) {
-        console.error('No location data available');
-        return;
-    }
-
-    // Zoom-Level aus data-Attribut lesen oder Standardwert verwenden
-    const mapElement = document.getElementById('map-canvas');
-    const zoomLevel = parseInt(mapElement.getAttribute('data-zoom')) || 17;
-
-    // Map Style - Minimalistisches helles Design
-    const mapStyle = [
-        {
-            "featureType": "water",
-            "elementType": "geometry",
-            "stylers": [{"color": "#c1c1c1"}]
-        },
-        {
-            "featureType": "landscape",
-            "elementType": "geometry",
-            "stylers": [{"color": "#f9f9f9"}]
-        },
-        {
-            "featureType": "landscape.man_made",
-            "elementType": "geometry",
-            "stylers": [{"color": "#efefef"}]
-        },
-        {
-            "featureType": "landscape.natural.terrain",
-            "elementType": "geometry",
-            "stylers": [{"color": "#eaeaea"}]
-        },
-        {
-            "featureType": "road.highway",
-            "elementType": "geometry.fill",
-            "stylers": [{"color": "#e5e5e5"}]
-        },
-        {
-            "featureType": "road.highway",
-            "elementType": "geometry.stroke",
-            "stylers": [{"color": "#cccccc"}]
-        },
-        {
-            "featureType": "road.arterial",
-            "elementType": "geometry.fill",
-            "stylers": [{"color": "#e5e5e5"}]
-        },
-        {
-            "featureType": "road.arterial",
-            "elementType": "geometry.stroke",
-            "stylers": [{"color": "#cccccc"}]
-        },
-        {
-            "featureType": "road.local",
-            "elementType": "geometry.fill",
-            "stylers": [{"color": "#e5e5e5"}]
-        },
-        {
-            "featureType": "road.local",
-            "elementType": "geometry.stroke",
-            "stylers": [{"color": "#cccccc"}]
-        },
-        {
-            "featureType": "water",
-            "elementType": "labels.text.fill",
-            "stylers": [{"color": "#666666"}]
-        },
-        {
-            "featureType": "poi.business",
-            "elementType": "geometry",
-            "stylers": [{"visibility": "on"}]
-        },
-        {
-            "featureType": "poi.park",
-            "elementType": "labels",
-            "stylers": [{"visibility": "on"}]
-        },
-        {
-            "featureType": "poi.park",
-            "elementType": "labels.icon",
-            "stylers": [{"visibility": "on"}]
-        },
-        {
-            "featureType": "poi.medical",
-            "elementType": "labels",
-            "stylers": [{"visibility": "on"}]
-        },
-        {
-            "featureType": "poi.medical",
-            "elementType": "labels.icon",
-            "stylers": [{"visibility": "on"}]
-        },
-        {
-            "featureType": "poi.school",
-            "elementType": "labels",
-            "stylers": [{"visibility": "on"}]
-        },
-        {
-            "featureType": "poi.school",
-            "elementType": "labels.icon",
-            "stylers": [{"visibility": "on"}]
-        },
-        {
-            "featureType": "poi.store",
-            "elementType": "labels",
-            "stylers": [{"visibility": "on"}]
-        },
-        {
-            "featureType": "poi.store",
-            "elementType": "labels.icon",
-            "stylers": [{"visibility": "on"}]
-        },
-        {
-            "featureType": "poi.sports_complex",
-            "elementType": "geometry",
-            "stylers": [{"visibility": "off"}]
-        },
-        {
-            "featureType": "transit",
-            "elementType": "geometry",
-            "stylers": [{"color": "#e5e5e5"}]
-        }
-    ];
-
-    const map = new google.maps.Map(mapElement, {
-        zoom: zoomLevel,
-        center: { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lng) },
-        styles: mapStyle,
-        disableDefaultUI: false,
-        zoomControl: true,
-        mapTypeControl: false,
-        scaleControl: false,
-        streetViewControl: false,
-        rotateControl: true,  // Ermöglicht 3D-Ansicht Rotation
-        fullscreenControl: false,
-        tilt: 45,  // 3D-Gebäudeansicht aktivieren
-        mapId: null  // Standard Map für Gebäudeanzeige
-    });
-
-    // Explizit Gebäude-Layer aktivieren
-    map.setTilt(45);
-
-    map.markers = [];
-
-    data.forEach(loc => {
-        const marker = new google.maps.Marker({
-            position: { lat: parseFloat(loc.lat), lng: parseFloat(loc.lng) },
-            map: map,
-            title: loc.title
-        });
-        map.markers.push(marker);
-    });
-
-    // Karte zentrieren basierend auf allen Markern
-    centerMap(map);
-}
-
-function centerMap(map) {
-    // Create map boundaries from all map markers.
-    var bounds = new google.maps.LatLngBounds();
-    map.markers.forEach(function (marker) {
-        bounds.extend({
-            lat: marker.position.lat(),
-            lng: marker.position.lng()
-        });
-    });
-
-    // Case: Single marker.
-    if (map.markers.length == 1) {
-        map.setCenter(bounds.getCenter());
-        // Zoom-Level beibehalten aus initMap
-
-        // Case: Multiple markers.
-    } else {
-        map.fitBounds(bounds);
-    }
-}

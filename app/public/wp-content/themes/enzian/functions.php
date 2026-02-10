@@ -8,6 +8,13 @@ function cc_mime_types($mimes)
 }
 add_filter('upload_mimes', 'cc_mime_types');
 
+// Add editor styles
+function enzian_editor_styles()
+{
+    add_editor_style('assets/styles/style.css');
+}
+add_action('after_setup_theme', 'enzian_editor_styles');
+
 // ACF Google Maps API Key setzen
 function my_acf_google_map_api($api)
 {
@@ -15,6 +22,18 @@ function my_acf_google_map_api($api)
     return $api;
 }
 add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
+
+function render_svg_map()
+{
+    $svg_file = get_stylesheet_directory() . '/assets/files/map.svg';
+    if (file_exists($svg_file)) {
+        return '<figure class="wp-block-image size-full wp-container-content-1ed81c1b">' . file_get_contents($svg_file) . '</figure>';
+    } else {
+        return '<figure><!-- SVG file not found --></figure>';
+    }
+}
+
+add_shortcode('render_svg_map', 'render_svg_map');
 
 add_action('acf/include_fields', function () {
     if (! function_exists('acf_add_local_field_group')) {
@@ -534,6 +553,23 @@ add_action('wp_enqueue_scripts', function () {
         'https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js',
         array('gsap'),
         '3.12.5',
+        true
+    );
+
+    // GSAP ScrollToPlugin
+    wp_enqueue_script(
+        'gsap-scrollto',
+        'https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollToPlugin.min.js',
+        array('gsap'),
+        '3.12.5',
+        true
+    );
+
+    wp_enqueue_script(
+        'smooth-scroll',
+        get_stylesheet_directory_uri() . '/assets/scripts/smooth-scroll.js',
+        array('gsap', 'gsap-scrolltrigger', 'gsap-scrollto'),
+        filemtime(get_stylesheet_directory() . '/assets/scripts/smooth-scroll.js'),
         true
     );
 

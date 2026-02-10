@@ -49,7 +49,14 @@ if ($query->have_posts()) {
 	<?php if (!empty($apartments)): ?>
 		<?php
 		if (file_exists($svg_file)) {
-			echo file_get_contents($svg_file);
+			$svg_content = file_get_contents($svg_file);
+			// Füge dem <svg> Tag eine Klasse hinzu
+			$svg_content = preg_replace('/(<svg[^>]*class=["\'])([^"\']*)/i', '$1$2 bella-vista-map', $svg_content);
+			// Falls keine class-Attribut existiert, füge eines hinzu
+			if (strpos($svg_content, 'class=') === false) {
+				$svg_content = preg_replace('/(<svg[^>]*)>/i', '$1 class="bella-vista-map parallax">', $svg_content);
+			}
+			echo $svg_content;
 		} else {
 			echo '<!-- SVG file not found -->';
 		}
