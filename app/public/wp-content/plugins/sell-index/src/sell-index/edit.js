@@ -34,8 +34,10 @@ import apiFetch from '@wordpress/api-fetch';
 export default function Edit() {
 	const [apartments, setApartments] = useState([]);
 	const [loading, setLoading] = useState(true);
+	const [svgContent, setSvgContent] = useState('');
 
 	useEffect(() => {
+		// Apartments laden
 		apiFetch({ path: '/apartments/v1' })
 			.then((data) => {
 				setApartments(data);
@@ -46,6 +48,21 @@ export default function Edit() {
 				console.error('Error fetching apartments:', error);
 				setLoading(false);
 			});
+
+		// SVG laden
+		fetch('/wp-content/themes/enzian/assets/files/bella-vista.svg')
+			.then((response) => response.text())
+			.then((svg) => {
+				// Füge Klassen hinzu wie in render.php
+				let modifiedSvg = svg.replace(/(<svg[^>]*class=["'])([^"']*)/, '$1$2 bella-vista-map');
+				if (!modifiedSvg.includes('class=')) {
+					modifiedSvg = modifiedSvg.replace(/(<svg[^>]*)>/, '$1 class="bella-vista-map parallax">');
+				}
+				setSvgContent(modifiedSvg);
+			})
+			.catch((error) => {
+				console.error('Error loading SVG:', error);
+			});
 	}, []);
 
 	return (
@@ -54,6 +71,15 @@ export default function Edit() {
 				<p>{__('Lädt Apartments...', 'sell-index')}</p>
 			) : (
 				<>
+					{svgContent ? (
+						<div dangerouslySetInnerHTML={{ __html: svgContent }} />
+					) : (
+						<div className="bella-vista-map-placeholder">
+							<p style={{ textAlign: 'center', padding: '2rem', backgroundColor: '#f0f0f0', borderRadius: '0.5rem' }}>
+								{__('SVG Karte wird geladen...', 'sell-index')}
+							</p>
+						</div>
+					)}
 					<section className="sell-index">
 						<table className="sell-index-table">
 							<thead>
@@ -63,22 +89,51 @@ export default function Edit() {
 									<th>{__('Wohnfläche', 'sell-index')}</th>
 									<th>{__('Terrasse/Balkon', 'sell-index')}</th>
 									<th>{__('Garten', 'sell-index')}</th>
-									<th>{__('Keller', 'sell-index')}</th>
 									<th>{__('Preis', 'sell-index')}</th>
 									<th>{__('Grundriss', 'sell-index')}</th>
 								</tr>
 							</thead>
 							<tbody>
 								{apartments.map((apartment) => (
-									<tr key={apartment.slug}>
+									<tr key={apartment.slug} id={apartment.slug}>
 										<td>{apartment.details.level}</td>
 										<td>{apartment.details.rooms}</td>
 										<td>{apartment.details.living_space} m²</td>
-										<td>{apartment.details.terrace_balcony} m²</td>
-										<td>{apartment.details.garden} m²</td>
-										<td>{apartment.details.basement} m²</td>
-										{apartment.details.status !== 'Verfügbar' ? <td>{apartment.details.status}</td> : <td>{apartment.details.price}</td>}
-										<td>{apartment.details.floor_plan_url}</td>
+										<td>
+											{apartment.details.terrace_balcony === '' || apartment.details.terrace_balcony === '0' 
+												? '—' 
+												: `${apartment.details.terrace_balcony} m²`}
+										</td>
+										<td>
+											{apartment.details.garden === '' || apartment.details.garden === '0' 
+												? '—' 
+												: `${apartment.details.garden} m²`}
+										</td>
+										<td>
+											{apartment.details.status === 'Verfügbar' 
+												? apartment.details.price 
+												: apartment.details.status}
+										</td>
+										<td>
+											{apartment.details.floor_plan_url ? (
+												<a 
+													className="sell-index-table-download-pdf" 
+													href={apartment.details.floor_plan_url} 
+													target="_blank" 
+													rel="noopener noreferrer"
+													aria-label={__('Grundriss ansehen', 'sell-index')}
+												>
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-file-down-icon lucide-file-down">
+														<path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+														<path d="M14 2v5a1 1 0 0 0 1 1h5" />
+														<path d="M12 18v-6" />
+														<path d="m9 15 3 3 3-3" />
+													</svg>
+												</a>
+											) : (
+												__('N/A', 'sell-index')
+											)}
+										</td>
 									</tr>
 								))}
 							</tbody>

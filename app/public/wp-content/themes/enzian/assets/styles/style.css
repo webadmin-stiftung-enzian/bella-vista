@@ -7,10 +7,32 @@ p {
     line-height: 120%;
 }
 
+form>p {
+    margin: 0;
+}
+
+.wp-block-quote {
+    font-size: 3.125rem !important;
+    line-height: 110% !important;
+}
+
+.wp-block-quote p {
+    font-size: inherit !important;
+    line-height: inherit !important;
+}
+
 .toSansSerif {
     font-family: var(--wp--preset--font-family--pp-neue-montreal);
     font-weight: 300;
     letter-spacing: -0.01em;
+}
+
+li>span.toSansSerif {
+    font-family: var(--wp--preset--font-family--pp-neue-montreal);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
 /* Details Block Styles */
@@ -23,12 +45,15 @@ p {
 /* Add a custom transition when opening/closing. */
 .wp-block-details {
     transition: all 0.3s ease-in-out;
-    border-bottom-color: var(--wp--preset--color--dark-brown);
+    /* border-bottom-color: var(--wp--preset--color--dark-brown); */
+    border-radius: var(--wp--custom--border-radius--lg);
+    background-color: var(--wp--preset--color--light-brown-grey);
 }
 
 .wp-block-details:hover {
-    border-bottom-color: var(--wp--preset--color--accent-orange);
-    transition: border-bottom-color 0.3s ease;
+    /* border-bottom-color: var(--wp--preset--color--accent-orange); */
+    transition: all 0.3s ease;
+    background-color: var(--wp--preset--color--dark-brown-grey);
 }
 
 .wp-block-details[open] {
@@ -60,6 +85,9 @@ p {
     padding: 1.25rem;
     font-weight: 300;
     font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 /* Change the background of the `summary` element based on state. */
@@ -80,7 +108,7 @@ p {
 
 .wp-block-details summary::after {
     content: '';
-    float: right;
+    /* float: right; */
     width: 13px;
     height: 24px;
     background-color: var(--wp--preset--color--dark-brown);
@@ -89,6 +117,7 @@ p {
     mask-repeat: no-repeat;
     mask-position: center;
     transition: transform 0.3s ease, background-color 0.3s ease;
+    display: inline-flex;
 }
 
 .wp-block-details:hover summary::after {
@@ -132,16 +161,17 @@ p {
 .wpcf7-form p label span textarea,
 .wpcf7-form p label span input {
     background-color: var(--wp--preset--color--brown-grey);
-    color: var(--wp--preset--color--white);
+    color: var(--wp--preset--color--dark-brown);
     font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 600;
+    font-weight: 300;
     font-size: 1rem;
     padding: 0.75rem 1.5rem;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
     border: 1px solid var(--wp--preset--color--dark-brown);
-    border-radius: var(--wp--preset--spacing--50);
+    border-radius: var(--wp--custom--border-radius--lg);
+    letter-spacing: 0.02em;
 }
 
 .wpcf7-form p label span input:focus-visible,
@@ -150,7 +180,7 @@ p {
 }
 
 /* Link Styles */
-footer a {
+a:not(.naechste-schritte a, .wp-block-site-logo a, figure.stoerer a) {
     position: relative;
     display: inline-block;
     color: var(--wp--preset--color--dark-brown);
@@ -158,11 +188,11 @@ footer a {
     transition: color 0.3s ease;
 }
 
-footer a:hover {
+a:hover:not(.naechste-schritte a, .wp-block-site-logo a, figure.stoerer a) {
     color: var(--wp--preset--color--accent-orange);
 }
 
-footer a::after {
+a:not(.naechste-schritte a, .wp-block-site-logo a, figure.stoerer a)::after {
     content: '';
     position: absolute;
     bottom: -2px;
@@ -175,7 +205,7 @@ footer a::after {
     transition: transform 0.3s ease;
 }
 
-footer a:hover::after {
+a:hover:not(.naechste-schritte a, .wp-block-site-logo a, figure.stoerer a)::after {
     transform: scaleX(1);
 }
 
@@ -186,7 +216,7 @@ div.wp-block-group:has(>nav) {
     padding: 0 3rem;
     padding-top: 0px;
     padding-bottom: 0px;
-    border-radius: 10rem;
+    border-radius: var(--wp--custom--border-radius--lg);
     position: fixed;
     top: 2rem;
     left: 50%;
@@ -194,6 +224,7 @@ div.wp-block-group:has(>nav) {
     z-index: 1000;
     transition: transform 0.3s ease, opacity 0.3s ease;
     width: 100%;
+    height: 90px;
 }
 
 div.wp-block-group:has(>nav).nav-hidden {
@@ -334,6 +365,7 @@ section.lage .is-layout-grid figure img {
     width: auto;
     position: relative;
     top: -5rem;
+    right: -15rem;
 }
 
 .wp-block-post-content section.lage>div:first-of-type,
@@ -413,8 +445,11 @@ section.lage>figure.wp-block-table {
     margin: 0;
     padding: 0;
     position: relative;
-    top: -5rem;
+    top: -7.5rem;
     margin-bottom: -5rem;
+    background-color: var(--wp--preset--color--light-brown-grey);
+    padding: 2.5rem;
+    border-radius: var(--wp--custom--border-radius--lg);
 }
 
 .wp-block-post-content section.lage>figure.wp-block-table table thead,
@@ -444,20 +479,20 @@ section.lage>figure.wp-block-table table tbody tr td {
 
 .wp-block-post-content section.lage>figure.wp-block-table table thead tr th,
 section.lage>figure.wp-block-table table thead tr th {
-    font-size: 1rem;
-    width: 50%;
+    font-size: 1.125rem;
+    width: 40%;
 }
 
 .wp-block-post-content section.lage>figure.wp-block-table table tbody tr td,
 section.lage>figure.wp-block-table table tbody tr td {
-    width: 50%;
+    width: 40%;
 }
 
 .wp-block-post-content section.lage>figure.wp-block-table table tbody tr td:nth-of-type(2),
 .wp-block-post-content section.lage>figure.wp-block-table table thead tr th:nth-of-type(2),
 section.lage>figure.wp-block-table table tbody tr td:nth-of-type(2),
 section.lage>figure.wp-block-table table thead tr th:nth-of-type(2) {
-    width: 25%;
+    width: 30%;
     text-align: center;
 }
 
@@ -465,7 +500,7 @@ section.lage>figure.wp-block-table table thead tr th:nth-of-type(2) {
 .wp-block-post-content section.lage>figure.wp-block-table table thead tr th:nth-of-type(3),
 section.lage>figure.wp-block-table table tbody tr td:nth-of-type(3),
 section.lage>figure.wp-block-table table thead tr th:nth-of-type(3) {
-    width: 25%;
+    width: 30%;
     text-align: center;
 }
 
@@ -624,21 +659,27 @@ section.hero>figure:nth-of-type(1) {
     z-index: 1;
 }
 
-section.hero>figure:nth-of-type(2) {
-    grid-column: 7 / span 5;
-    grid-row: 5 / span 2;
+section.hero>figure.stoerer {
+    grid-column: 9 / span 3;
+    grid-row: 2 / span 2;
     z-index: 3;
 }
 
-section.hero>figure:nth-of-type(2) img {
-    max-height: 27rem;
+section.hero>figure.stoerer img {
+    max-height: 14rem;
+    transform: rotate(-15deg);
+    height: 14rem;
 }
 
 
 section.hero>figure:nth-of-type(3) {
-    grid-column: 8 / span 5;
-    grid-row: 5 / span 1;
+    grid-column: 2 / span 5;
+    grid-row: 6 / span 1;
     z-index: 2;
+}
+
+section.hero>figure:nth-of-type(3) img {
+    max-height: 37rem;
 }
 
 section.hero>figure:nth-of-type(1) img {
@@ -779,29 +820,46 @@ section.dokumentation>.wp-block-buttons {
     margin-left: 0 !important;
 }
 
-section.kontakt {
-    display: grid;
-    grid-template-columns: repeat(12, minmax(auto, 1fr));
-    grid-template-rows: repeat(3, auto);
-    gap: 2rem;
-    max-width: var(--wp--style--global--wide-size);
+section.kontakt-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 5rem;
+    flex-wrap: wrap;
+    max-width: var(--wp--style--global--content-size);
     margin-left: auto;
     margin-right: auto;
+    align-items: flex-start;
+}
+
+section.kontakt {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(auto, 1fr));
+    grid-template-rows: repeat(3, auto);
+    gap: 2rem;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    flex-shrink: 1;
+    flex-grow: 1;
+    flex-basis: 0;
+    min-width: 0;
+    padding: 2.5rem 0 0 0;
 }
 
 section.kontakt>h2 {
-    grid-column: 3 / span 8;
+    grid-column: 1 / span 6;
     grid-row: 1 / span 1;
     margin-left: 0 !important;
 }
 
 section.kontakt>p {
-    grid-column: 3 / span 8;
+    grid-column: 1 / span 6;
     grid-row: 2 / span 1;
+    margin-left: 0 !important;
 }
 
 section.kontakt>div.wp-block-contact-form-7-contact-form-selector {
-    grid-column: 3 / span 8;
+    grid-column: 1 / span 6;
     grid-row: 3 / span 1;
     margin-left: 0 !important;
     margin-right: 0 !important;
@@ -809,16 +867,21 @@ section.kontakt>div.wp-block-contact-form-7-contact-form-selector {
 
 section.naechste-schritte {
     display: grid;
-    grid-template-columns: repeat(12, minmax(auto, 1fr));
+    grid-template-columns: repeat(6, minmax(auto, 1fr));
     grid-template-rows: repeat(3, auto);
     gap: 2rem;
-    max-width: var(--wp--style--global--wide-size);
-    margin-left: auto;
-    margin-right: auto;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    min-width: 0;
+    padding: 0;
 }
 
 section.naechste-schritte .naechste-schritte-wrapper {
-    grid-column: 3 / span 8;
+    grid-column: 1 / span 6;
     grid-row: 1 / span 3;
     display: grid;
     grid-template-columns: subgrid;
@@ -826,20 +889,21 @@ section.naechste-schritte .naechste-schritte-wrapper {
     gap: 2rem;
     width: 100%;
     background-color: var(--wp--preset--color--light-brown-grey);
-    border-radius: 3rem;
+    border-radius: var(--wp--custom--border-radius--lg);
     padding-top: 5rem;
     padding-bottom: 5rem;
     overflow: hidden;
+    padding: 2.5rem;
 }
 
 section.naechste-schritte h2 {
-    grid-column: 2 / span 6;
+    grid-column: 1 / span 6;
     grid-row: 1 / span 1;
     margin-left: 0 !important;
 }
 
 section.naechste-schritte .wp-block-buttons {
-    grid-column: 2 / span 6;
+    grid-column: 1 / span 6;
     grid-row: 2 / span 1;
     width: 100%;
     display: flex;
@@ -865,13 +929,13 @@ section.naechste-schritte .wp-block-buttons .wp-block-button:nth-of-type(5) {
 section.naechste-schritte .wp-block-buttons .wp-block-button a {
     display: inline-flex;
     flex-direction: row;
-    width: 4rem;
-    height: 4rem;
+    width: 3.75rem;
+    height: 3.75rem;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
     aspect-ratio: 1;
-    border-radius: 5rem;
+    border-radius: var(--wp--custom--border-radius--full);
     font-size: 1.25rem;
 }
 
@@ -894,7 +958,7 @@ section.naechste-schritte .wp-block-buttons .wp-block-button:last-child::after {
 }
 
 section.naechste-schritte article {
-    grid-column: 2 / span 6;
+    grid-column: 1 / span 5;
     grid-row: 3 / span 1;
     margin-left: 0 !important;
     margin-top: 4rem;
@@ -910,6 +974,11 @@ section.naechste-schritte article.active {
 }
 
 /* footer styles */
+footer {
+    margin-top: 10rem;
+    ;
+}
+
 footer p {
     line-height: 150%;
 }

@@ -12,6 +12,7 @@ add_filter('upload_mimes', 'cc_mime_types');
 function enzian_editor_styles()
 {
     add_editor_style('assets/styles/style.css');
+    add_editor_style('assets/styles/sell-index.css');
 }
 add_action('after_setup_theme', 'enzian_editor_styles');
 
