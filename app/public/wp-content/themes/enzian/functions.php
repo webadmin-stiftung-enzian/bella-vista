@@ -566,6 +566,15 @@ add_action('wp_enqueue_scripts', function () {
         true
     );
 
+    // GSAP Draggable Plugin
+    wp_enqueue_script(
+        'gsap-draggable',
+        'https://cdn.jsdelivr.net/npm/gsap@3/dist/Draggable.min.js',
+        array('gsap'),
+        '3.12.5',
+        true
+    );
+
     wp_enqueue_script(
         'smooth-scroll',
         get_stylesheet_directory_uri() . '/assets/scripts/smooth-scroll.js',
@@ -590,28 +599,13 @@ add_action('wp_enqueue_scripts', function () {
         true
     );
 
-    // Google Maps API laden
-    wp_enqueue_script(
-        'google-maps-api',
-        'https://maps.googleapis.com/maps/api/js?key=AIzaSyAXRY70-7Z9a82LKiSTf2D0GevIfdowI38',
-        [],
-        null,
-        true
-    );
-
-    // Map Script mit Daten laden
     wp_enqueue_script(
         'map',
         get_stylesheet_directory_uri() . '/assets/scripts/map.js',
-        array('google-maps-api'),
+        array('gsap', 'gsap-draggable'),
         filemtime(get_stylesheet_directory() . '/assets/scripts/map.js'),
         true
     );
-
-    $locations_from_posttype = get_map_data_by_name('Bella Vista');
-    wp_localize_script('map', 'mapDataFromServer', array(
-        'locations' => $locations_from_posttype
-    ));
 });
 
 // Erstelle Shortcode um eine Karte anzuzeigen

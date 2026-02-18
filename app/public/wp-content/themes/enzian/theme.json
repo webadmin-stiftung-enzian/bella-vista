@@ -124,6 +124,11 @@
 				"md": "16px",
 				"lg": "32px",
 				"full": "9999px"
+			},
+			"breakpoints": {
+				"mobile": "640px",
+				"tablet": "768px",
+				"desktop": "1024px"
 			}
 		},
 		"typography": {
@@ -792,7 +797,7 @@
 						"blockEnd": "0.5rem",
 						"top": "0.75rem",
 						"bottom": "0.75rem"
-				}
+					}
 				}
 			}
 		}
