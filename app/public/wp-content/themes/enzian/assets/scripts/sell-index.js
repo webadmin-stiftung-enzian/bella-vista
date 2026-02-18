@@ -6,109 +6,136 @@ document.addEventListener('DOMContentLoaded', function () {
     // Etagen-Hierarchie von unten nach oben
     const floors = ['EG', '1OG', '2OG', '3OG', 'DACH'];
 
+    // Aktive Touch-Zeile für Toggle-Logik
+    let activeTouchRowId = null;
+
+    // Erkennt Touch/Pen-Eingabe direkt am Event (nicht am Gerät)
+    function isTouchEvent(event) {
+        return event.pointerType === 'touch' || event.pointerType === 'pen';
+    }
+
     // Hilfsfunktion: Translate nur Etagen oberhalb der aktuellen
     function translateFloorsAbove(currentFloor) {
         const currentIndex = floors.indexOf(currentFloor);
         if (currentIndex === -1) return;
-        
+
         const floorsAbove = floors.slice(currentIndex + 1);
-        
+
         Array.from(svg.querySelectorAll(':scope > g[data-name]'))
             .filter(g => g.dataset.name && floorsAbove.some(floor => g.dataset.name.includes(floor)))
             .forEach(g => g.classList.add('translate'));
     }
 
+    function clearHighlights(reason) {
+        if (!svg) return;
+        const highlighted = svg.querySelectorAll('.highlight');
+        const translated = svg.querySelectorAll('.translate');
+        console.log('[Sell Index] clearHighlights', {
+            reason: reason || 'unspecified',
+            highlightedCount: highlighted.length,
+            translatedCount: translated.length
+        });
+        highlighted.forEach(el => el.classList.remove('highlight'));
+        translated.forEach(el => el.classList.remove('translate'));
+    }
+
+    function highlightByRowId(rowId) {
+        if (!svg) return false;
+
+        const rowConfig = {
+            'eg-1': { floor: 'EG', target: '#EG_Overlay_Shades_WG_1' },
+            'eg-2': { floor: 'EG', target: '#EG_Overlay_Shades_WG_2' },
+            'og1-3': { floor: '1OG', target: '#_1OG_Overlay_Shades_WG_3' },
+            'og1-4': { floor: '1OG', target: '#_1OG_Overlay_Shades_WG_4' },
+            'og2-5': { floor: '2OG', target: '#_2OG_Overlay_Shades_WG_5' },
+            'og2-6': { floor: '2OG', target: '#_2OG_Overlay_Shades_WG_6' },
+            'og3-7': { floor: '3OG', target: '#_3OG_Overlay_Shades_WG_7' }
+        };
+
+        const config = rowConfig[rowId];
+        if (!config) {
+            console.warn('[Sell Index] No row config for:', rowId);
+            return false;
+        }
+
+        console.log('[Sell Index] highlightByRowId', { rowId, config });
+
+        clearHighlights('before-highlight');
+        translateFloorsAbove(config.floor);
+
+        const target = svg.querySelector(config.target);
+        if (target) {
+            target.classList.add('highlight');
+            console.log('[Sell Index] highlight added', {
+                selector: config.target,
+                id: target.id,
+                classList: target.classList.toString(),
+                totalHighlights: svg.querySelectorAll('.highlight').length
+            });
+            return true;
+        } else {
+            console.warn('[Sell Index] target not found for selector:', config.target);
+            return false;
+        }
+    }
+
     if (table) {
         console.log('Sell Index table found.');
         const rows = table.querySelectorAll('tbody tr');
+
         rows.forEach(row => {
-            row.addEventListener('mouseover', function () {
-                console.log('Row hovered:', this);
-                if (this.id === 'eg-1') {
-                    if (svg) {
-                        console.log('Highlighting EG-1');
-                        const highlighted = svg.querySelectorAll('.highlight');
-                        const translated = svg.querySelectorAll('.translate');
-                        highlighted.forEach(el => el.classList.remove('highlight'));
-                        translated.forEach(el => el.classList.remove('translate')); 
-                        translateFloorsAbove('EG');
-                        svg.querySelector('#EG_Overlay_Shades_WG_1').classList.add('highlight');
-                    }
-                } else if (this.id === 'eg-2') {
-                    if (svg) {
-                        console.log('Highlighting EG-2');
-                        const highlighted = svg.querySelectorAll('.highlight');
-                        const translated = svg.querySelectorAll('.translate');
-                        highlighted.forEach(el => el.classList.remove('highlight'));
-                        translated.forEach(el => el.classList.remove('translate')); 
-                        translateFloorsAbove('EG');
-                        svg.querySelector('#EG_Overlay_Shades_WG_2').classList.add('highlight');
-                    }
-                } else if (this.id === 'og1-3') {
-                    if (svg) {
-                        console.log('Highlighting OG1-3');
-                        const highlighted = svg.querySelectorAll('.highlight');
-                        const translated = svg.querySelectorAll('.translate');
-                        highlighted.forEach(el => el.classList.remove('highlight'));
-                        translated.forEach(el => el.classList.remove('translate')); 
-                        translateFloorsAbove('1OG');
-                        svg.querySelector('#_1OG_Overlay_Shades_WG_3').classList.add('highlight');
-                    }
-                } else if (this.id === 'og1-4') {
-                    if (svg) {
-                        console.log('Highlighting OG1-4');
-                        const highlighted = svg.querySelectorAll('.highlight');
-                        const translated = svg.querySelectorAll('.translate');
-                        highlighted.forEach(el => el.classList.remove('highlight'));
-                        translated.forEach(el => el.classList.remove('translate')); 
-                        translateFloorsAbove('1OG');
-                        svg.querySelector('#_1OG_Overlay_Shades_WG_4').classList.add('highlight');
-                    }
-                } else if (this.id === 'og2-5') {
-                    if (svg) {
-                        console.log('Highlighting OG2-5');
-                        const highlighted = svg.querySelectorAll('.highlight');
-                        const translated = svg.querySelectorAll('.translate');
-                        highlighted.forEach(el => el.classList.remove('highlight'));
-                        translated.forEach(el => el.classList.remove('translate')); 
-                        translateFloorsAbove('2OG');
-                        svg.querySelector('#_2OG_Overlay_Shades_WG_5').classList.add('highlight');
-                    }
-                } else if (this.id === 'og2-6') {
-                    if (svg) {
-                        console.log('Highlighting OG2-6');
-                        const highlighted = svg.querySelectorAll('.highlight');
-                        const translated = svg.querySelectorAll('.translate');
-                        highlighted.forEach(el => el.classList.remove('highlight'));
-                        translated.forEach(el => el.classList.remove('translate')); 
-                        translateFloorsAbove('2OG');
-                        svg.querySelector('#_2OG_Overlay_Shades_WG_6').classList.add('highlight');
-                    }
-                } else if (this.id === 'og3-7') {
-                    if (svg) {
-                        console.log('Highlighting OG3-7');
-                        const highlighted = svg.querySelectorAll('.highlight');
-                        const translated = svg.querySelectorAll('.translate');
-                        highlighted.forEach(el => el.classList.remove('highlight'));
-                        translated.forEach(el => el.classList.remove('translate')); 
-                        translateFloorsAbove('3OG');
-                        svg.querySelector('#_3OG_Overlay_Shades_WG_7').classList.add('highlight');
-                    }
+            // ── Maus-Hover: pointerenter mit pointerType === 'mouse' ──
+            row.addEventListener('pointerenter', function (event) {
+                if (event.pointerType !== 'mouse') return;
+                activeTouchRowId = null; // Touch-State zurücksetzen
+                console.log('[Sell Index] mouse hover:', this.id);
+                highlightByRowId(this.id);
+            });
+
+            // ── Touch-Tap: pointerup mit pointerType === 'touch'/'pen' ──
+            row.addEventListener('pointerup', function (event) {
+                if (!isTouchEvent(event)) return;
+                event.preventDefault();
+
+                const rowId = this.id;
+                console.log('[Sell Index] touch tap:', rowId, 'active:', activeTouchRowId);
+
+                // Toggle: erneuter Tap auf gleiche Zeile → Effekt entfernen
+                if (activeTouchRowId === rowId) {
+                    clearHighlights('touch-toggle-off');
+                    activeTouchRowId = null;
+                    return;
                 }
+
+                // Neuen Highlight setzen
+                const success = highlightByRowId(rowId);
+                activeTouchRowId = success ? rowId : null;
+            });
+
+            // ── Click komplett unterdrücken (verhindert ungewollte Effekte) ──
+            row.addEventListener('click', function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                console.log('[Sell Index] click suppressed on row:', this.id);
             });
         });
 
-        // Reset wenn Maus die Tabelle verlässt
-        table.addEventListener('mouseleave', function () {
-            console.log('Mouse left the table.');
-            if (svg) {
-                const highlighted = svg.querySelectorAll('.highlight');
-                const translated = svg.querySelectorAll('.translate');
-                highlighted.forEach(el => el.classList.remove('highlight'));
-                translated.forEach(el => el.classList.remove('translate'));
+        // ── Maus-Reset: pointerleave mit pointerType === 'mouse' ──
+        table.addEventListener('pointerleave', function (event) {
+            if (event.pointerType !== 'mouse') return;
+            console.log('[Sell Index] mouse left table');
+            clearHighlights('table-pointerleave');
+        });
+
+        // ── Touch-Reset: Tap außerhalb der Tabelle ──
+        document.addEventListener('pointerdown', function (event) {
+            if (!isTouchEvent(event)) return;
+            if (!table.contains(event.target)) {
+                console.log('[Sell Index] touch outside table');
+                clearHighlights('touch-outside-table');
+                activeTouchRowId = null;
             }
         });
-        // Additional JavaScript functionality can be added here
     } else {
         console.log('Sell Index table not found.');
     }
