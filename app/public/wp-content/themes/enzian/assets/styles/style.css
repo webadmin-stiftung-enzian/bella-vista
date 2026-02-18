@@ -1320,11 +1320,11 @@ footer p {
     }
 
     section.kontakt>div.wp-block-contact-form-7-contact-form-selector {
-    grid-column: 1 / span 12;
-    grid-row: 3 / span 1;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-}
+        grid-column: 1 / span 12;
+        grid-row: 3 / span 1;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
 
     .wpcf7-form {
         grid-column: 2 / span 10;
@@ -1462,6 +1462,15 @@ footer p {
     section.lage>figure:nth-of-type(1) svg {
         min-width: 850px;
         height: auto;
+    }
+
+    .wp-block-columns:not(.is-not-stacked-on-mobile)>.wp-block-column {
+        flex-basis: 100%;
+        flex-grow: 1;
+    }
+
+    section.facts-figures>div.is-layout-flex {
+        flex-wrap: wrap !important;
     }
 
 }
