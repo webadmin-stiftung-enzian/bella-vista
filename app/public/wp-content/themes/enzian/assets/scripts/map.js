@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const boundsElement = mapContainer.closest('.pan-wrapper') || mapContainer.parentElement;
 
         const draggableOptions = {
-            type: "x,y",
+            type: "x",
             edgeResistance: 0.9,
             inertia: true
         };

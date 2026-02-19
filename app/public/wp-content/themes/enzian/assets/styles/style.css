@@ -1490,6 +1490,31 @@ footer p {
 
 
 @media (max-width: 600px) {
+
+    section,
+    .is-layout-grid,
+    .is-layout-flex {
+        gap: 0.75rem !important;
+        overflow: hidden;
+    }
+
+    section {
+        margin-top: 0rem !important;
+        margin-bottom: 0rem !important;
+        margin-block-start: 3rem !important;
+        margin-block-end: 3rem !important;
+    }
+
+    :root :where(.is-layout-flow)>* {
+        margin-block-start: 0.75rem;
+    }
+
+    section.hero,
+    .has-global-padding {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
     .wp-block-site-logo {
         z-index: 10000;
         padding: 0 1.5rem;
@@ -1507,8 +1532,21 @@ footer p {
         font-size: 2.5rem;
     }
 
+    h2 {
+        font-size: 2.5rem;
+    }
+
     .wp-block-quote p {
         font-size: 2.25rem;
+    }
+
+    :root :where(p) {
+        font-size: 1rem;
+    }
+
+    div.wp-block-group:has(>nav) {
+        width: calc(100dvw - 2.5rem);
+        max-width: calc(100dvw - 2.5rem);
     }
 
     .wp-block-post-content section.zitat figure:nth-of-type(1),
@@ -1543,8 +1581,8 @@ footer p {
 
     .wp-block-post-content section.lage>figure.wp-block-table,
     section.lage>figure.wp-block-table {
-        grid-column: 4 / span 8;
-        padding: 1.125rem;
+        grid-column: 3 / span 9;
+        padding: 1.5rem;
         top: -5rem;
         z-index: 10000;
     }
@@ -1556,5 +1594,160 @@ footer p {
 
         padding: 0rem;
         max-width: none;
+    }
+
+    /* ── Scroll-Container ist .sell-index, NICHT die Tabelle selbst ── */
+    .sell-index {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        /* smooth scroll auf iOS */
+        width: 100%;
+    }
+
+    /* Tabelle braucht feste Mindestbreite damit Spalten 3-5 scrollen */
+    table.sell-index-table {
+        min-width: 42rem;
+        /* breiter als Container → erzeugt Scrollbereich */
+        width: max-content;
+    }
+
+    /* ── Sticky-Spalten: 1+2 links, 6+7 rechts ── */
+    table.sell-index-table tr td:nth-of-type(1),
+    table.sell-index-table tr th:nth-of-type(1),
+    table.sell-index-table tr td:nth-of-type(2),
+    table.sell-index-table tr th:nth-of-type(2),
+    table.sell-index-table tr td:nth-of-type(6),
+    table.sell-index-table tr th:nth-of-type(6),
+    table.sell-index-table tr td:nth-of-type(7),
+    table.sell-index-table tr th:nth-of-type(7) {
+        position: sticky;
+        background-color: var(--wp--preset--color--light-brown-grey);
+        z-index: 2;
+    }
+
+    /* Hover-Zeilen: sticky-Zellen müssen Hover-Farbe erben */
+    table.sell-index-table tbody tr:hover td:nth-of-type(1),
+    table.sell-index-table tbody tr:hover th:nth-of-type(1),
+    table.sell-index-table tbody tr:hover td:nth-of-type(2),
+    table.sell-index-table tbody tr:hover th:nth-of-type(2),
+    table.sell-index-table tbody tr:hover td:nth-of-type(6),
+    table.sell-index-table tbody tr:hover th:nth-of-type(6),
+    table.sell-index-table tbody tr:hover td:nth-of-type(7),
+    table.sell-index-table tbody tr:hover th:nth-of-type(7) {
+        background-color: var(--wp--preset--color--accent-orange);
+    }
+
+    /* Links fixiert */
+    table.sell-index-table tr td:nth-of-type(1),
+    table.sell-index-table tr th:nth-of-type(1) {
+        left: 0;
+    }
+
+    table.sell-index-table tr td:nth-of-type(2),
+    table.sell-index-table tr th:nth-of-type(2) {
+        left: 5.5rem;
+    }
+
+    /* Rechts fixiert */
+    table.sell-index-table tr td:nth-of-type(6),
+    table.sell-index-table tr th:nth-of-type(6) {
+        right: 5.5rem;
+    }
+
+    table.sell-index-table tr td:nth-of-type(7),
+    table.sell-index-table tr th:nth-of-type(7) {
+        right: 0;
+    }
+
+    section.facts-figures div.wp-block-group>h3 {
+        font-size: 2.5rem;
+    }
+
+    section.facts-figures div:has(>h3) {
+        padding: 1.5rem !important;
+    }
+
+    section.facts-figures>h2 {
+        grid-column: 2 / span 10;
+    }
+
+    section.facts-figures div:has(> h3):nth-of-type(1) {
+        grid-column: 1 / span 6;
+
+    }
+
+    section.facts-figures div:has(> h3):nth-of-type(2) {
+        grid-column: 7 / span 6;
+        grid-row: 1 / span 1;
+    }
+
+    section.facts-figures div:has(> h3):nth-of-type(4) {
+        grid-column: 1 / span 6;
+    }
+
+    section.facts-figures div:has(> h3):nth-of-type(5) {
+        grid-column: 7 / span 6;
+    }
+
+    /* ── Alle 2/span 10 → 1/span 12 auf ≤600px ── */
+    section.hero>figure:nth-of-type(1),
+    section.wohnungen>p,
+    section.wohnungen>h2,
+    .sell-index,
+    section.facts-figures div:has(> h3):nth-of-type(3),
+    section.facts-figures>div.is-layout-flex,
+    .wpcf7-form {
+        grid-column: 1 / span 12;
+    }
+
+    .wp-block-post-content section.lage .wp-block-shortcode,
+    section.lage>figure:nth-of-type(1) {
+        margin-left: -1rem !important;
+        margin-right: -1rem !important;
+        width: calc(100% + 2rem);
+    }
+
+    section.hero>figure.stoerer {
+        grid-column: 9 / span 4;
+        grid-row: 1 / span 6;
+        z-index: 3;
+    }
+
+    section.hero>figure:nth-of-type(3) {
+        grid-column: 1 / span 6;
+        grid-row: 6 / span 1;
+        z-index: 2;
+    }
+
+    .wp-block-post-content section.lage>div:first-of-type,
+    section.lage>div:first-of-type {
+        grid-column: 1 / span 12;
+        grid-row: 1 / span 1;
+        display: grid;
+        grid-template-columns: subgrid;
+        gap: 1rem;
+        padding: 0 !important;
+    }
+
+    .wp-block-post-content section.lage>div:first-of-type>h1,
+    section.lage>div:first-of-type>h1 {
+        grid-column: 2 / span 10;
+        grid-row: 1 / span 1;
+        z-index: 3;
+    }
+
+    .wp-block-post-content section.lage>div:first-of-type>p,
+    section.lage>div:first-of-type>p {
+        grid-column: 2 / span 10;
+        grid-row: 2 / span 1;
+        z-index: 3;
+    }
+
+    .wp-block-post-content section.lage div.wp-block-cb-carousel-v2,
+    section.lage>div:first-of-type>div.cb-carousel-block {
+        grid-column: 1 / span 12;
+        grid-row: 3 / span 1;
+        max-width: 100%;
+        margin:0 1rem !important;
     }
 }

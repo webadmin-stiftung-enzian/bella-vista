@@ -82,10 +82,10 @@
 
 .sell-index-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     margin-top: 20px;
     background-color: transparent;
-
 }
 
 .sell-index-table thead th {
@@ -98,9 +98,14 @@
 }
 
 .sell-index-table tr {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
     height: 3rem;
     transition: background-color 0.3s ease;
+}
+
+/* border-collapse: separate braucht Borders auf Zellen, nicht auf tr */
+.sell-index-table td,
+.sell-index-table th {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 .sell-index-table tbody tr:hover {
