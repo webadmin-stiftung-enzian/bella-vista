@@ -11,6 +11,9 @@ app/public/wp-admin/
 app/public/wp-includes/
 
 # wp-content - nur themes und plugins behalten
+app/public/wp-content/plugins/*
+!app/public/wp-content/plugins/sell-index
+!app/public/wp-content/plugins/sell-index/**
 app/public/wp-content/uploads/
 app/public/wp-content/uploads-old/
 app/public/wp-content/upgrade/
