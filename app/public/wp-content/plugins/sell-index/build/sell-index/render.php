@@ -65,8 +65,8 @@ if ($query->have_posts()) {
 			<table class="sell-index-table">
 				<thead>
 					<tr>
-						<th><?php esc_html_e('Etage/Wohnung', 'sell-index'); ?></th>
-						<th><?php esc_html_e('Zimmer', 'sell-index'); ?></th>
+						<th class="sticky-col"><?php esc_html_e('Etage/Wohnung', 'sell-index'); ?></th>
+						<th class="sticky-col"><?php esc_html_e('Zimmer', 'sell-index'); ?></th>
 						<th><?php esc_html_e('Wohnfläche', 'sell-index'); ?></th>
 						<th><?php esc_html_e('Terrasse/Balkon', 'sell-index'); ?></th>
 						<th><?php esc_html_e('Garten', 'sell-index'); ?></th>
@@ -77,8 +77,8 @@ if ($query->have_posts()) {
 				<tbody>
 					<?php foreach ($apartments as $apartment): ?>
 						<tr id=<?php echo esc_attr($apartment['slug']) ?>>
-							<td><?php echo esc_html($apartment['details']['level']); ?></td>
-							<td><?php echo esc_html($apartment['details']['rooms']); ?></td>
+							<td class="sticky-col"><?php echo esc_html($apartment['details']['level']); ?></td>
+							<td class="sticky-col"><?php echo esc_html($apartment['details']['rooms']); ?></td>
 							<td><?php echo esc_html($apartment['details']['living_space']) . ' m²'; ?></td>
 							<?php if ($apartment['details']['terrace_balcony'] === '' || $apartment['details']['terrace_balcony'] === "0") : ?>
 								<td><?php echo esc_html('—'); ?></td>

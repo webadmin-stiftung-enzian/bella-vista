@@ -534,7 +534,7 @@ add_action('wp_enqueue_scripts', function () {
     wp_enqueue_script(
         'details-animation',
         get_stylesheet_directory_uri() . '/assets/scripts/details-animation.js',
-        [],
+        ['gsap', 'gsap-scrollto'],
         filemtime(get_stylesheet_directory() . '/assets/scripts/details-animation.js'),
         true
     );

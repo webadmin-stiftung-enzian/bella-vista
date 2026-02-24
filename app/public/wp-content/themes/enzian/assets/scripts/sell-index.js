@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function highlightByRowId(rowId) {
+        console.log('[Sell Index] highlightByRowId called with:', rowId);
         if (!svg) return false;
 
         const rowConfig = {
@@ -89,6 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (event.pointerType !== 'mouse') return;
                 activeTouchRowId = null; // Touch-State zurücksetzen
                 console.log('[Sell Index] mouse hover:', this.id);
+                this.classList.add('highlight-row');
                 highlightByRowId(this.id);
             });
 
@@ -103,13 +105,24 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Toggle: erneuter Tap auf gleiche Zeile → Effekt entfernen
                 if (activeTouchRowId === rowId) {
                     clearHighlights('touch-toggle-off');
+                    this.classList.remove('highlight-row');
                     activeTouchRowId = null;
                     return;
                 }
 
                 // Neuen Highlight setzen
                 const success = highlightByRowId(rowId);
+                if (success) {
+                    this.classList.add('highlight-row');
+                }
                 activeTouchRowId = success ? rowId : null;
+            });
+
+            row.addEventListener('pointerleave', function (event) {
+                if (event.pointerType !== 'mouse') return;
+                console.log('[Sell Index] mouse leave:', this.id);
+                this.classList.remove('highlight-row');
+                clearHighlights('mouse-leave');
             });
 
             // ── Click komplett unterdrücken (verhindert ungewollte Effekte) ──
@@ -124,12 +137,20 @@ document.addEventListener('DOMContentLoaded', function () {
         table.addEventListener('pointerleave', function (event) {
             if (event.pointerType !== 'mouse') return;
             console.log('[Sell Index] mouse left table');
+            const highlightedRow = table.querySelector('.highlight-row');
+            if (highlightedRow) {
+                highlightedRow.classList.remove('highlight-row');
+            }
             clearHighlights('table-pointerleave');
         });
 
         // ── Touch-Reset: Tap außerhalb der Tabelle ──
         document.addEventListener('pointerdown', function (event) {
             if (!isTouchEvent(event)) return;
+            const highlightedRow = table.querySelector('.highlight-row');
+            if (highlightedRow) {
+                highlightedRow.classList.remove('highlight-row');
+            }
             if (!table.contains(event.target)) {
                 console.log('[Sell Index] touch outside table');
                 clearHighlights('touch-outside-table');

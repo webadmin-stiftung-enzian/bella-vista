@@ -5,6 +5,8 @@ html {
 p {
     letter-spacing: 0.02em;
     line-height: 120%;
+    hyphens: auto;
+    hyphenate-limit-chars: 6 3 3;
 }
 
 form>p {
@@ -25,6 +27,10 @@ form>p {
     font-family: var(--wp--preset--font-family--pp-neue-montreal);
     font-weight: 300;
     letter-spacing: -0.01em;
+}
+
+.wp-site-blocks {
+    overflow: hidden;
 }
 
 li>span.toSansSerif {
@@ -210,6 +216,11 @@ a:hover:not(.naechste-schritte a, .wp-block-site-logo a, figure.stoerer a)::afte
 }
 
 /* Navigation Link Styles */
+header>div:has(div>nav) {
+    display: flex;
+    justify-content: center;
+}
+
 nav.nav-mobile {
     display: none;
 }
@@ -235,10 +246,10 @@ div.wp-block-group:has(>nav) {
     border-radius: var(--wp--custom--border-radius--lg);
     position: fixed;
     top: 2rem;
-    left: 50%;
+    /* left: 50%; */
     right: auto;
     margin: 0;
-    transform: translateX(-50%);
+    /* transform: translateX(-50%); */
     z-index: 1000;
     transition: transform 0.3s ease, opacity 0.3s ease;
     width: min(var(--wp--style--global--wide-size), calc(100dvw - 4rem));
@@ -247,12 +258,12 @@ div.wp-block-group:has(>nav) {
 }
 
 div.wp-block-group:has(>nav).nav-hidden {
-    transform: translateX(-50%) translateY(-120%);
+    transform: translateY(-120%);
     opacity: 0;
 }
 
 div.wp-block-group:has(>nav).nav-visible {
-    transform: translateX(-50%) translateY(0);
+    transform: translateY(0);
     opacity: 1;
 }
 
@@ -1486,6 +1497,57 @@ footer p {
     section.kontakt-wrapper {
         flex-direction: column;
     }
+
+    .sell-index-table td {
+        min-width: 5rem;
+    }
+
+    .sell-index-table thead tr:nth-of-type(1) {
+        height: 4rem;
+    }
+
+    .sell-index-table thead tr:nth-of-type(1) .sticky-col:nth-of-type(1) {
+        border-top-left-radius: 1rem;
+    }
+
+    .sell-index-table thead tr:nth-of-type(1) .sticky-col:nth-of-type(2) {
+        border-top-right-radius: 1rem;
+    }
+
+    .sell-index-table tbody tr:last-of-type .sticky-col:nth-of-type(1)::after {
+        border-bottom-left-radius: 1rem;
+    }
+
+    .sell-index-table tbody tr:last-of-type .sticky-col:nth-of-type(2)::after {
+        border-bottom-right-radius: 1rem;
+    }
+
+    .sell-index-table tbody tr:last-of-type .sticky-col:nth-of-type(1)::after,
+    .sell-index-table tbody tr:last-of-type .sticky-col:nth-of-type(2)::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: calc(100% + 1px);
+        height: 2rem;
+        background: var(--wp--preset--color--light-brown-grey);
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    .sticky-col:nth-of-type(1) {
+        position: sticky;
+        left: 0;
+        background: var(--wp--preset--color--light-brown-grey);
+        z-index: 2;
+    }
+
+    .sticky-col:nth-of-type(2) {
+        position: sticky;
+        left: 5rem;
+        background: var(--wp--preset--color--light-brown-grey);
+        z-index: 2;
+    }
 }
 
 
@@ -1495,7 +1557,7 @@ footer p {
     .is-layout-grid,
     .is-layout-flex {
         gap: 0.75rem !important;
-        overflow: hidden;
+        /* overflow: hidden; */
     }
 
     section {
@@ -1507,6 +1569,11 @@ footer p {
 
     :root :where(.is-layout-flow)>* {
         margin-block-start: 0.75rem;
+
+    }
+
+    .wp-block-details:has(summary) {
+        padding: 1.5rem !important;
     }
 
     section.hero,
@@ -1544,9 +1611,30 @@ footer p {
         font-size: 1rem;
     }
 
+    .wp-block-details summary {
+        padding: 0rem 0.5rem;
+    }
+
     div.wp-block-group:has(>nav) {
         width: calc(100dvw - 2.5rem);
         max-width: calc(100dvw - 2.5rem);
+    }
+
+    section.hero>figure:nth-of-type(1) img {
+        aspect-ratio: 2.25/4 !important;
+        object-fit: cover;
+    }
+
+    .wp-block-post-content section.zitat figure:nth-of-type(1),
+    section.zitat figure:nth-of-type(1),
+    section.facts-figures>figure,
+    .wp-block-post-content section.lage>figure.wp-block-image:nth-last-of-type(1),
+    section.lage>figure.wp-block-image:nth-last-of-type(1),
+    .wp-block-post-content section.lage .is-layout-grid figure,
+    section.lage .is-layout-grid figure,
+    .wp-block-post-content section.lage>div:first-of-type>figure,
+    section.lage>div:first-of-type>figure {
+        display: none;
     }
 
     .wp-block-post-content section.zitat figure:nth-of-type(1),
@@ -1567,6 +1655,30 @@ footer p {
         grid-row: 4 / span 1;
     }
 
+    .sell-index-table tr,
+    .wp-block-post-content section.lage>figure.wp-block-table table thead tr,
+    .wp-block-post-content section.lage>figure.wp-block-table table tbody tr,
+    section.lage>figure.wp-block-table table thead tr,
+    section.lage>figure.wp-block-table table tbody tr {
+        border-bottom: 1px solid;
+        height: 2.5rem;
+    }
+
+    .sell-index-table tr td,
+    .sell-index-table tr th,
+    .wp-block-post-content section.lage>figure.wp-block-table table tbody tr td,
+    section.lage>figure.wp-block-table table tbody tr td {
+        font-size: 0.75rem;
+        max-width: 25%;
+        width: auto;
+    }
+
+    .sell-index-table td,
+    .sell-index-table th {
+        min-width: 0;
+        max-width: 18%;
+    }
+
     .wp-block-post-content section.lage .wp-block-shortcode,
     section.lage>figure:nth-of-type(1) {
         grid-column: 1 / span 12;
@@ -1581,7 +1693,7 @@ footer p {
 
     .wp-block-post-content section.lage>figure.wp-block-table,
     section.lage>figure.wp-block-table {
-        grid-column: 3 / span 9;
+        grid-column: 3 / span 8;
         padding: 1.5rem;
         top: -5rem;
         z-index: 10000;
@@ -1599,65 +1711,14 @@ footer p {
     /* ── Scroll-Container ist .sell-index, NICHT die Tabelle selbst ── */
     .sell-index {
         overflow-x: auto;
+        overflow-y: clip;
         -webkit-overflow-scrolling: touch;
         /* smooth scroll auf iOS */
         width: 100%;
+        padding-bottom: 40px;
     }
 
-    /* Tabelle braucht feste Mindestbreite damit Spalten 3-5 scrollen */
-    table.sell-index-table {
-        min-width: 42rem;
-        /* breiter als Container → erzeugt Scrollbereich */
-        width: max-content;
-    }
 
-    /* ── Sticky-Spalten: 1+2 links, 6+7 rechts ── */
-    table.sell-index-table tr td:nth-of-type(1),
-    table.sell-index-table tr th:nth-of-type(1),
-    table.sell-index-table tr td:nth-of-type(2),
-    table.sell-index-table tr th:nth-of-type(2),
-    table.sell-index-table tr td:nth-of-type(6),
-    table.sell-index-table tr th:nth-of-type(6),
-    table.sell-index-table tr td:nth-of-type(7),
-    table.sell-index-table tr th:nth-of-type(7) {
-        position: sticky;
-        background-color: var(--wp--preset--color--light-brown-grey);
-        z-index: 2;
-    }
-
-    /* Hover-Zeilen: sticky-Zellen müssen Hover-Farbe erben */
-    table.sell-index-table tbody tr:hover td:nth-of-type(1),
-    table.sell-index-table tbody tr:hover th:nth-of-type(1),
-    table.sell-index-table tbody tr:hover td:nth-of-type(2),
-    table.sell-index-table tbody tr:hover th:nth-of-type(2),
-    table.sell-index-table tbody tr:hover td:nth-of-type(6),
-    table.sell-index-table tbody tr:hover th:nth-of-type(6),
-    table.sell-index-table tbody tr:hover td:nth-of-type(7),
-    table.sell-index-table tbody tr:hover th:nth-of-type(7) {
-        background-color: var(--wp--preset--color--accent-orange);
-    }
-
-    /* Links fixiert */
-    table.sell-index-table tr td:nth-of-type(1),
-    table.sell-index-table tr th:nth-of-type(1) {
-        left: 0;
-    }
-
-    table.sell-index-table tr td:nth-of-type(2),
-    table.sell-index-table tr th:nth-of-type(2) {
-        left: 5.5rem;
-    }
-
-    /* Rechts fixiert */
-    table.sell-index-table tr td:nth-of-type(6),
-    table.sell-index-table tr th:nth-of-type(6) {
-        right: 5.5rem;
-    }
-
-    table.sell-index-table tr td:nth-of-type(7),
-    table.sell-index-table tr th:nth-of-type(7) {
-        right: 0;
-    }
 
     section.facts-figures div.wp-block-group>h3 {
         font-size: 2.5rem;
@@ -1692,11 +1753,19 @@ footer p {
     /* ── Alle 2/span 10 → 1/span 12 auf ≤600px ── */
     section.hero>figure:nth-of-type(1),
     section.wohnungen>p,
-    section.wohnungen>h2,
+    section.wohnungen>h2 {
+        grid-column: 1 / span 12;
+    }
+
     .sell-index,
     section.facts-figures div:has(> h3):nth-of-type(3),
     section.facts-figures>div.is-layout-flex,
     .wpcf7-form {
+        grid-column: 1 / span 12;
+    }
+
+    .wp-block-post-content section.lage>div:nth-of-type(2),
+    section.lage>div:nth-of-type(2) {
         grid-column: 1 / span 12;
     }
 
@@ -1748,6 +1817,40 @@ footer p {
         grid-column: 1 / span 12;
         grid-row: 3 / span 1;
         max-width: 100%;
-        margin:0 1rem !important;
+        margin: 0 1rem !important;
+    }
+
+    section.kontakt-wrapper {
+        flex-direction: column;
+        padding: 0rem;
+    }
+
+    section.naechste-schritte .wp-block-buttons .wp-block-button a {
+        display: inline-flex;
+        width: 2.75rem;
+        height: auto;
+        font-size: 1.125rem;
+        padding: 0rem;
+    }
+
+    section.naechste-schritte .wp-block-buttons .wp-block-button::after {
+        margin-left: 0.125rem;
+        margin-right: 0.125rem;
+    }
+
+    section.naechste-schritte .wp-block-buttons {
+        gap: 0 !important;
+        padding: 0 1rem;
+        ;
+    }
+
+    section.dokumentation>.wp-block-buttons,
+    section.dokumentation>p,
+    section.dokumentation>h2 {
+        grid-column: 2 / span 10;
+    }
+
+    section.naechste-schritte article {
+        margin-top: 2rem;
     }
 }
