@@ -526,7 +526,7 @@ add_action('wp_enqueue_scripts', function () {
     wp_enqueue_script(
         'nav',
         get_stylesheet_directory_uri() . '/assets/scripts/nav.js',
-        [],
+        array('gsap', 'gsap-scrolltrigger'),
         filemtime(get_stylesheet_directory() . '/assets/scripts/nav.js'),
         true
     );

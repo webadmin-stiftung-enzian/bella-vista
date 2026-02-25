@@ -1,5 +1,6 @@
 html {
-    scroll-behavior: smooth;
+    /* scroll-behavior wird nicht gesetzt – GSAP ScrollToPlugin übernimmt Smooth Scrolling.
+       Native scroll-behavior: smooth kollidiert mit GSAP und verursacht Doppel-Interpolation. */
 }
 
 p {
@@ -7,6 +8,11 @@ p {
     line-height: 120%;
     hyphens: auto;
     hyphenate-limit-chars: 6 3 3;
+}
+
+h1,
+h2 {
+    font-size: clamp(2.5rem, 1.4286rem + 2.8571vw, 4rem);
 }
 
 form>p {
@@ -756,6 +762,10 @@ section.facts-figures div.is-layout-grid {
     align-items: center; */
 }
 
+section.facts-figures div:has(> h3) {
+    min-height: 12rem;
+}
+
 section.facts-figures div.wp-block-cb-carousel-v2 {
     grid-column: 4 / span 8;
     grid-row: 3 / span 1;
@@ -805,7 +815,8 @@ section.facts-figures div:has(> h3):nth-of-type(5) {
 } */
 
 section.facts-figures div.wp-block-group>h3 {
-    font-size: 8rem;
+    /* font-size: 8rem; */
+    font-size: clamp(4rem, 1.1429rem + 7.619vw, 8rem);
 }
 
 section.facts-figures>figure {
@@ -1021,9 +1032,9 @@ footer p {
         font-size: 1.25rem;
     }
 
-    h1 {
+    /* h1 {
         font-size: 3rem;
-    }
+    } */
 
     .wp-block-details summary {
         padding: 1.25rem 0.5rem;
@@ -1251,9 +1262,9 @@ footer p {
         z-index: 5;
     }
 
-    section.facts-figures div.wp-block-group>h3 {
+    /* section.facts-figures div.wp-block-group>h3 {
         font-size: 7rem;
-    }
+    } */
 
     section.facts-figures>h2:nth-of-type(2) {
         grid-column: 2 / span 6;
@@ -1595,13 +1606,13 @@ footer p {
         height: 1.75rem;
     }
 
-    h1 {
+    /* h1 {
         font-size: 2.5rem;
-    }
+    } */
 
-    h2 {
+    /* h2 {
         font-size: 2.5rem;
-    }
+    } */
 
     .wp-block-quote p {
         font-size: 2.25rem;

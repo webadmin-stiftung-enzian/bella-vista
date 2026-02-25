@@ -1,12 +1,12 @@
-// Scroll-abhängige Navigation
-(function() {
+// Scroll-abhängige Navigation (GSAP ScrollTrigger-integriert)
+(function () {
     const navElement = document.querySelector('div.wp-block-group:has(>nav)');
     const mobileWrapper = navElement ? navElement.querySelector('nav.nav-mobile') : null;
     const mobileMenuList = mobileWrapper ? mobileWrapper.querySelector('ul.wp-block-navigation__container') : null;
     const mobileButtonsContainer = navElement
         ? Array.from(navElement.children).find((child) => child.classList && child.classList.contains('wp-block-buttons'))
         : null;
-    
+
     if (!navElement) {
         console.warn('Navigation element not found');
         return;
@@ -14,8 +14,20 @@
 
     let mobileToggleButton = null;
 
+    // ── Hilfsfunktionen ──
+
     function isMobileMenuOpen() {
         return !!(mobileWrapper && mobileWrapper.classList.contains('is-open'));
+    }
+
+    function showNav() {
+        navElement.classList.remove('nav-hidden');
+        navElement.classList.add('nav-visible');
+    }
+
+    function hideNav() {
+        navElement.classList.remove('nav-visible');
+        navElement.classList.add('nav-hidden');
     }
 
     function setMobileMenuOpen(isOpen) {
@@ -29,8 +41,7 @@
 
         // Bei offenem Menü Navigation sichtbar halten
         if (isOpen) {
-            navElement.classList.remove('nav-hidden');
-            navElement.classList.add('nav-visible');
+            showNav();
         }
     }
 
@@ -64,116 +75,140 @@
         return button;
     }
 
-    let lastScrollY = window.scrollY;
-    let ticking = false;
-    const scrollThreshold = 10; // Mindestscroll-Distanz für Reaktion
-    const topThreshold = 100; // Pixel vom Top, ab dem die Navigation reagiert
+    // ── Scroll-basierte Navigation ──
 
-    function updateNavigation() {
-        if (isMobileMenuOpen()) {
-            navElement.classList.remove('nav-hidden');
-            navElement.classList.add('nav-visible');
-            ticking = false;
+    const topThreshold = 100;
+    // Mindest-Geschwindigkeit (px/s) bevor die Nav reagiert.
+    // Filtert Micro-Scroll-Events, die durch GSAP-Scrub/Parallax entstehen.
+    const velocityThreshold = 50;
+
+    function initScrollNavigation() {
+        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+            initFallbackScroll();
             return;
         }
 
-        const currentScrollY = window.scrollY;
-        const scrollDifference = currentScrollY - lastScrollY;
+        gsap.registerPlugin(ScrollTrigger);
 
-        // Ignoriere kleine Scroll-Bewegungen
-        if (Math.abs(scrollDifference) < scrollThreshold) {
+        // ScrollTrigger.create() nutzt dasselbe interne Scroll-Tracking
+        // wie Parallax-Scrub → kein Desync zwischen den Systemen.
+        ScrollTrigger.create({
+            start: 0,
+            end: 'max',
+            onUpdate: function (self) {
+                if (isMobileMenuOpen()) {
+                    return;
+                }
+
+                // Ganz oben: Navigation immer sichtbar
+                if (self.scroll() < topThreshold) {
+                    showNav();
+                    return;
+                }
+
+                // getVelocity() liefert px/s – filtert Rauschen durch Parallax-Scrub
+                var velocity = self.getVelocity();
+
+                if (velocity < -velocityThreshold) {
+                    showNav();
+                } else if (velocity > velocityThreshold) {
+                    hideNav();
+                }
+                // Bei velocity innerhalb der Toleranz: aktuellen Zustand beibehalten
+            }
+        });
+    }
+
+    // Fallback ohne GSAP (z.B. wenn Scripte nicht geladen werden)
+    function initFallbackScroll() {
+        var lastScrollY = window.scrollY;
+        var ticking = false;
+        var scrollThreshold = 10;
+
+        function updateNavigation() {
+            var currentScrollY = window.scrollY;
+            var scrollDifference = currentScrollY - lastScrollY;
+
+            // lastScrollY immer aktualisieren, auch bei kleinen Bewegungen
+            lastScrollY = currentScrollY;
             ticking = false;
-            return;
+
+            if (isMobileMenuOpen()) {
+                return;
+            }
+
+            if (Math.abs(scrollDifference) < scrollThreshold) {
+                return;
+            }
+
+            if (currentScrollY < topThreshold) {
+                showNav();
+            } else if (scrollDifference > 0) {
+                hideNav();
+            } else {
+                showNav();
+            }
         }
 
-        // Wenn ganz oben, zeige Navigation immer
-        if (currentScrollY < topThreshold) {
-            navElement.classList.remove('nav-hidden');
-            navElement.classList.add('nav-visible');
-        }
-        // Nach unten scrollen → Navigation verstecken
-        else if (scrollDifference > 0) {
-            navElement.classList.remove('nav-visible');
-            navElement.classList.add('nav-hidden');
-        }
-        // Nach oben scrollen → Navigation zeigen
-        else if (scrollDifference < 0) {
-            navElement.classList.remove('nav-hidden');
-            navElement.classList.add('nav-visible');
-        }
-
-        lastScrollY = currentScrollY;
-        ticking = false;
+        window.addEventListener('scroll', function () {
+            if (!ticking) {
+                requestAnimationFrame(updateNavigation);
+                ticking = true;
+            }
+        }, { passive: true });
     }
 
-    function requestTick() {
-        if (!ticking) {
-            requestAnimationFrame(updateNavigation);
-            ticking = true;
-        }
-    }
-
-    // Scroll-Event Listener
-    window.addEventListener('scroll', requestTick, { passive: true });
-
-    // Touch-Events für bessere Mobile-Performance
-    let touchStartY = 0;
-    let touchEndY = 0;
-
-    window.addEventListener('touchstart', function(e) {
-        touchStartY = e.touches[0].clientY;
-    }, { passive: true });
-
-    window.addEventListener('touchmove', function(e) {
-        touchEndY = e.touches[0].clientY;
-        requestTick();
-    }, { passive: true });
+    // ── Mobile Menu ──
 
     mobileToggleButton = ensureMobileToggleButton();
 
     if (mobileToggleButton) {
-        mobileToggleButton.addEventListener('click', function() {
+        mobileToggleButton.addEventListener('click', function () {
             setMobileMenuOpen(!isMobileMenuOpen());
         });
 
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (!isMobileMenuOpen()) {
                 return;
             }
-
             if (mobileWrapper.contains(e.target)) {
                 return;
             }
-
             if (mobileButtonsContainer && mobileButtonsContainer.contains(e.target)) {
                 return;
             }
-
             setMobileMenuOpen(false);
         });
 
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape' && isMobileMenuOpen()) {
                 setMobileMenuOpen(false);
             }
         });
 
         if (mobileMenuList) {
-            mobileMenuList.querySelectorAll('a').forEach((link) => {
-                link.addEventListener('click', function() {
+            mobileMenuList.querySelectorAll('a').forEach(function (link) {
+                link.addEventListener('click', function () {
                     setMobileMenuOpen(false);
                 });
             });
         }
 
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             if (!window.matchMedia('(max-width: 900px)').matches && isMobileMenuOpen()) {
                 setMobileMenuOpen(false);
             }
         });
     }
 
-    // Initial state
-    navElement.classList.add('nav-visible');
+    // ── Init ──
+
+    showNav();
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initScrollNavigation);
+    } else {
+        initScrollNavigation();
+    }
 })();
 
