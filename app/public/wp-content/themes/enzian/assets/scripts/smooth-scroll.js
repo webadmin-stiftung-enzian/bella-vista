@@ -22,9 +22,14 @@ document.addEventListener('DOMContentLoaded', function() {
           duration: 1.5,
           scrollTo: {
             y: targetElement,
-            offsetY: 100 // Offset für die fixed Navigation
+            offsetY: 100, // Offset für die fixed Navigation
+            autoKill: true // Scroll-Animation abbrechen wenn User manuell scrollt
           },
-          ease: "power2.inOut"
+          ease: "power2.inOut",
+          onAutoKill: function () {
+            // ScrollTrigger-Positionen nach Abbruch aktualisieren
+            ScrollTrigger.refresh();
+          }
         });
       }
     });

@@ -1,25 +1,30 @@
 // GSAP ScrollTrigger für Parallax-Effekt registrieren
 if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
+
+  // Mobile Browser (iOS Safari, Chrome Android) blenden die Adressleiste
+  // beim Scrollen ein/aus → das triggert resize-Events → ScrollTrigger
+  // würde bei jedem Resize alle Trigger-Positionen neu berechnen → Scroll springt.
+  ScrollTrigger.config({
+    ignoreMobileResize: true
+  });
 } else {
   console.error('GSAP oder ScrollTrigger ist nicht verfügbar.');
 }
 
-let rafRefreshId = null;
+let refreshDebounceTimer = null;
 
 function refreshScrollTriggers() {
   if (typeof ScrollTrigger === 'undefined') {
     return;
   }
 
-  if (rafRefreshId) {
-    cancelAnimationFrame(rafRefreshId);
-  }
-
-  rafRefreshId = requestAnimationFrame(() => {
+  // Debounce: 200ms warten bevor refresh ausgeführt wird.
+  // Verhindert Refresh-Sturm wenn mehrere Bilder kurz nacheinander laden.
+  clearTimeout(refreshDebounceTimer);
+  refreshDebounceTimer = setTimeout(function () {
     ScrollTrigger.refresh();
-    rafRefreshId = null;
-  });
+  }, 200);
 }
 
 function initParallax() {
@@ -36,7 +41,6 @@ function initParallax() {
     gsap.to(element, {
       y: -speed,
       ease: 'none',
-      force3D: true, // erzwingt translateZ(0) → GPU-Compositing
       scrollTrigger: {
         trigger: element,
         start: 'top bottom',

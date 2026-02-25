@@ -39,20 +39,6 @@ function initCounters() {
 
     // ScrollTrigger statt IntersectionObserver:
     // → Gleicher Tick-Zyklus wie Parallax, kein Scroll-Anchoring-Konflikt
-    gsap.to(counter, {
-      value: target,
-      duration: 2.5,
-      ease: 'power2.out',
-      paused: true,
-      onUpdate: function () {
-        // textContent statt innerText → kein Layout-Reflow
-        el.textContent = formatNumber(Math.ceil(counter.value)) + unit;
-      },
-      onComplete: function () {
-        el.textContent = formatNumber(target) + unit;
-      }
-    });
-
     ScrollTrigger.create({
       trigger: el,
       start: 'top 80%',
