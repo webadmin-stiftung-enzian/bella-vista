@@ -32,14 +32,16 @@ function initParallax() {
     // Optionales data-speed Attribut (Standard: 125)
     const speed = Number(element.getAttribute('data-speed')) || 125;
 
+    // will-change wird per CSS gesetzt (.parallax), hier nur die Animation.
     gsap.to(element, {
       y: -speed,
       ease: 'none',
+      force3D: true, // erzwingt translateZ(0) → GPU-Compositing
       scrollTrigger: {
         trigger: element,
         start: 'top bottom',
         end: 'bottom top',
-        scrub: true,
+        scrub: 0.5, // leichte Glättung statt true (= 1 Frame Delay)
         invalidateOnRefresh: true,
         markers: false
       }

@@ -586,7 +586,7 @@ add_action('wp_enqueue_scripts', function () {
     wp_enqueue_script(
         'counter',
         get_stylesheet_directory_uri() . '/assets/scripts/counter.js',
-        array('gsap'), // GSAP als Dependency
+        array('gsap', 'gsap-scrolltrigger'),
         filemtime(get_stylesheet_directory() . '/assets/scripts/counter.js'),
         true
     );

@@ -14,41 +14,69 @@ const extractUnit = (str) => {
   return match ? ' ' + match[0] : '';
 };
 
-// Intersection Observer Setup
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const el = entry.target;
-      const originalText = el.getAttribute('data-target') || el.innerText;
-      const target = extractNumber(originalText);
-      const unit = extractUnit(originalText);
+function initCounters() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+    return;
+  }
 
-      // Nur hochzählen wenn target > 0
-      if (target > 0) {
-        const counter = { value: 0 };
+  gsap.registerPlugin(ScrollTrigger);
 
-        // Animation mit fester Dauer
+  document.querySelectorAll('.counter').forEach((el) => {
+    const originalText = el.getAttribute('data-target') || el.textContent;
+    const target = extractNumber(originalText);
+    const unit = extractUnit(originalText);
+
+    if (target <= 0) {
+      return;
+    }
+
+    // Speichere Originalwert als data-Attribut für spätere Referenz
+    if (!el.hasAttribute('data-target')) {
+      el.setAttribute('data-target', originalText);
+    }
+
+    const counter = { value: 0 };
+
+    // ScrollTrigger statt IntersectionObserver:
+    // → Gleicher Tick-Zyklus wie Parallax, kein Scroll-Anchoring-Konflikt
+    gsap.to(counter, {
+      value: target,
+      duration: 2.5,
+      ease: 'power2.out',
+      paused: true,
+      onUpdate: function () {
+        // textContent statt innerText → kein Layout-Reflow
+        el.textContent = formatNumber(Math.ceil(counter.value)) + unit;
+      },
+      onComplete: function () {
+        el.textContent = formatNumber(target) + unit;
+      }
+    });
+
+    ScrollTrigger.create({
+      trigger: el,
+      start: 'top 80%',
+      once: true,
+      onEnter: function () {
         gsap.to(counter, {
           value: target,
-          duration: 2.5, // Feste Dauer in Sekunden
-          ease: "power2.out", // Easing für natürlichere Animation
+          duration: 2.5,
+          ease: 'power2.out',
           onUpdate: function () {
-            el.innerText = formatNumber(Math.ceil(counter.value)) + unit;
+            el.textContent = formatNumber(Math.ceil(counter.value)) + unit;
           },
           onComplete: function () {
-            el.innerText = formatNumber(target) + unit; // Stelle sicher, dass Endwert exakt ist
+            el.textContent = formatNumber(target) + unit;
           }
         });
       }
-
-      observer.unobserve(el); // Animation nur einmal ausführen
-    }
+    });
   });
-}, { threshold: 0.5 });
+}
 
 document.addEventListener('DOMContentLoaded', function () {
-  // Alle Elemente mit der Klasse "counter" beobachten
-  document.querySelectorAll('.counter').forEach(n => observer.observe(n));
+  initCounters();
+
   const articles = document.querySelectorAll('section.naechste-schritte article');
   const buttons = document.querySelectorAll('section.naechste-schritte .wp-block-button a');
   articles[0].classList.add('active'); // Erster Artikel standardmäßig aktiv

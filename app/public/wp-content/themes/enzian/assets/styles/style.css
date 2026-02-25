@@ -1,6 +1,12 @@
-html {
-    /* scroll-behavior wird nicht gesetzt – GSAP ScrollToPlugin übernimmt Smooth Scrolling.
-       Native scroll-behavior: smooth kollidiert mit GSAP und verursacht Doppel-Interpolation. */
+/* scroll-behavior wird nicht gesetzt – GSAP ScrollToPlugin übernimmt Smooth Scrolling.\n   Native scroll-behavior: smooth kollidiert mit GSAP und verursacht Doppel-Interpolation. */
+
+/* ── Scroll-Animation Optimierungen ──
+   will-change: transform → eigene Compositor-Ebene, kein Repaint bei Parallax.
+   overflow-anchor: none → verhindert, dass der Browser bei transform/textContent-
+   Änderungen die Scroll-Position korrigiert (Scroll Anchoring). */
+.parallax {
+    will-change: transform;
+    overflow-anchor: none;
 }
 
 p {
@@ -733,6 +739,7 @@ section.facts-figures {
     max-width: var(--wp--style--global--wide-size);
     margin-left: auto;
     margin-right: auto;
+    overflow-anchor: none;
 }
 
 section.facts-figures>h2 {
