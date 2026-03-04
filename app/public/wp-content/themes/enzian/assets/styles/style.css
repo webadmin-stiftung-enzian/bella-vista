@@ -26,7 +26,7 @@ form>p {
 .wp-block-quote p {
     font-size: 2.5rem;
     line-height: 110%;
-    letter-spacing: normal;
+    letter-spacing: 0;
 }
 
 .wp-block-site-logo {
@@ -244,19 +244,34 @@ li>span.toSansSerif {
     font-size: 1em;
     font-weight: 300;
     display: block !important;
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0;
+}
+
+.wpcf7 form.sent .wpcf7-response-output {
+    background-color: #46b44f49;
+    padding: 1.5rem;
+    font-family: 'PP Neue Montreal', sans-serif;
+    font-size: 1em;
+    font-weight: 300;
+    display: block !important;
+    border-radius: var(--wp--custom--border-radius--md);
 }
 
 .wpcf7-form-control-wrap {
     flex-direction: column;
-    
+
 }
 
-.wpcf7-not-valid-tip {
-    padding: 0.75rem 1.5rem;
-}
+/* .wpcf7-not-valid-tip {
+    padding: 0.75rem 1.5rem 0 1.5rem;
+} */
 
-.wpcf7-form-control-wrap:has(.wpcf7-not-valid-tip[aria-hidden="true"]) input{
-    background-color: #dc323239;
+.wpcf7-form-control-wrap:has(.wpcf7-not-valid-tip[aria-hidden="true"]) input {
+    background-color: #dc323216;
 }
 
 /* Link Styles */
@@ -266,6 +281,12 @@ a:not(.naechste-schritte a, .wp-block-site-logo a, figure.stoerer a) {
     color: var(--wp--preset--color--dark-brown);
     text-decoration: none;
     transition: color 0.3s ease;
+}
+
+.wpcf7-form p label span input,
+.wpcf7-form p label span textarea {
+    max-width: 100%;
+    width: stretch;
 }
 
 a:hover:not(.naechste-schritte a, .wp-block-site-logo a, figure.stoerer a) {
