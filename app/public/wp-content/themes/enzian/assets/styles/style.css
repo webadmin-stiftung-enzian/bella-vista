@@ -201,7 +201,7 @@ li>span.toSansSerif {
 }
 
 [data-name="your-privacy-info"] .wpcf7-list-item-label {
-
+    line-height: 130%;
     display: inline-block;
 }
 
