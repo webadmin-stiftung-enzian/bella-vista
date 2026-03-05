@@ -75,11 +75,38 @@
         return button;
     }
 
+    // ── User-Scroll-Erkennung ──
+    // Nur echtes manuelles Scrollen soll die Nav steuern.
+    // Layout-Shifts (Bilder, Animationen), GSAP-Scrub u. Ä. werden ignoriert.
+
+    let isUserScrolling = false;
+    let userScrollTimer = null;
+    const userScrollTimeout = 200; // ms nach letztem Input-Event
+
+    function markUserScrolling() {
+        isUserScrolling = true;
+        clearTimeout(userScrollTimer);
+        userScrollTimer = setTimeout(function () {
+            isUserScrolling = false;
+        }, userScrollTimeout);
+    }
+
+    // Passive Listener auf alle Events, die manuelles Scrollen auslösen
+    window.addEventListener('wheel', markUserScrolling, { passive: true });
+    window.addEventListener('touchstart', markUserScrolling, { passive: true });
+    window.addEventListener('touchmove', markUserScrolling, { passive: true });
+    window.addEventListener('keydown', function (e) {
+        // Nur Tasten, die Scrollen auslösen
+        var scrollKeys = ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '];
+        if (scrollKeys.indexOf(e.key) !== -1) {
+            markUserScrolling();
+        }
+    }, { passive: true });
+
     // ── Scroll-basierte Navigation ──
 
     const topThreshold = 100;
     // Mindest-Geschwindigkeit (px/s) bevor die Nav reagiert.
-    // Filtert Micro-Scroll-Events, die durch GSAP-Scrub/Parallax entstehen.
     const velocityThreshold = 50;
 
     function initScrollNavigation() {
@@ -106,7 +133,11 @@
                     return;
                 }
 
-                // getVelocity() liefert px/s – filtert Rauschen durch Parallax-Scrub
+                // Nur auf echtes manuelles Scrollen reagieren
+                if (!isUserScrolling) {
+                    return;
+                }
+
                 var velocity = self.getVelocity();
 
                 if (velocity < -velocityThreshold) {
@@ -114,7 +145,6 @@
                 } else if (velocity > velocityThreshold) {
                     hideNav();
                 }
-                // Bei velocity innerhalb der Toleranz: aktuellen Zustand beibehalten
             }
         });
     }
@@ -134,6 +164,11 @@
             ticking = false;
 
             if (isMobileMenuOpen()) {
+                return;
+            }
+
+            // Nur auf echtes manuelles Scrollen reagieren
+            if (!isUserScrolling) {
                 return;
             }
 

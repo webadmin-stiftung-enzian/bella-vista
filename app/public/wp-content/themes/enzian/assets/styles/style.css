@@ -59,16 +59,13 @@ li>span.toSansSerif {
     width: auto;
 }
 
-/* Add a custom transition when opening/closing. */
 .wp-block-details {
     transition: all 0.3s ease-in-out;
-    /* border-bottom-color: var(--wp--preset--color--dark-brown); */
     border-radius: var(--wp--custom--border-radius--lg);
     background-color: var(--wp--preset--color--light-brown-grey);
 }
 
 .wp-block-details:hover {
-    /* border-bottom-color: var(--wp--preset--color--accent-orange); */
     transition: all 0.3s ease;
     background-color: var(--wp--preset--color--dark-brown-grey);
 }
@@ -78,24 +75,21 @@ li>span.toSansSerif {
     background-color: var(--wp--preset--color--dark-brown-grey);
 }
 
-/* Content wird via JavaScript animiert */
 .wp-block-details> :not(summary) {
     overflow: hidden;
 }
 
-/* Add horizontal margin to nested blocks/elements. */
 .wp-block-details> :where( :not(summary)) {
     margin-left: 2rem;
     margin-right: 2rem;
 }
 
-/* If open, add some bottom padding to avoid content butting against the bottom. */
 .wp-block-details[open] {
     padding-bottom: 2rem;
     background-color: var(--wp--preset--color--dark-brown-grey);
 }
 
-/* Base `summary` element styling. */
+
 .wp-block-details summary {
     transition: all 0.3s ease-in-out;
     box-sizing: border-box;
@@ -107,12 +101,6 @@ li>span.toSansSerif {
     justify-content: space-between;
 }
 
-/* Change the background of the `summary` element based on state. */
-/* .wp-block-details[open] summary,
-.wp-block-details summary:hover,
-.wp-block-details summary:focus {
-	background: var(--wp--preset--color--dark-brown-grey);
-} */
 
 .wp-block-details summary::marker {
     content: none;
@@ -125,7 +113,6 @@ li>span.toSansSerif {
 
 .wp-block-details summary::after {
     content: '';
-    /* float: right; */
     width: 13px;
     height: 24px;
     background-color: var(--wp--preset--color--dark-brown);
@@ -823,7 +810,7 @@ section.facts-figures {
     max-width: var(--wp--style--global--wide-size);
     margin-left: auto;
     margin-right: auto;
-    overflow-anchor: none;
+    overflow-anchor: auto;
 }
 
 section.facts-figures>h2 {
