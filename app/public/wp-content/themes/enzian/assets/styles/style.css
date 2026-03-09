@@ -160,6 +160,8 @@ li>span.toSansSerif {
 
 .google-notice {
     padding: 0 1.25rem;
+    line-height: 130%;
+    font-size: 0.75rem;
 }
 
 div:has(.grecaptcha-badge) {
