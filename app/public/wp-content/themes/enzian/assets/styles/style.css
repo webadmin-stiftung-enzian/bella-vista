@@ -159,7 +159,7 @@ li>span.toSansSerif {
 }
 
 .google-notice {
-    padding: 0 2rem;
+    padding: 0 1.25rem;
     line-height: 130%;
     font-size: 0.75rem;
 }
@@ -1568,10 +1568,16 @@ footer p {
     }
 
     .wp-block-post-content section.lage .wp-block-shortcode,
-    section.lage>figure:nth-of-type(1) svg {
+    section.lage>figure:nth-of-type(1) svg:nth-of-type(1) {
         min-width: 850px;
         height: auto;
+        z-index: 4 !important;
     }
+
+    section.lage>figure:nth-of-type(1) svg:nth-of-type(2)
+        {
+            z-index: 5;
+        }
 
     .wp-block-columns:not(.is-not-stacked-on-mobile)>.wp-block-column {
         flex-basis: 100%;
@@ -1591,8 +1597,11 @@ footer p {
         width: min(var(--wp--style--global--wide-size), calc(100dvw - 2rem));
         padding: 0 1rem;
     } */
-     
-    section.lage, section.wohnungen, section.facts-figures, section.dokumentation {
+
+    section.lage,
+    section.wohnungen,
+    section.facts-figures,
+    section.dokumentation {
         margin-top: 3rem !important;
     }
 
@@ -1718,8 +1727,8 @@ footer p {
     }
 
     div.wp-block-group:has(>nav) {
-        width: calc(100dvw - 2.5rem);
-        max-width: calc(100dvw - 2.5rem);
+        width: calc(100dvw - 2.25rem);
+        max-width: calc(100dvw - 2.25rem);
     }
 
     section.hero>figure:nth-of-type(1) img {
@@ -1914,12 +1923,14 @@ footer p {
         z-index: 3;
     }
 
+    section.facts-figures div.wp-block-cb-carousel-v2,
     .wp-block-post-content section.lage div.wp-block-cb-carousel-v2,
     section.lage>div:first-of-type>div.cb-carousel-block {
         grid-column: 1 / span 12;
         grid-row: 3 / span 1;
         max-width: 100%;
         margin: 0 1rem !important;
+        width: auto;
     }
 
     section.kontakt-wrapper {
@@ -1954,5 +1965,16 @@ footer p {
 
     section.naechste-schritte article {
         margin-top: 2rem;
+    }
+
+    .wp-block-post-content section.lage>figure.wp-block-table,
+    section.lage>figure.wp-block-table {
+        grid-column: 1 / span 12;
+        /* padding: 1.5rem; */
+        top: -5rem;
+        z-index: 100;
+        width: auto;
+        max-width: 100%;
+        margin: 0 !important;
     }
 }

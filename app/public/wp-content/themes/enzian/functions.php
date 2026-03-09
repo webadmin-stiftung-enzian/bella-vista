@@ -27,8 +27,13 @@ add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
 function render_svg_map()
 {
     $svg_file = get_stylesheet_directory() . '/assets/files/map.svg';
+    $svg_file_additional = get_stylesheet_directory() . '/assets/files/map_legend.svg';
     if (file_exists($svg_file)) {
-        return '<figure class="wp-block-image size-full wp-container-content-1ed81c1b">' . file_get_contents($svg_file) . '</figure>';
+        $svg_content = file_get_contents($svg_file);
+        if (file_exists($svg_file_additional)) {
+            $svg_content .= file_get_contents($svg_file_additional);
+        }
+        return '<figure class="wp-block-image size-full wp-container-content-1ed81c1b">' . $svg_content . '</figure>';
     } else {
         return '<figure><!-- SVG file not found --></figure>';
     }
