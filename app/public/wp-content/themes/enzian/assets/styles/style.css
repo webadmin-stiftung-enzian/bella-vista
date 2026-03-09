@@ -151,10 +151,19 @@ li>span.toSansSerif {
     font-size: 1rem;
 }
 
+.google-notice,
 .wpcf7-form p label {
     font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 300;
     font-size: 1rem;
+}
+
+.google-notice {
+    padding: 0 1.25rem;
+}
+
+div:has(.grecaptcha-badge) {
+    visibility: hidden !important;
 }
 
 .wpcf7-form p label span input,
@@ -1388,8 +1397,6 @@ footer p {
         width: 100%;
     }
 
-
-
     section.naechste-schritte .naechste-schritte-wrapper {
         grid-column: 1 / span 6;
         grid-row: 1 / span 3;
@@ -1582,6 +1589,10 @@ footer p {
         width: min(var(--wp--style--global--wide-size), calc(100dvw - 2rem));
         padding: 0 1rem;
     } */
+     
+    section.lage, section.wohnungen, section.facts-figures, section.dokumentation {
+        margin-top: 3rem !important;
+    }
 
     section.kontakt-wrapper {
         flex-direction: column;
@@ -1693,7 +1704,7 @@ footer p {
     } */
 
     .wp-block-quote p {
-        font-size: 2.25rem;
+        font-size: 2rem;
     }
 
     :root :where(p) {

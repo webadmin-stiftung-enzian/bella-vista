@@ -35,8 +35,12 @@ function initParallax() {
   // Alle Elemente mit der Klasse "parallax" animieren
   gsap.utils.toArray('.parallax').forEach((element) => {
     // Optionales data-speed Attribut (Standard: 125)
-    const speed = Number(element.getAttribute('data-speed')) || 125;
-
+    const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+    let speed = Number(element.getAttribute('data-speed')) || 125;
+    if (viewportWidth < 768) {
+      // Auf Mobilgeräten den Effekt abschwächen (z.B. 50% der Geschwindigkeit)
+      speed = speed * 0.5; // Effekt auf Mobilgeräten halbieren
+    } 
     // will-change wird per CSS gesetzt (.parallax), hier nur die Animation.
     gsap.to(element, {
       y: -speed,
