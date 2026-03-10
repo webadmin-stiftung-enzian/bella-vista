@@ -43,76 +43,68 @@ document.addEventListener('DOMContentLoaded', function () {
         return null;
     }
 
-    mapElements.forEach(id => {
-        // Beide SVGs sind inline eingebettet und haben identische IDs –
-        // deshalb werden die Elemente jeweils im richtigen Kontext gesucht.
-        const element = mapContainer ? mapContainer.querySelector(`#${id}`) : null;
-        const elementInList = legendContainer ? legendContainer.querySelector(`#${id}`) : null;
+    // --- Transparente Hit-Areas für Legenden-Gruppen ---
+    // fill="transparent" fängt Pointer-Events ab (fill="none" nicht!).
+    if (legendContainer) {
+        mapElements.forEach(id => {
+            const g = legendContainer.querySelector(`#${id}`);
+            if (!g) return;
+            const bbox = g.getBBox();
+            const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            rect.setAttribute('x', bbox.x);
+            rect.setAttribute('y', bbox.y);
+            rect.setAttribute('width', bbox.width);
+            rect.setAttribute('height', bbox.height);
+            rect.setAttribute('fill', 'transparent');
+            rect.style.cursor = 'pointer';
+            g.insertBefore(rect, g.firstChild);
+        });
+    }
 
-        console.log(`[map] Element "${id}" — map:`, !!element, '| legend:', !!elementInList);
+    // --- Map: Tap/Click auf Marker ---
+    function handleMapTap(target) {
+        const matchedId = findMatchingAncestor(target, mapContainer);
+        if (!matchedId) return;
+        const element = mapContainer.querySelector(`#${matchedId}`);
+        const elementInList = legendContainer ? legendContainer.querySelector(`#${matchedId}`) : null;
+        addHighlight(element, elementInList);
+    }
 
-        if (element) {
-            const handler = function (e) {
-                e.preventDefault();
-                console.log(`[map] handler fired for "${id}" — event: ${e.type}, target:`, e.target);
-                addHighlight(element, elementInList);
-            };
-            element.addEventListener('click', handler);
-            element.addEventListener('touchstart', handler);
-        }
-    });
-
-    // Event-Delegation auf dem gesamten Legenden-SVG:
-    // Fängt auch Clicks auf dem <rect>-Hintergrund ab und ordnet sie
-    // dem nächsten passenden <g>-Element zu.
+    // --- Legenden-Delegation (einfacher Click dank Hit-Areas) ---
     if (legendContainer) {
         const legendSvgRoot = legendContainer.closest('svg');
         if (legendSvgRoot) {
-            function legendHandler(e) {
-                // Zuerst prüfen, ob der Click direkt auf ein Element mit matchender ID ging
-                let matchedId = findMatchingAncestor(e.target, legendSvgRoot);
+            // touchend + click Debounce: touchend feuert zuerst,
+            // sperrt danach den folgenden synthetischen click.
+            let legendTouchHandled = false;
 
-                // Falls nicht (z.B. Click auf <rect>-Hintergrund), nächstes Element per Koordinaten finden
-                if (!matchedId) {
-                    const point = legendSvgRoot.createSVGPoint();
-                    point.x = e.clientX;
-                    point.y = e.clientY;
-                    // Alle Elemente an dieser Stelle prüfen
-                    for (const id of mapElements) {
-                        const g = legendContainer.querySelector(`#${id}`);
-                        if (!g) continue;
-                        const bbox = g.getBBox();
-                        const ctm = g.getCTM();
-                        if (!ctm) continue;
-                        const inv = legendSvgRoot.getScreenCTM().inverse();
-                        const svgPoint = point.matrixTransform(inv);
-                        // getCTM gibt die Transformation relativ zum SVG-Root
-                        const localPoint = svgPoint.matrixTransform(ctm.inverse().multiply(legendSvgRoot.getCTM()));
-                        if (localPoint.x >= bbox.x && localPoint.x <= bbox.x + bbox.width &&
-                            localPoint.y >= bbox.y && localPoint.y <= bbox.y + bbox.height) {
-                            matchedId = id;
-                            break;
-                        }
-                    }
-                }
-
+            legendSvgRoot.addEventListener('touchend', function (e) {
+                const matchedId = findMatchingAncestor(e.target, legendSvgRoot);
                 if (matchedId) {
                     e.preventDefault();
+                    legendTouchHandled = true;
+                    setTimeout(() => { legendTouchHandled = false; }, 400);
+                    const element = mapContainer ? mapContainer.querySelector(`#${matchedId}`) : null;
+                    const elementInList = legendContainer.querySelector(`#${matchedId}`);
+                    addHighlight(element, elementInList);
+                }
+            });
+
+            legendSvgRoot.addEventListener('click', function (e) {
+                if (legendTouchHandled) return;
+                const matchedId = findMatchingAncestor(e.target, legendSvgRoot);
+                if (matchedId) {
                     e.stopPropagation();
                     const element = mapContainer ? mapContainer.querySelector(`#${matchedId}`) : null;
                     const elementInList = legendContainer.querySelector(`#${matchedId}`);
-                    console.log(`[map] legend delegation matched "${matchedId}"`);
                     addHighlight(element, elementInList);
                 }
-            }
-            legendSvgRoot.addEventListener('click', legendHandler);
-            legendSvgRoot.addEventListener('touchstart', legendHandler);
+            });
         }
     }
 
-    // Optional: Highlights entfernen bei Klick außerhalb
+    // Highlights entfernen bei Klick außerhalb
     document.addEventListener('click', function (e) {
-        // Prüfe ob Click innerhalb der Legende oder Map war
         const legendSvgRoot = legendContainer ? legendContainer.closest('svg') : null;
         if (legendSvgRoot && legendSvgRoot.contains(e.target)) return;
 
@@ -129,23 +121,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const figure = mapContainer ? mapContainer.parentElement : null;
     const legendSvg = figure ? figure.querySelector('svg:not(#Ebene_1)') : null;
 
-    // Debug: Capture-Phase Listener auf Legenden-SVG und Document
-    if (legendSvg) {
-        legendSvg.addEventListener('click', function (e) {
-            console.log('[map] legendSvg click (bubble) — target:', e.target, 'id:', e.target.id, 'pointer-events:', getComputedStyle(e.target).pointerEvents);
-        });
-        legendSvg.addEventListener('click', function (e) {
-            console.log('[map] legendSvg click (CAPTURE) — target:', e.target);
-        }, true);
-        console.log('[map] legendSvg found:', legendSvg, '| pointer-events:', getComputedStyle(legendSvg).pointerEvents);
-    } else {
-        console.warn('[map] legendSvg NOT FOUND');
-    }
-    if (legendContainer) {
-        console.log('[map] legendContainer pointer-events:', getComputedStyle(legendContainer).pointerEvents);
-    }
-
     if (typeof Draggable === 'undefined' || !mapContainer) {
+        // Fallback ohne Draggable: normaler Click-Listener
+        if (mapContainer) {
+            mapContainer.addEventListener('click', function (e) {
+                handleMapTap(e.target);
+            });
+        }
         return;
     }
 
@@ -214,6 +196,10 @@ document.addEventListener('DOMContentLoaded', function () {
         edgeResistance: 0.9,
         inertia: true,
         bounds: figure || undefined,
+        onClick() {
+            // Feuert nur bei Tap/Click OHNE Drag-Bewegung
+            handleMapTap(this.pointerEvent.target);
+        },
         onDrag() { updateLegend(this.x); },
         onThrowUpdate() { updateLegend(this.x); },
         onThrowComplete() { updateLegend(this.x); },
