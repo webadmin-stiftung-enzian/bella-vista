@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const [draggable] = Draggable.create(mapContainer, {
         type: 'x',
         edgeResistance: 0.9,
-        inertia: true,
+        inertia: false,
         minimumMovement: 10,
         bounds: figure || undefined,
         onClick() {
