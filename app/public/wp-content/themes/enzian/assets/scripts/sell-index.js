@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function clearHighlights(reason) {
         if (!svg) return;
+        // Nur Highlights innerhalb des Sell-Index-SVGs entfernen
         const highlighted = svg.querySelectorAll('.highlight');
         const translated = svg.querySelectorAll('.translate');
         console.log('[Sell Index] clearHighlights', {

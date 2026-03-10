@@ -62,13 +62,30 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // --- Map: Tap/Click auf Marker ---
-    function handleMapTap(target) {
-        const matchedId = findMatchingAncestor(target, mapContainer);
-        if (!matchedId) return;
-        const element = mapContainer.querySelector(`#${matchedId}`);
-        const elementInList = legendContainer ? legendContainer.querySelector(`#${matchedId}`) : null;
-        addHighlight(element, elementInList);
-    }
+    // Pointer-Listener direkt auf den Marker-Gruppen:
+    // Reagiert sofort beim pointerup, unabhängig von Draggable.
+    mapElements.forEach(id => {
+        const element = mapContainer ? mapContainer.querySelector(`#${id}`) : null;
+        if (!element) return;
+
+        let startX = 0, startY = 0;
+
+        element.addEventListener('pointerdown', function (e) {
+            startX = e.clientX;
+            startY = e.clientY;
+        });
+
+        element.addEventListener('pointerup', function (e) {
+            const dx = Math.abs(e.clientX - startX);
+            const dy = Math.abs(e.clientY - startY);
+            // Weniger als 10px Bewegung = Tap, kein Drag
+            if (dx < 10 && dy < 10) {
+                e.stopPropagation(); // Verhindert dass document-click-Handler das Highlight löscht
+                const elementInList = legendContainer ? legendContainer.querySelector(`#${id}`) : null;
+                addHighlight(element, elementInList);
+            }
+        });
+    });
 
     // --- Legenden-Delegation (einfacher Click dank Hit-Areas) ---
     if (legendContainer) {
@@ -122,12 +139,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const legendSvg = figure ? figure.querySelector('svg:not(#Ebene_1)') : null;
 
     if (typeof Draggable === 'undefined' || !mapContainer) {
-        // Fallback ohne Draggable: normaler Click-Listener
-        if (mapContainer) {
-            mapContainer.addEventListener('click', function (e) {
-                handleMapTap(e.target);
-            });
-        }
         return;
     }
 
@@ -197,9 +208,6 @@ document.addEventListener('DOMContentLoaded', function () {
         inertia: false,
         minimumMovement: 10,
         bounds: figure || undefined,
-        onClick() {
-            handleMapTap(this.pointerEvent.target);
-        },
         onDrag() { updateLegend(this.x); },
         onThrowUpdate() { updateLegend(this.x); },
         onThrowComplete() { updateLegend(this.x); },
