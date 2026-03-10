@@ -195,9 +195,9 @@ document.addEventListener('DOMContentLoaded', function () {
         type: 'x',
         edgeResistance: 0.9,
         inertia: true,
+        minimumMovement: 10,
         bounds: figure || undefined,
         onClick() {
-            // Feuert nur bei Tap/Click OHNE Drag-Bewegung
             handleMapTap(this.pointerEvent.target);
         },
         onDrag() { updateLegend(this.x); },
