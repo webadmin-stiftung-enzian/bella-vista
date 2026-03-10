@@ -570,8 +570,7 @@ section.lage>figure.wp-block-table {
     margin: 0;
     padding: 0;
     position: relative;
-    top: -7.5rem;
-    margin-bottom: -5rem;
+    margin-top: -7.5rem;
     background-color: var(--wp--preset--color--light-brown-grey);
     padding: 2.5rem;
     border-radius: var(--wp--custom--border-radius--lg);
@@ -1161,7 +1160,7 @@ footer p {
     section.lage>figure.wp-block-table {
         grid-column: 7 / span 5;
         padding: 1.5rem;
-        top: -5rem;
+        margin-top: -5rem !important;
         z-index: 10000;
     }
 
@@ -1680,7 +1679,7 @@ footer p {
         /* overflow: hidden; */
     }
 
-    :not(section)>section {
+    :not(section)>section:not(.sell-index) {
         margin-block-start: 3rem !important;
         margin-block-end: 3rem !important;
     }
@@ -1769,7 +1768,7 @@ footer p {
 
     .wp-block-post-content section.zitat blockquote,
     section.zitat blockquote {
-        grid-column: 1 / span 10;
+        grid-column: 1 / span 12;
         grid-row: 4 / span 1;
     }
 
@@ -1813,7 +1812,7 @@ footer p {
     section.lage>figure.wp-block-table {
         grid-column: 3 / span 8;
         padding: 1.5rem;
-        top: -5rem;
+        /* top: -5rem; */
         z-index: 100;
     }
 
@@ -1978,11 +1977,11 @@ footer p {
     section.lage>figure.wp-block-table {
         grid-column: 1 / span 12;
         /* padding: 1.5rem; */
-        top: -5rem;
         z-index: 100;
         width: auto;
         max-width: 100%;
-        margin: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
     }
 
     footer {
