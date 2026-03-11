@@ -1462,7 +1462,7 @@ footer p {
     .wpcf7 {
         display: grid;
         grid-template-columns: repeat(12, minmax(auto, 1fr));
-        grid-template-rows: repeat(6, auto);
+        grid-template-rows: repeat(3, auto);
         gap: 2rem;
         max-width: var(--wp--style--global--wide-size);
         margin-left: auto;
@@ -2009,6 +2009,7 @@ footer p {
 
     section.naechste-schritte article {
         margin-top: 2rem;
+            grid-column: 1 / span 6;
     }
 
     .wp-block-post-content section.lage>figure.wp-block-table,
@@ -2041,6 +2042,7 @@ footer p {
     footer div.wp-block-group:has(>div) {
         flex-direction: column;
         gap: 1rem;
+        margin: 0 0 1rem 0 !important;
     }
 
     footer div.wp-block-group:has(>div) div:last-of-type {

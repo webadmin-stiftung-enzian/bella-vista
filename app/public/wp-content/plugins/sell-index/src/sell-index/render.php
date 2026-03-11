@@ -18,7 +18,7 @@ $query = new WP_Query([
 	'post_type' => 'apartments',
 	'posts_per_page' => -1,
 	'orderby' => 'title',
-	'order' => 'ASC'
+	'order' => 'DESC',
 ]);
 
 $apartments = [];
