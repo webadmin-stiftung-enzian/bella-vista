@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
-
+    let lastTapTime = 0;
     let offsetX, offsetY;
 
     function updateOffsets() {
@@ -162,9 +162,13 @@ document.addEventListener('DOMContentLoaded', function () {
         bounds: figure || undefined,
         cursor: 'grab',
         activeCursor: 'grabbing',
-        // onClick feuert genau einmal pro Tap/Click (Draggable unterdrückt
-        // den nativen click und dispatcht nur seinen eigenen).
         onClick() {
+            // WebKit-Bug: ein einzelner Touch kann auf SVG-Elementen
+            // zwei onClick-Events auslösen. Debounce verhindert Toggle-Effekt.
+            const now = Date.now();
+            if (now - lastTapTime < 100) return;
+            lastTapTime = now;
+
             const id = findMatchingId(this.pointerEvent.target);
             console.log('[map] onClick — id:', id, '| target:', this.pointerEvent.target);
             if (id) {
