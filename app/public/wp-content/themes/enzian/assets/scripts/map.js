@@ -124,8 +124,9 @@ document.addEventListener('DOMContentLoaded', function () {
         cursor: 'grab',
         activeCursor: 'grabbing',
         zIndexBoost: false,
-        // onClick feuert nur bei Tap/Klick ohne Drag (< 3px Bewegung).
-        // Ersetzt clickableTest + separate click-Listener auf Markern.
+        // Toleranz für Finger-Ungenauigkeit auf Touch-Geräten:
+        // Bewegung < 10px = Klick (onClick), >= 10px = Drag (onDrag).
+        minimumMovement: 10,
         onClick(e) {
             const matchedId = findMatchingId(e.target);
             if (matchedId) {
