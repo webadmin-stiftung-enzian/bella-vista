@@ -126,7 +126,6 @@ document.addEventListener('DOMContentLoaded', function () {
         cursor: 'grab',
         activeCursor: 'grabbing',
         zIndexBoost: false,
-        minimumMovement: 10,
         onClick(e) {
             // Touch-Geräte erzeugen nach touchend einen synthetischen click —
             // Draggable feuert onClick für beide. Zweiten Aufruf ignorieren.
