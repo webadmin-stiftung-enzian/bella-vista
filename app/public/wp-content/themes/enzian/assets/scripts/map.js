@@ -11,9 +11,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Funktion zum Entfernen aller Highlights
     function removeAllHighlights() {
-        document.querySelectorAll('.highlight').forEach(el => {
-            el.classList.remove('highlight');
-        });
+        mapContainer?.querySelectorAll('.highlight').forEach(el => el.classList.remove('highlight'));
+        legendContainer?.closest('svg')?.querySelectorAll('.highlight').forEach(el => el.classList.remove('highlight'));
     }
     // Funktion zum Hinzufügen von Highlight
     function addHighlight(element, elementInList) {
@@ -29,20 +28,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Hilfsfunktion: Vom Click-Target nach oben gehen und prüfen, ob ein
     // Vorfahre eine der gesuchten IDs hat (innerhalb eines Containers).
-    function findMatchingAncestor(target, container) {
-        let el = target;
-        while (el && el !== container) {
-            if (el.id && mapElements.includes(el.id)) return el.id;
-            el = el.parentElement;
-        }   
-        return null;
+    function findMatchingId(target) {
+        const g = target.closest(mapElements.map(id => `#${id}`).join(','));
+        return g ? g.id : null;
     }
+
+    // Elemente einmal cachen
+    const markerElements = Object.fromEntries(
+        mapElements.map(id => [id, {
+            map: mapContainer?.querySelector(`#${id}`) ?? null,
+            legend: legendContainer?.querySelector(`#${id}`) ?? null,
+        }])
+    );
 
     // --- Transparente Hit-Areas für Legenden-Gruppen ---
     // fill="transparent" fängt Pointer-Events ab (fill="none" nicht!).
     if (legendContainer) {
         mapElements.forEach(id => {
-            const g = legendContainer.querySelector(`#${id}`);
+            const g = markerElements[id].legend;
             if (!g) return;
             const bbox = g.getBBox();
             const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
@@ -57,56 +60,21 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // --- Map: Tap/Click auf Marker ---
-    // Pointer-Listener direkt auf den Marker-Gruppen:
-    // Reagiert sofort beim pointerup, unabhängig von Draggable.
     mapElements.forEach(id => {
-        const element = mapContainer ? mapContainer.querySelector(`#${id}`) : null;
+        const { map: element, legend: elementInList } = markerElements[id];
         if (!element) return;
-
-        let startX = 0, startY = 0;
-
-        element.addEventListener('pointerdown', function (e) {
-            startX = e.clientX;
-            startY = e.clientY;
-        });
-
-        element.addEventListener('pointerup', function (e) {
-            const dx = Math.abs(e.clientX - startX);
-            const dy = Math.abs(e.clientY - startY);
-            if (dx < 10 && dy < 10) {
-                const elementInList = legendContainer ? legendContainer.querySelector(`#${id}`) : null;
-                addHighlight(element, elementInList);
-            }
-        });
+        element.addEventListener('click', () => addHighlight(element, elementInList));
     });
 
-    // --- Legenden-Delegation (einfacher Click dank Hit-Areas) ---
+    // --- Legenden-Delegation ---
     if (legendContainer) {
         const legendSvgRoot = legendContainer.closest('svg');
         if (legendSvgRoot) {
-            // touchend + click Debounce: touchend feuert zuerst,
-            // sperrt danach den folgenden synthetischen click.
-            let legendTouchHandled = false;
-
-            legendSvgRoot.addEventListener('touchend', function (e) {
-                const matchedId = findMatchingAncestor(e.target, legendSvgRoot);
-                if (matchedId) {
-                    e.preventDefault();
-                    legendTouchHandled = true;
-                    setTimeout(() => { legendTouchHandled = false; }, 400);
-                    const element = mapContainer ? mapContainer.querySelector(`#${matchedId}`) : null;
-                    const elementInList = legendContainer.querySelector(`#${matchedId}`);
-                    addHighlight(element, elementInList);
-                }
-            });
-
             legendSvgRoot.addEventListener('click', function (e) {
-                if (legendTouchHandled) return;
-                const matchedId = findMatchingAncestor(e.target, legendSvgRoot);
+                const matchedId = findMatchingId(e.target);
                 if (matchedId) {
                     e.stopPropagation();
-                    const element = mapContainer ? mapContainer.querySelector(`#${matchedId}`) : null;
-                    const elementInList = legendContainer.querySelector(`#${matchedId}`);
+                    const { map: element, legend: elementInList } = markerElements[matchedId];
                     addHighlight(element, elementInList);
                 }
             });
@@ -116,16 +84,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Highlights entfernen bei Klick außerhalb
     document.addEventListener('click', function (e) {
         const legendSvgRoot = legendContainer ? legendContainer.closest('svg') : null;
-        if (legendSvgRoot && legendSvgRoot.contains(e.target)) return;
-
-        const isMapElement = mapElements.some(id => {
-            const element = mapContainer ? mapContainer.querySelector(`#${id}`) : null;
-            return element?.contains(e.target);
-        });
-
-        if (!isMapElement) {
-            removeAllHighlights();
-        }
+        if (legendSvgRoot?.contains(e.target)) return;
+        if (Object.values(markerElements).some(({ map }) => map?.contains(e.target))) return;
+        removeAllHighlights();
     });
 
     const figure = mapContainer ? mapContainer.parentElement : null;
@@ -197,6 +158,13 @@ document.addEventListener('DOMContentLoaded', function () {
         inertia: false,
         minimumMovement: 10,
         bounds: figure || undefined,
+        cursor: 'grab',
+        activeCursor: 'grabbing',
+        // Marker-Gruppen als klickbar deklarieren → Draggable übernimmt
+        // den Touch-Event dort nicht, click-Listener feuern sofort.
+        clickableTest(target) {
+            return mapElements.some(id => target.closest(`#${id}`));
+        },
         onDrag() { updateLegend(this.x); },
     });
 
