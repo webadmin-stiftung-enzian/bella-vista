@@ -143,6 +143,10 @@ document.addEventListener('DOMContentLoaded', function () {
         onDrag() { updateLegend(this.x); },
     });
 
+    // Draggable setzt touch-action:none → blockiert nativen vertikalen Scroll.
+    // pan-y erlaubt dem Browser vertikales Scrolling nativ, Draggable steuert nur x.
+    mapContainer.style.touchAction = 'pan-y';
+
     window.addEventListener('load', () => {
         requestAnimationFrame(() => {
             updateCache();

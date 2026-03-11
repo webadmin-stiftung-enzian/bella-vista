@@ -95,6 +95,10 @@
     window.addEventListener('wheel', markUserScrolling, { passive: true });
     window.addEventListener('touchstart', markUserScrolling, { passive: true });
     window.addEventListener('touchmove', markUserScrolling, { passive: true });
+    // Momentum-Scrolling auf Touch-Geräten: Finger ist weg, aber Scroll läuft weiter.
+    // Ohne diesen Listener endet isUserScrolling 200ms nach touchend,
+    // obwohl der Scroll (und damit ScrollTrigger.onUpdate) noch aktiv ist.
+    window.addEventListener('scroll', markUserScrolling, { passive: true });
     window.addEventListener('keydown', function (e) {
         // Nur Tasten, die Scrollen auslösen
         var scrollKeys = ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '];
