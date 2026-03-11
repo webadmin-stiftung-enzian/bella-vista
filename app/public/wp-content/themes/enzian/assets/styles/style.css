@@ -273,7 +273,7 @@ div:has(.grecaptcha-badge) {
 }
 
 /* Link Styles */
-a:not(.naechste-schritte a, .wp-block-site-logo a, figure.stoerer a) {
+a:not(.naechste-schritte a, .wp-block-site-logo a, figure.stoerer a, .wp-element-button) {
     position: relative;
     display: inline-block;
     color: var(--wp--preset--color--dark-brown);
@@ -287,11 +287,11 @@ a:not(.naechste-schritte a, .wp-block-site-logo a, figure.stoerer a) {
     width: stretch;
 }
 
-a:hover:not(.naechste-schritte a, .wp-block-site-logo a, figure.stoerer a) {
+a:hover:not(.naechste-schritte a, .wp-block-site-logo a, figure.stoerer a, .wp-element-button) {
     color: var(--wp--preset--color--accent-orange);
 }
 
-a:not(.naechste-schritte a, .wp-block-site-logo a, figure.stoerer a)::after {
+a:not(.naechste-schritte a, .wp-block-site-logo a, figure.stoerer a, .wp-element-button)::after {
     content: '';
     position: absolute;
     bottom: -2px;
@@ -304,7 +304,7 @@ a:not(.naechste-schritte a, .wp-block-site-logo a, figure.stoerer a)::after {
     transition: transform 0.3s ease;
 }
 
-a:hover:not(.naechste-schritte a, .wp-block-site-logo a, figure.stoerer a)::after {
+a:hover:not(.naechste-schritte a, .wp-block-site-logo a, figure.stoerer a, .wp-element-button)::after {
     transform: scaleX(1);
 }
 
@@ -1689,8 +1689,7 @@ footer p {
         /* overflow: hidden; */
     }
 
-    :not(section)>section:not(footer>section),
-    :not(section)>section:not(.sell-index) {
+    :not(section)>section:not(.sell-index, footer>section) {
         margin-block-start: 3rem !important;
         margin-block-end: 3rem !important;
     }
