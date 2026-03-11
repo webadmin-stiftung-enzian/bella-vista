@@ -939,7 +939,7 @@ section.facts-figures div:has(>h3) h3 {
 
 section.facts-figures div:has(>h3) h3:nth-of-type(2) {
     margin-block-start: 0;
-    margin-block-end: 0; 
+    margin-block-end: 0;
 }
 
 section.dokumentation {
@@ -1689,6 +1689,7 @@ footer p {
         /* overflow: hidden; */
     }
 
+    :not(section)>section:not(footer>section),
     :not(section)>section:not(.sell-index) {
         margin-block-start: 3rem !important;
         margin-block-end: 3rem !important;
@@ -1736,6 +1737,12 @@ footer p {
 
     :root :where(p) {
         font-size: 1rem;
+    }
+
+    .google-notice {
+        padding: 0 1.25rem;
+        line-height: 130%;
+        font-size: 0.75rem;
     }
 
     .wp-block-details summary {
@@ -1994,6 +2001,12 @@ footer p {
         margin-right: 0 !important;
     }
 
+    section.kontakt>p {
+        grid-column: 2 / span 10;
+        grid-row: 2 / span 1;
+        margin-left: 0 !important;
+    }
+
     footer {
         margin-top: 3rem;
     }
@@ -2015,4 +2028,6 @@ footer p {
     footer div.wp-block-group:has(>div)>div * {
         text-align: center;
     }
+
+
 }
