@@ -1884,7 +1884,7 @@ footer p {
     }
 
     section.facts-figures>h2 {
-        grid-column: 2 / span 10;
+        grid-column: 1 / span 12 !important;
     }
 
     section.facts-figures div:has(> h3):nth-of-type(1) {
@@ -1955,14 +1955,14 @@ footer p {
 
     .wp-block-post-content section.lage>div:first-of-type>h1,
     section.lage>div:first-of-type>h1 {
-        grid-column: 2 / span 10;
+        grid-column: 1 / span 12;
         grid-row: 1 / span 1;
         z-index: 3;
     }
 
     .wp-block-post-content section.lage>div:first-of-type>p,
     section.lage>div:first-of-type>p {
-        grid-column: 2 / span 10;
+        grid-column: 1 / span 12;
         grid-row: 2 / span 1;
         z-index: 3;
     }
@@ -2004,7 +2004,7 @@ footer p {
     section.dokumentation>.wp-block-buttons,
     section.dokumentation>p,
     section.dokumentation>h2 {
-        grid-column: 2 / span 10;
+        grid-column: 1 / span 12;
     }
 
     section.naechste-schritte article {
@@ -2022,8 +2022,14 @@ footer p {
         margin-right: 0 !important;
     }
 
+    section.kontakt>h2 {
+        grid-column: 1 / span 12;
+        grid-row: 1 / span 1;
+        margin-left: 0 !important;
+    }
+
     section.kontakt>p {
-        grid-column: 2 / span 10;
+        grid-column: 1 / span 12;
         grid-row: 2 / span 1;
         margin-left: 0 !important;
     }
