@@ -1,5 +1,3 @@
-console.log('Map script loaded');
-
 if (typeof gsap !== 'undefined' && typeof Draggable !== 'undefined') {
     gsap.registerPlugin(Draggable);
 } else {
@@ -28,9 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
             if (elementInList) elementInList.classList.add('highlight');
         }
     }
-
-    console.log('[map] mapContainer:', mapContainer);
-    console.log('[map] legendContainer:', legendContainer);
 
     // Hilfsfunktion: Vom Click-Target nach oben gehen und prüfen, ob ein
     // Vorfahre eine der gesuchten IDs hat (innerhalb eines Containers).
@@ -78,9 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
         element.addEventListener('pointerup', function (e) {
             const dx = Math.abs(e.clientX - startX);
             const dy = Math.abs(e.clientY - startY);
-            // Weniger als 10px Bewegung = Tap, kein Drag
             if (dx < 10 && dy < 10) {
-                e.stopPropagation(); // Verhindert dass document-click-Handler das Highlight löscht
                 const elementInList = legendContainer ? legendContainer.querySelector(`#${id}`) : null;
                 addHighlight(element, elementInList);
             }
@@ -167,14 +160,12 @@ document.addEventListener('DOMContentLoaded', function () {
         // Obere linke Ecke der Legende relativ zur Mitte der Figure
         const centerX = figure.offsetWidth / 2;
         const centerY = figure.offsetHeight / 2;
-        console.log('[map] positionLegendBase — figure:', figure.offsetWidth, 'x', figure.offsetHeight, '| offsets:', offsetX, offsetY, '| left:', centerX + offsetX, 'top:', centerY + offsetY);
-
         legendSvg.style.position = 'absolute';
         legendSvg.style.left = (centerX + offsetX) + 'px';
         legendSvg.style.top = (centerY + offsetY) + 'px';
         legendSvg.style.right = 'auto';
         legendSvg.style.bottom = 'auto';
-        gsap.set(legendSvg, { x: 0, y: 0 }); // Reset transforms für Basis-Berechnung
+        gsap.set(legendSvg, { x: 0, y: 0 });
     }
 
     const stickyMargin = 20;
@@ -188,7 +179,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const legendRect = legendSvg.getBoundingClientRect();
         cachedFigRight = figRect.right;
         cachedBaseLeft = legendRect.left - figRect.left;
-        console.log('[map] updateCache — figRect.right:', cachedFigRight, '| baseLeft:', cachedBaseLeft, '| legendRect:', legendRect.left, legendRect.width);
     }
 
     function updateLegend(mapX) {
@@ -198,7 +188,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const legendWidth = legendSvg.offsetWidth;
         const maxX = window.innerWidth - stickyMargin - cachedFigRight - cachedBaseLeft - legendWidth;
         const finalX = Math.min(mapX, maxX);
-        console.log('[map] updateLegend — mapX:', mapX, '| maxX:', maxX, '| finalX:', finalX, '| legendWidth:', legendWidth, '| viewport:', window.innerWidth);
         gsap.set(legendSvg, { x: finalX });
     }
 
@@ -209,14 +198,10 @@ document.addEventListener('DOMContentLoaded', function () {
         minimumMovement: 10,
         bounds: figure || undefined,
         onDrag() { updateLegend(this.x); },
-        onThrowUpdate() { updateLegend(this.x); },
-        onThrowComplete() { updateLegend(this.x); },
     });
 
     window.addEventListener('load', () => {
-        console.log('[map] window.load fired');
         requestAnimationFrame(() => {
-            console.log('[map] rAF after load');
             updateCache();
             updateLegend(0);
         });
