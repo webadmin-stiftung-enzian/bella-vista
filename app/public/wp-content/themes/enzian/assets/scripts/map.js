@@ -10,19 +10,21 @@ document.addEventListener('DOMContentLoaded', function () {
     const mapElements = ["bahnhof", "primarschule", "verwaltung", "sport", "lebensmittel", "kirche"];
 
     // Funktion zum Entfernen aller Highlights
-    function removeAllHighlights() {
+    function removeAllHighlights(reason) {
+        console.log('[map] removeAllHighlights — reason:', reason);
         mapContainer?.querySelectorAll('.highlight').forEach(el => el.classList.remove('highlight'));
         legendContainer?.closest('svg')?.querySelectorAll('.highlight').forEach(el => el.classList.remove('highlight'));
     }
-    // Funktion zum Hinzufügen von Highlight
     function addHighlight(element, elementInList) {
-        // Prüfe ob bereits aktiv - wenn ja, entferne alle Highlights
-        if (element?.classList.contains('highlight') || elementInList?.classList.contains('highlight')) {
-            removeAllHighlights();
+        const wasActive = element?.classList.contains('highlight') || elementInList?.classList.contains('highlight');
+        console.log('[map] addHighlight — wasActive:', wasActive, '| map:', element?.id, '| legend:', elementInList?.id);
+        if (wasActive) {
+            removeAllHighlights('toggle-off');
         } else {
-            removeAllHighlights();
+            removeAllHighlights('before-set');
             if (element) element.classList.add('highlight');
             if (elementInList) elementInList.classList.add('highlight');
+            console.log('[map] highlight SET — map.highlight:', element?.classList.contains('highlight'), '| legend.highlight:', elementInList?.classList.contains('highlight'));
         }
     }
 
@@ -87,9 +89,16 @@ document.addEventListener('DOMContentLoaded', function () {
     // Highlights entfernen bei Klick außerhalb
     document.addEventListener('click', function (e) {
         const legendSvgRoot = legendContainer ? legendContainer.closest('svg') : null;
-        if (legendSvgRoot?.contains(e.target)) return;
-        if (Object.values(markerElements).some(({ map }) => map?.contains(e.target))) return;
-        removeAllHighlights();
+        if (legendSvgRoot?.contains(e.target)) {
+            console.log('[map] document click — inside legend, ignored');
+            return;
+        }
+        if (Object.values(markerElements).some(({ map }) => map?.contains(e.target))) {
+            console.log('[map] document click — inside marker, ignored');
+            return;
+        }
+        console.log('[map] document click — outside, removing highlights | target:', e.target);
+        removeAllHighlights('outside-click');
     });
 
     const figure = mapContainer ? mapContainer.parentElement : null;
