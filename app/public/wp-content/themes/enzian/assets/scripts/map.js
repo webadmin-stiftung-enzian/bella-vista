@@ -61,16 +61,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // --- Map: Tap/Click auf Marker ---
-    mapElements.forEach(id => {
-        const { map: element, legend: elementInList } = markerElements[id];
-        if (!element) return;
-        element.addEventListener('click', () => {
-            console.log('[map] marker click:', id);
-            addHighlight(element, elementInList);
-        });
-    });
-
     // --- Legenden-Delegation ---
     if (legendContainer) {
         const legendSvgRoot = legendContainer.closest('svg');
@@ -172,10 +162,17 @@ document.addEventListener('DOMContentLoaded', function () {
         bounds: figure || undefined,
         cursor: 'grab',
         activeCursor: 'grabbing',
-        // Marker-Gruppen als klickbar deklarieren → Draggable übernimmt
-        // den Touch-Event dort nicht, click-Listener feuern sofort.
-        clickableTest(target) {
-            return mapElements.some(id => target.closest(`#${id}`));
+        // onClick feuert genau einmal pro Tap/Click (Draggable unterdrückt
+        // den nativen click und dispatcht nur seinen eigenen).
+        onClick() {
+            const id = findMatchingId(this.pointerEvent.target);
+            console.log('[map] onClick — id:', id, '| target:', this.pointerEvent.target);
+            if (id) {
+                const { map: element, legend: elementInList } = markerElements[id];
+                addHighlight(element, elementInList);
+            } else {
+                removeAllHighlights('map-background-click');
+            }
         },
         onDrag() { updateLegend(this.x); },
     });
