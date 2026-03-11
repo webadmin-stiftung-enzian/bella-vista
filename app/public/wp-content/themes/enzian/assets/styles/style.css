@@ -690,8 +690,30 @@ section.lage figure svg>g {
     transition: transform 0.3s ease;
 }
 
+section.lage figure {
+    position: relative !important;
+    overflow: hidden !important;
+}
+
 section.lage figure svg:nth-of-type(2) {
     transform: scale(1.25);
+    position: absolute;
+    left: calc(50% + 325px);
+    top: calc(50% - 425px);
+    right: auto;
+    bottom: auto;
+}
+
+@media (max-width: 767px) {
+    section.lage figure svg:nth-of-type(2) {
+        left: calc(50% + 58px);
+        top: calc(50% - 250px);
+    }
+}
+
+section.lage figure svg g#legende > g {
+    pointer-events: bounding-box;
+    cursor: pointer;
 }
 
 /* section.lage figure svg g#legende g#bellavista-2 {

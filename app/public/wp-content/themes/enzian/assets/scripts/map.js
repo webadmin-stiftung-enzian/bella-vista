@@ -7,7 +7,7 @@ if (typeof gsap !== 'undefined' && typeof Draggable !== 'undefined') {
 document.addEventListener('DOMContentLoaded', function () {
     const mapContainer = document.querySelector('svg#Ebene_1');
     const legendContainer = document.getElementById('legende');
-    const mapElements = ["bahnhof", "primarschule", "verwaltung", "sport", "lebensmittel", "kirche"];
+    const mapElements = ["bahnhof", "primarschule", "verwaltung", "sport", "lebensmittel", "kirche", "bellavista"];
 
     // Funktion zum Entfernen aller Highlights
     function removeAllHighlights(reason) {
@@ -30,35 +30,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Hilfsfunktion: Vom Click-Target nach oben gehen und prüfen, ob ein
     // Vorfahre eine der gesuchten IDs hat (innerhalb eines Containers).
+    // Unterstützt auch data-name-Fallback (z.B. id="bellavista-2" data-name="bellavista").
     function findMatchingId(target) {
-        const g = target.closest(mapElements.map(id => `#${id}`).join(','));
-        return g ? g.id : null;
+        const selector = mapElements.flatMap(id => [`#${id}`, `[data-name="${id}"]`]).join(',');
+        const g = target.closest(selector);
+        if (!g) return null;
+        return g.dataset.name || g.id;
     }
 
-    // Elemente einmal cachen
+    // Elemente einmal cachen (data-name-Fallback für abweichende IDs im Map-SVG)
     const markerElements = Object.fromEntries(
         mapElements.map(id => [id, {
-            map: mapContainer?.querySelector(`#${id}`) ?? null,
+            map: mapContainer?.querySelector(`#${id}`) ?? mapContainer?.querySelector(`[data-name="${id}"]`) ?? null,
             legend: legendContainer?.querySelector(`#${id}`) ?? null,
         }])
     );
 
-    // --- Transparente Hit-Areas für Legenden-Gruppen ---
-    // fill="transparent" fängt Pointer-Events ab (fill="none" nicht!).
-    if (legendContainer) {
-        mapElements.forEach(id => {
-            const g = markerElements[id].legend;
-            if (!g) return;
-            const bbox = g.getBBox();
-            const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-            rect.setAttribute('x', bbox.x);
-            rect.setAttribute('y', bbox.y);
-            rect.setAttribute('width', bbox.width);
-            rect.setAttribute('height', bbox.height);
-            rect.setAttribute('fill', 'transparent');
-            rect.style.cursor = 'pointer';
-            g.insertBefore(rect, g.firstChild);
-        });
+    function handleMarkerClick(id) {
+        const { map: element, legend: elementInList } = markerElements[id];
+        addHighlight(element, elementInList);
     }
 
     // --- Legenden-Delegation ---
@@ -69,8 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const matchedId = findMatchingId(e.target);
                 if (matchedId) {
                     e.stopPropagation();
-                    const { map: element, legend: elementInList } = markerElements[matchedId];
-                    addHighlight(element, elementInList);
+                    handleMarkerClick(matchedId);
                 }
             });
         }
@@ -95,40 +84,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const legendSvg = figure ? figure.querySelector('svg:not(#Ebene_1)') : null;
 
     if (typeof Draggable === 'undefined' || !mapContainer) {
+        // Fallback ohne Draggable: direkte Click-Listener auf Markern
+        mapElements.forEach(id => {
+            const { map: element } = markerElements[id];
+            if (!element) return;
+            element.addEventListener('click', () => handleMarkerClick(id));
+        });
         return;
-    }
-
-    let lastTapTime = 0;
-    let offsetX, offsetY;
-
-    function updateOffsets() {
-        const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
-        if (viewportWidth < 768) {
-            offsetX = 58;
-            offsetY = -250;
-        } else {
-            offsetX = 325;
-            offsetY = -425;
-        }
-    }
-
-    if (figure) {
-        figure.style.setProperty('position', 'relative', 'important');
-        figure.style.setProperty('overflow', 'hidden', 'important');
-    }
-
-    function positionLegendBase() {
-        if (!legendSvg || !figure) return;
-        updateOffsets();
-        // Obere linke Ecke der Legende relativ zur Mitte der Figure
-        const centerX = figure.offsetWidth / 2;
-        const centerY = figure.offsetHeight / 2;
-        legendSvg.style.position = 'absolute';
-        legendSvg.style.left = (centerX + offsetX) + 'px';
-        legendSvg.style.top = (centerY + offsetY) + 'px';
-        legendSvg.style.right = 'auto';
-        legendSvg.style.bottom = 'auto';
-        gsap.set(legendSvg, { x: 0, y: 0 });
     }
 
     const stickyMargin = 20;
@@ -137,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function updateCache() {
         if (!figure || !legendSvg) return;
-        positionLegendBase();
+        gsap.set(legendSvg, { x: 0, y: 0 });
         const figRect = figure.getBoundingClientRect();
         const legendRect = legendSvg.getBoundingClientRect();
         cachedFigRight = figRect.right;
@@ -158,22 +120,16 @@ document.addEventListener('DOMContentLoaded', function () {
         type: 'x',
         edgeResistance: 0.9,
         inertia: false,
-        minimumMovement: 10,
         bounds: figure || undefined,
         cursor: 'grab',
         activeCursor: 'grabbing',
-        onClick() {
-            // WebKit-Bug: ein einzelner Touch kann auf SVG-Elementen
-            // zwei onClick-Events auslösen. Debounce verhindert Toggle-Effekt.
-            const now = Date.now();
-            if (now - lastTapTime < 100) return;
-            lastTapTime = now;
-
-            const id = findMatchingId(this.pointerEvent.target);
-            console.log('[map] onClick — id:', id, '| target:', this.pointerEvent.target);
-            if (id) {
-                const { map: element, legend: elementInList } = markerElements[id];
-                addHighlight(element, elementInList);
+        zIndexBoost: false,
+        // onClick feuert nur bei Tap/Klick ohne Drag (< 3px Bewegung).
+        // Ersetzt clickableTest + separate click-Listener auf Markern.
+        onClick(e) {
+            const matchedId = findMatchingId(e.target);
+            if (matchedId) {
+                handleMarkerClick(matchedId);
             } else {
                 removeAllHighlights('map-background-click');
             }
