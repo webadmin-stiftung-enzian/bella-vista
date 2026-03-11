@@ -116,6 +116,8 @@ document.addEventListener('DOMContentLoaded', function () {
         gsap.set(legendSvg, { x: finalX });
     }
 
+    let lastClickTime = 0;
+
     const [draggable] = Draggable.create(mapContainer, {
         type: 'x',
         edgeResistance: 0.9,
@@ -124,10 +126,14 @@ document.addEventListener('DOMContentLoaded', function () {
         cursor: 'grab',
         activeCursor: 'grabbing',
         zIndexBoost: false,
-        // Toleranz für Finger-Ungenauigkeit auf Touch-Geräten:
-        // Bewegung < 10px = Klick (onClick), >= 10px = Drag (onDrag).
         minimumMovement: 10,
         onClick(e) {
+            // Touch-Geräte erzeugen nach touchend einen synthetischen click —
+            // Draggable feuert onClick für beide. Zweiten Aufruf ignorieren.
+            const now = Date.now();
+            if (now - lastClickTime < 300) return;
+            lastClickTime = now;
+
             const matchedId = findMatchingId(e.target);
             if (matchedId) {
                 handleMarkerClick(matchedId);
