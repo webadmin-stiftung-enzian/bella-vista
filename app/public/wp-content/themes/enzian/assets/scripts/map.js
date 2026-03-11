@@ -63,7 +63,10 @@ document.addEventListener('DOMContentLoaded', function () {
     mapElements.forEach(id => {
         const { map: element, legend: elementInList } = markerElements[id];
         if (!element) return;
-        element.addEventListener('click', () => addHighlight(element, elementInList));
+        element.addEventListener('click', () => {
+            console.log('[map] marker click:', id);
+            addHighlight(element, elementInList);
+        });
     });
 
     // --- Legenden-Delegation ---
