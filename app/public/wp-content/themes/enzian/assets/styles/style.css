@@ -1711,14 +1711,24 @@ footer p {
         /* overflow: hidden; */
     }
 
-    .wp-block-post-content .wpcf7.js, .wpcf7.js,
-    .wp-block-post-content section.kontakt, section.kontakt,
-    .wp-block-post-content section.dokumentation, section.dokumentation,
-    .wp-block-post-content section.facts-figures, section.facts-figures,
-    .wp-block-post-content section.hero, section.hero,
-    .wp-block-post-content section.zitat, section.zitat,
-    .wp-block-post-content section.wohnungen, section.wohnungen,
-    .wp-block-post-content section.lage, section.lage {
+    .wp-block-post-content .wpcf7.js,
+    .wpcf7.js,
+    .wp-block-post-content section.kontakt,
+    section.kontakt,
+    .wp-block-post-content section.dokumentation,
+    section.dokumentation,
+    .wp-block-post-content section.facts-figures,
+    section.facts-figures,
+    .wp-block-post-content section.hero,
+    section.hero,
+    .wp-block-post-content section.zitat,
+    section.zitat,
+    .wp-block-post-content section.wohnungen,
+    section.wohnungen,
+    .wp-block-post-content section.lage,
+    section.lage,
+    .wp-block-post-content section.lage .is-layout-grid,
+    section.lage .is-layout-grid {
         grid-template-columns: 0.5fr repeat(10, 1fr) 0.5fr;
     }
 
@@ -1899,7 +1909,7 @@ footer p {
     }
 
     section.facts-figures>h2 {
-        grid-column: 1 / span 12 !important;
+        grid-column: 2 / span 10 !important;
     }
 
     section.facts-figures div:has(> h3):nth-of-type(1) {
@@ -2005,7 +2015,7 @@ footer p {
         grid-column: 2 / span 10;
     }
 
-    .wp-block-post-content section.lage .is-layout-grid p, 
+    .wp-block-post-content section.lage .is-layout-grid p,
     section.lage .is-layout-grid p {
         grid-column: 2 / span 10;
     }
@@ -2037,7 +2047,7 @@ footer p {
         padding: 0
     }
 
-    section.naechste-schritte > div > article {
+    section.naechste-schritte>div>article {
         margin-top: 2.5rem;
         padding: 0 !important;
     }
@@ -2075,6 +2085,11 @@ footer p {
         grid-row: 2 / span 1;
         margin-left: 0 !important;
     }
+
+    .wpcf7-form p label span.wpcf7-form-label-text {
+        padding: 0.5rem 1.25rem 0.5rem 1.25rem;
+    }
+
 
     footer {
         margin-top: 3rem;
