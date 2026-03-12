@@ -7,7 +7,7 @@
     overflow-anchor: none;
 }
 
-header.wp-block-spacer {
+header > .wp-block-spacer {
     height: 5rem !important;
 }
 
