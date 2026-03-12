@@ -18,41 +18,25 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         console.log('[scroll-to] click → target:', targetId, '| scrollY:', Math.round(window.scrollY));
 
-        // Laufende Animation abbrechen, bevor eine neue startet
-        if (window.__smoothScrollTween) {
-          window.__smoothScrollTween.kill();
-          window.__smoothScrollTween = null;
-        }
-
         // Flag signalisiert nav.js: nicht hideNav() während scrollTo
         window.__smoothScrollActive = true;
 
-        // Kurz warten, damit Touch-Events abklingen — sonst killt autoKill sofort
-        clearTimeout(window.__smoothScrollDelay);
-        window.__smoothScrollDelay = setTimeout(function () {
-          window.__smoothScrollTween = gsap.to(window, {
-            duration: 1.5,
-            scrollTo: {
-              y: targetElement,
-              offsetY: 100,
-              autoKill: true,
-              onAutoKill: function () {
-                console.log('[scroll-to] AUTO-KILLED → scrollY:', Math.round(window.scrollY));
-                window.__smoothScrollActive = false;
-                window.__smoothScrollTween = null;
-              }
-            },
-            ease: "power2.inOut",
-            onStart: function () {
-              console.log('[scroll-to] animation START → scrollY:', Math.round(window.scrollY));
-            },
-            onComplete: function () {
-              console.log('[scroll-to] COMPLETE → scrollY:', Math.round(window.scrollY));
-              window.__smoothScrollActive = false;
-              window.__smoothScrollTween = null;
-            }
-          });
-        }, 100);
+        gsap.to(window, {
+          duration: 1.5,
+          scrollTo: {
+            y: targetElement,
+            offsetY: 100,
+            autoKill: false
+          },
+          ease: "power2.inOut",
+          onStart: function () {
+            console.log('[scroll-to] animation START → scrollY:', Math.round(window.scrollY));
+          },
+          onComplete: function () {
+            console.log('[scroll-to] COMPLETE → scrollY:', Math.round(window.scrollY));
+            window.__smoothScrollActive = false;
+          }
+        });
       }
     });
   });
