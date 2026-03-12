@@ -143,6 +143,12 @@
                     return;
                 }
 
+                // Während programmatischem scrollTo nicht reagieren,
+                // sonst: hideNav → Layout-Shift → autoKill bricht Scroll ab
+                if (window.__smoothScrollActive) {
+                    return;
+                }
+
                 // Nur auf echtes manuelles Scrollen reagieren
                 if (!isUserScrolling) {
                     return;
