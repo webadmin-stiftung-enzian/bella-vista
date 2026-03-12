@@ -21,11 +21,17 @@
     }
 
     function showNav() {
+        if (!navElement.classList.contains('nav-visible')) {
+            console.log('[nav] showNav');
+        }
         navElement.classList.remove('nav-hidden');
         navElement.classList.add('nav-visible');
     }
 
     function hideNav() {
+        if (!navElement.classList.contains('nav-hidden')) {
+            console.log('[nav] hideNav');
+        }
         navElement.classList.remove('nav-visible');
         navElement.classList.add('nav-hidden');
     }
@@ -145,8 +151,10 @@
                 var velocity = self.getVelocity();
 
                 if (velocity < -velocityThreshold) {
+                    console.log('[nav] onUpdate → showNav | velocity:', Math.round(velocity), '| scroll:', Math.round(self.scroll()), '| isUserScrolling:', isUserScrolling);
                     showNav();
                 } else if (velocity > velocityThreshold) {
+                    console.log('[nav] onUpdate → hideNav | velocity:', Math.round(velocity), '| scroll:', Math.round(self.scroll()), '| isUserScrolling:', isUserScrolling);
                     hideNav();
                 }
             }

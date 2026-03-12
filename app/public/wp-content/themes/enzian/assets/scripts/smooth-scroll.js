@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
       
       if (targetElement) {
         e.preventDefault();
+        console.log('[scroll-to] click → target:', targetId, '| scrollY:', Math.round(window.scrollY));
         
         // GSAP smooth scroll mit ScrollTrigger-Integration
         gsap.to(window, {
@@ -26,9 +27,16 @@ document.addEventListener('DOMContentLoaded', function() {
             autoKill: true // Scroll-Animation abbrechen wenn User manuell scrollt
           },
           ease: "power2.inOut",
+          onStart: function () {
+            console.log('[scroll-to] animation START → scrollY:', Math.round(window.scrollY));
+          },
           onAutoKill: function () {
+            console.log('[scroll-to] AUTO-KILLED → scrollY:', Math.round(window.scrollY));
             // ScrollTrigger-Positionen nach Abbruch aktualisieren
             ScrollTrigger.refresh();
+          },
+          onComplete: function () {
+            console.log('[scroll-to] COMPLETE → scrollY:', Math.round(window.scrollY));
           }
         });
       }
