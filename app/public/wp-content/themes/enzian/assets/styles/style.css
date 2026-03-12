@@ -1705,9 +1705,21 @@ footer p {
 @media (max-width: 600px) {
 
     section,
-    .is-layout-grid {
+    .is-layout-grid,
+    .wpcf7.js {
         gap: 0.25rem !important;
         /* overflow: hidden; */
+    }
+
+    .wp-block-post-content .wpcf7.js, .wpcf7.js,
+    .wp-block-post-content section.kontakt, section.kontakt,
+    .wp-block-post-content section.dokumentation, section.dokumentation,
+    .wp-block-post-content section.facts-figures, section.facts-figures,
+    .wp-block-post-content section.hero, section.hero,
+    .wp-block-post-content section.zitat, section.zitat,
+    .wp-block-post-content section.wohnungen, section.wohnungen,
+    .wp-block-post-content section.lage, section.lage {
+        grid-template-columns: 0.5fr repeat(10, 1fr) 0.5fr;
     }
 
     .is-layout-flex {
@@ -1922,9 +1934,9 @@ footer p {
         grid-column: 1 / span 12;
     }
 
-    .wp-block-post-content section.lage .is-layout-grid, section.lage .is-layout-grid {
+    /* .wp-block-post-content section.lage .is-layout-grid, section.lage .is-layout-grid {
         grid-template-columns: repeat(12, minmax(auto, 1fr));
-    }
+    } */
 
     .wp-block-post-content section.lage>div:nth-of-type(2),
     section.lage>div:nth-of-type(2) {
