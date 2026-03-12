@@ -65,10 +65,10 @@ if ($query->have_posts()) {
 			<table class="sell-index-table">
 				<thead>
 					<tr>
-						<th class="sticky-col"><?php esc_html_e('Etage/Wohnung', 'sell-index'); ?></th>
+						<th class="sticky-col"><?php echo wp_kses(__('Etage/<br>Wohnung', 'sell-index'), ['br' => []]); ?></th>
 						<th class="sticky-col"><?php esc_html_e('Zimmer', 'sell-index'); ?></th>
 						<th><?php esc_html_e('Wohnfläche', 'sell-index'); ?></th>
-						<th><?php esc_html_e('Terrasse/Balkon', 'sell-index'); ?></th>
+						<th><?php echo wp_kses(__('Terrasse/<br>Balkon', 'sell-index'), ['br' => []]); ?></th>
 						<th><?php esc_html_e('Garten', 'sell-index'); ?></th>
 						<th><?php esc_html_e('Preis', 'sell-index'); ?></th>
 						<th><?php esc_html_e('Grundriss', 'sell-index'); ?></th>
