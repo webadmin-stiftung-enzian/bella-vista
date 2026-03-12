@@ -611,6 +611,14 @@ add_action('wp_enqueue_scripts', function () {
         filemtime(get_stylesheet_directory() . '/assets/scripts/map.js'),
         true
     );
+
+    wp_enqueue_script(
+        'cf7-validation-reset',
+        get_stylesheet_directory_uri() . '/assets/scripts/cf7-validation-reset.js',
+        [],
+        filemtime(get_stylesheet_directory() . '/assets/scripts/cf7-validation-reset.js'),
+        true
+    );
 });
 
 // Erstelle Shortcode um eine Karte anzuzeigen

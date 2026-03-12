@@ -268,7 +268,8 @@ div:has(.grecaptcha-badge) {
     padding: 0.75rem 1.5rem 0 1.5rem;
 } */
 
-.wpcf7-form-control-wrap:has(.wpcf7-not-valid-tip[aria-hidden="true"]) input {
+.wpcf7-form-control-wrap:has(.wpcf7-not-valid-tip) input,
+.wpcf7-form-control-wrap:has(.wpcf7-not-valid-tip) textarea {
     background-color: #dc323216;
 }
 
@@ -879,6 +880,14 @@ section.facts-figures div.is-layout-grid {
 
 section.facts-figures div:has(> h3) {
     min-height: 12rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+section.facts-figures div:has(> h3) > * {
+    width: 100%;
 }
 
 section.facts-figures .wp-block-heading.counter {

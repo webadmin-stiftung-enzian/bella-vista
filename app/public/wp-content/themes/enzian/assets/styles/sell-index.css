@@ -59,7 +59,7 @@
 
 .wp-block-enzian-sell-index svg [id*="Overlay_Shades"].highlight,
 .wp-block-enzian-sell-index > div > svg [id*="Overlay_Shades"].highlight {
-    fill-opacity: 1;
+    fill-opacity: 0.75;
     transition: fill-opacity 0.3s ease;
 }
 
