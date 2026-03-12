@@ -886,7 +886,7 @@ section.facts-figures .figure-box {
     align-items: flex-start;
 }
 
-section.facts-figures .figure-box > * {
+section.facts-figures .figure-box>* {
     width: 100%;
 }
 
@@ -1161,6 +1161,15 @@ footer {
 
 footer p {
     line-height: 150%;
+}
+
+/* .vier-null-vier {
+        flex-wrap: wrap !important;
+    } */
+
+section.vier-null-vier>h1 {
+    font-size: clamp(10rem, 2.8571rem + 19.0476vw, 20rem) !important;
+    flex-basis: 60%;
 }
 
 /* Tablet */
@@ -2123,5 +2132,7 @@ footer p {
         text-align: center;
     }
 
-
+    section.vier-null-vier{
+        flex-wrap: wrap !important;
+    }
 }
