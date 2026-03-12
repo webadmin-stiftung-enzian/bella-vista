@@ -1645,6 +1645,10 @@ section.vier-null-vier>h1 {
     section.facts-figures>div.is-layout-flex {
         flex-wrap: wrap !important;
     }
+    
+    section.vier-null-vier{
+        flex-wrap: wrap !important;
+    }
 
 }
 
@@ -2130,9 +2134,5 @@ section.vier-null-vier>h1 {
 
     footer div.wp-block-group:has(>div)>div * {
         text-align: center;
-    }
-
-    section.vier-null-vier{
-        flex-wrap: wrap !important;
     }
 }
