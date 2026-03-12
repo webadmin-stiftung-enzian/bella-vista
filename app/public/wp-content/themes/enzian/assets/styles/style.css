@@ -7,6 +7,10 @@
     overflow-anchor: none;
 }
 
+header.wp-block-spacer {
+    height: 5rem !important;
+}
+
 p {
     letter-spacing: 0.02em;
     line-height: 120%;
