@@ -7,7 +7,7 @@
     overflow-anchor: none;
 }
 
-header > .wp-block-spacer {
+header>.wp-block-spacer {
     height: 5rem !important;
 }
 
@@ -1224,10 +1224,10 @@ section.vier-null-vier>h1 {
 
     .wp-block-post-content section.lage>figure.wp-block-table,
     section.lage>figure.wp-block-table {
-        grid-column: 7 / span 5;
+        grid-column: 6 / span 6;
         padding: 1.5rem;
         margin-top: -5rem !important;
-        z-index: 10000;
+        z-index: 100;
     }
 
     .wp-block-post-content section.lage>figure.wp-block-table table thead tr th:nth-of-type(1)::after,
@@ -1426,20 +1426,30 @@ section.vier-null-vier>h1 {
         z-index: 5;
     }
 
+    section.facts-figures>p:nth-of-type(1) {
+        grid-column: 4 / span 8;
+        grid-row: 6 / span 1;
+        align-self: end;
+    }
+
     /* section.facts-figures div.wp-block-group>h3 {
         font-size: 7rem;
     } */
 
+    section.facts-figures>p:nth-of-type(2) {
+        grid-row: 3 / span 1;
+    }
+
     section.facts-figures>h2:nth-of-type(2) {
-        grid-column: 2 / span 6;
-        grid-row: 4 / span 1;
+        grid-column: 4 / span 6;
+        grid-row: 5 / span 1;
         margin-left: 0 !important;
         margin-top: 5rem;
     }
 
     section.facts-figures>div.is-layout-flex {
         grid-column: 2 / span 10;
-        grid-row: 5 / span 1;
+        grid-row: 7 / span 1;
         width: 100%;
     }
 
@@ -1661,8 +1671,8 @@ section.vier-null-vier>h1 {
     section.facts-figures>div.is-layout-flex {
         flex-wrap: wrap !important;
     }
-    
-    section.vier-null-vier{
+
+    section.vier-null-vier {
         flex-wrap: wrap !important;
     }
 
@@ -1789,7 +1799,7 @@ section.vier-null-vier>h1 {
     }
 
     section.hero,
-    .has-global-padding:not(.figure-box>div) {
+    .has-global-padding:not(.figure-box>div, .naechste-schritte article) {
         padding-left: 1.75rem !important;
         padding-right: 1.75rem !important;
     }
@@ -2012,7 +2022,7 @@ section.vier-null-vier>h1 {
 
     .wp-block-post-content section.lage>div:first-of-type,
     section.lage>div:first-of-type {
-        grid-column: 1 / span 12;
+        grid-column: 2 / span 10;
         grid-row: 1 / span 1;
         display: grid;
         grid-template-columns: subgrid;
@@ -2022,23 +2032,40 @@ section.vier-null-vier>h1 {
 
     .wp-block-post-content section.lage>div:first-of-type>h1,
     section.lage>div:first-of-type>h1 {
-        grid-column: 2 / span 10;
+        grid-column: 1 / span 12;
         grid-row: 1 / span 1;
         z-index: 3;
     }
 
     .wp-block-post-content section.lage>div:first-of-type>p,
     section.lage>div:first-of-type>p {
-        grid-column: 2 / span 10;
-        grid-row: 2 / span 1;
+        grid-column: 1 / span 12;
+        grid-row: 3 / span 1;
         z-index: 3;
+    }
+
+    section.facts-figures>p:nth-of-type(2) {
+        grid-row: 3 / span 1;
+        grid-column: 2 / span 10;
+    }
+
+    section.facts-figures>p:nth-of-type(1) {
+        grid-column: 2 / span 10;
+        grid-row: 6 / span 1;
+        align-self: end;
+    }
+
+    section.facts-figures>div.is-layout-flex {
+        grid-column: 1 / span 12;
+        grid-row: 7 / span 1;
+        width: 100%;
     }
 
     section.facts-figures div.wp-block-cb-carousel-v2,
     .wp-block-post-content section.lage div.wp-block-cb-carousel-v2,
     section.lage>div:first-of-type>div.cb-carousel-block {
         grid-column: 1 / span 12;
-        grid-row: 3 / span 1;
+        grid-row: 4 / span 1;
         max-width: 100%;
         margin: 3rem 1rem 0 1rem !important;
         width: auto;
