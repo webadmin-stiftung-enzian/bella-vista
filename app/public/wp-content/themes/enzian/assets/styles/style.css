@@ -862,9 +862,21 @@ section.facts-figures>h2 {
 
 section.facts-figures>h2:nth-of-type(2) {
     grid-column: 4 / span 6;
-    grid-row: 4 / span 1;
+    grid-row: 5 / span 1;
     margin-left: 0 !important;
     margin-top: 5rem;
+}
+
+section.facts-figures>p:nth-of-type(1) {
+    grid-column: 4 / span 8;
+    grid-row: 6 / span 1;
+    align-self: end;
+}
+
+section.facts-figures>p:nth-of-type(2) {
+    grid-column: 4 / span 8;
+    grid-row: 3 / span 1;
+    align-self: end;
 }
 
 section.facts-figures div.is-layout-grid {
@@ -900,14 +912,14 @@ section.facts-figures .wp-block-heading.counter {
 
 section.facts-figures div.wp-block-cb-carousel-v2 {
     grid-column: 4 / span 8;
-    grid-row: 3 / span 1;
+    grid-row: 4 / span 1;
     width: 100%;
-    margin-top: 10rem;
+    /* margin-top: 10rem; */
 }
 
 section.facts-figures>div.is-layout-flex {
     grid-column: 4 / span 8;
-    grid-row: 5 / span 1;
+    grid-row: 7 / span 1;
     width: 100%;
 }
 
