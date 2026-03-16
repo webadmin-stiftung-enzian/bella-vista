@@ -1856,24 +1856,38 @@ section.vier-null-vier>h1 {
         font-size: 2rem;
     }
 
-    :root :where(p):not(form p) {
+    :root :where(p):not(form p, blockquote p) {
         font-size: 1rem;
-        margin-block-start: 1.75rem;
+        /* margin-block-start: 1.75rem; */
     }
 
-    .wp-block-post-content section.lage>div:first-of-type>p,
+    /* .wp-block-post-content section.lage>div:first-of-type>p,
     .is-layout-grid>p {
         margin-block-start: 1.5rem !important;
-    }
+    } */
 
     :root :where(h1, h2):not(.naechste-schritte h2) {
         margin-block-start: 3.25rem;
     }
 
-    .is-layout-grid>h2,
+    /* .is-layout-grid>h2,
     .is-layout-grid>h1 {
         margin-block-start: 3rem !important;
+    } */
+
+
+
+    h1 ~ p,
+    h2 ~ p {
+        margin-block-start: 2.5rem !important;
     }
+
+    :where(.is-layout-grid, .is-layout-flex, .wp-block-columns, .wp-block-gallery) > h1 ~ p,
+    :where(.is-layout-grid, .is-layout-flex, .wp-block-columns, .wp-block-gallery) > h2 ~ p {
+        /* Ziehe den Grid-Gap vom gewünschten 3rem Abstand ab */
+        margin-block-start: calc(2.5rem - 0.25rem) !important;
+    }
+
 
     .google-notice {
         padding: 0 1.25rem;
@@ -2118,7 +2132,7 @@ section.vier-null-vier>h1 {
 
     section.facts-figures div.is-layout-grid {
         gap: 0.75rem !important;
-        margin-block-start: 1.75rem;
+        margin-block-start: 2.5rem;
     }
 
     .wp-block-post-content section.lage .is-layout-grid h2,
@@ -2209,7 +2223,7 @@ section.vier-null-vier>h1 {
 
 
     footer {
-        margin-top: 3rem;
+        margin-top: 0rem;
     }
 
     footer div.wp-block-group:has(>div) {
