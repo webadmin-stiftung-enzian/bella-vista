@@ -1759,6 +1759,26 @@ section.vier-null-vier>h1 {
         /* overflow: hidden; */
     }
 
+    :root :where(section) {
+       margin-block-start: 3rem ; 
+    }
+
+    section.kontakt,
+    section.naechste-schritte {
+        margin-block-start: 3rem !important;
+    }
+
+    section > h2:nth-of-type(1),
+    section > h1:nth-of-type(1),
+    section > div:nth-of-type(1) > h2:nth-of-type(1),
+    section > div:nth-of-type(1) > h1:nth-of-type(1){
+        margin-block-start: 0rem !important;
+    }
+
+    section > div:nth-of-type(1) {
+        margin-block-start: 0rem !important;
+    }
+
     .wp-block-post-content .wpcf7.js,
     .wpcf7.js,
     .wp-block-post-content section.kontakt,
@@ -1829,8 +1849,23 @@ section.vier-null-vier>h1 {
         font-size: 2rem;
     }
 
-    :root :where(p) {
+    :root :where(p):not(form p) {
         font-size: 1rem;
+        margin-block-start: 1.75rem;
+    }
+
+    .wp-block-post-content section.lage > div:first-of-type > p,
+    .is-layout-grid > p {
+        margin-block-start: 1.5rem !important;
+    }
+
+    :root :where(h1, h2):not(.naechste-schritte h2) {
+        margin-block-start: 3.25rem;
+    }
+
+    .is-layout-grid > h2,
+    .is-layout-grid > h1 {
+        margin-block-start: 3rem !important;
     }
 
     .google-notice {
@@ -2048,12 +2083,14 @@ section.vier-null-vier>h1 {
     section.facts-figures>p:nth-of-type(2) {
         grid-row: 3 / span 1;
         grid-column: 2 / span 10;
+        margin-block-start: 3rem;
     }
 
     section.facts-figures>p:nth-of-type(1) {
         grid-column: 2 / span 10;
         grid-row: 6 / span 1;
         align-self: end;
+        margin-block-start: 3rem;
     }
 
     section.facts-figures>div.is-layout-flex {
@@ -2139,6 +2176,11 @@ section.vier-null-vier>h1 {
         max-width: 100%;
         margin-left: 0 !important;
         margin-right: 0 !important;
+    }
+
+    section.kontakt {
+        padding-top: 0;
+        padding-bottom: 0;
     }
 
     section.kontakt>h2 {
