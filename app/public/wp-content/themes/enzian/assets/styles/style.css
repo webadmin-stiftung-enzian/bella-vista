@@ -1759,7 +1759,7 @@ section.vier-null-vier>h1 {
         /* overflow: hidden; */
     }
 
-    :root :where(section) {
+    :root :where(section):not(.sell-index) {
        margin-block-start: 3rem ; 
     }
 
