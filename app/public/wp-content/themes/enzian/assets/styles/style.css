@@ -1958,6 +1958,7 @@ section.vier-null-vier>h1 {
 
     section.facts-figures>h2 {
         grid-column: 2 / span 10 !important;
+        margin-top: 3rem;
     }
 
     section.facts-figures .figure-box:nth-of-type(1) {
@@ -2121,6 +2122,7 @@ section.vier-null-vier>h1 {
     section.dokumentation>p,
     section.dokumentation>h2 {
         grid-column: 2 / span 10;
+        margin-top: 3rem;
     }
 
     section.naechste-schritte article {
