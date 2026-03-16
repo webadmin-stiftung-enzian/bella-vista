@@ -695,7 +695,7 @@ section.lage figure svg>g {
     transition: transform 0.3s ease;
 }
 
-section.lage figure {
+section.lage figure:not(div > figure) {
     position: relative !important;
     overflow: hidden !important;
 }
