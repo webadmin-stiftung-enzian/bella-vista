@@ -1879,13 +1879,13 @@ section.vier-null-vier>h1 {
 
     h1 ~ p,
     h2 ~ p {
-        margin-block-start: 2.5rem !important;
+        margin-block-start: 2.25rem !important;
     }
 
     :where(.is-layout-grid, .is-layout-flex, .wp-block-columns, .wp-block-gallery) > h1 ~ p,
     :where(.is-layout-grid, .is-layout-flex, .wp-block-columns, .wp-block-gallery) > h2 ~ p {
         /* Ziehe den Grid-Gap vom gewünschten 3rem Abstand ab */
-        margin-block-start: calc(2.5rem - 0.25rem) !important;
+        margin-block-start: calc(2.25rem - 0.25rem) !important;
     }
 
 
@@ -1897,6 +1897,7 @@ section.vier-null-vier>h1 {
 
     .wp-block-details summary {
         padding: 0rem 0.5rem;
+        font-size: 1.75rem;
     }
 
     div.wp-block-group:has(>nav) {
