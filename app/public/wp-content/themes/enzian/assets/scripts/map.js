@@ -52,28 +52,30 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // --- Legenden-Delegation ---
-    if (legendContainer) {
-        const legendSvgRoot = legendContainer.closest('svg');
-        if (legendSvgRoot) {
-            legendSvgRoot.addEventListener('click', function (e) {
-                const matchedId = findMatchingId(e.target);
-                if (matchedId) {
-                    e.stopPropagation();
-                    handleMarkerClick(matchedId);
-                }
-            });
-        }
-    }
+    // if (legendContainer) {
+    //     const legendSvgRoot = legendContainer.closest('svg');
+    //     if (legendSvgRoot) {
+    //         legendSvgRoot.addEventListener('click', function (e) {
+    //             const matchedId = findMatchingId(e.target);
+    //             if (matchedId) {
+    //                 e.stopPropagation();
+    //                 handleMarkerClick(matchedId);
+    //             }
+    //         });
+    //     }
+    // }
 
     // Highlights entfernen bei Klick außerhalb
     document.addEventListener('click', function (e) {
         const legendSvgRoot = legendContainer ? legendContainer.closest('svg') : null;
         if (legendSvgRoot?.contains(e.target)) {
             console.log('[map] document click — inside legend, ignored');
+            handleMarkerClick(findMatchingId(e.target));
             return;
         }
         if (Object.values(markerElements).some(({ map }) => map?.contains(e.target))) {
             console.log('[map] document click — inside marker, ignored');
+            handleMarkerClick(findMatchingId(e.target));
             return;
         }
         console.log('[map] document click — outside, removing highlights | target:', e.target);
@@ -94,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let lastClickTime = 0;
 
-    const [draggable] = Draggable.create(mapContainer, {
+    var draggable = Draggable.create(mapContainer, {
         type: 'x',
         edgeResistance: 0.9,
         inertia: false,
@@ -103,20 +105,18 @@ document.addEventListener('DOMContentLoaded', function () {
         activeCursor: 'grabbing',
         zIndexBoost: false,
         onClick(e) {
-            // Touch-Geräte erzeugen nach touchend einen synthetischen click —
-            // Draggable feuert onClick für beide. Zweiten Aufruf ignorieren.
 
-            if (e) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
+            // if (e) {
+            //     e.preventDefault();
+            //     e.stopPropagation();
+            // }
 
-            const matchedId = findMatchingId(e.target);
-            if (matchedId) {
-                handleMarkerClick(matchedId);
-            } else {
-                removeAllHighlights('map-background-click');
-            }
+            // const matchedId = findMatchingId(e.target);
+            // if (matchedId) {
+            //     handleMarkerClick(matchedId);
+            // } else {
+            //     removeAllHighlights('map-background-click');
+            // }
         },
     });
 
