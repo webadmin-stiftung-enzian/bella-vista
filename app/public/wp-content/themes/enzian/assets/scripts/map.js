@@ -65,19 +65,26 @@ document.addEventListener('DOMContentLoaded', function () {
     //     }
     // }
 
-    // Highlights entfernen bei Klick außerhalb
+    // Klick ins Dokument
     document.addEventListener('click', function (e) {
+        // 1. Klicks auf die Legende abfangen
         const legendSvgRoot = legendContainer ? legendContainer.closest('svg') : null;
         if (legendSvgRoot?.contains(e.target)) {
-            console.log('[map] document click — inside legend, ignored');
-            handleMarkerClick(findMatchingId(e.target));
+            console.log('[map] document click — inside legend, checking ID');
+            const matchedId = findMatchingId(e.target);
+            if (matchedId) handleMarkerClick(matchedId);
             return;
         }
-        if (Object.values(markerElements).some(({ map }) => map?.contains(e.target))) {
-            console.log('[map] document click — inside marker, ignored');
-            handleMarkerClick(findMatchingId(e.target));
+        
+        // 2. Klicks innerhalb der Karte hier ignorieren!
+        // (Auf Touchgeräten verschluckt Draggable oft native Klicks, weshalb Desktop
+        // hier anschlagen würde, Touch aber nicht. Wir überlassen deshalb alle Klicks
+        // in der Karte dem Draggable.onClick Event.)
+        if (mapContainer?.contains(e.target)) {
+            console.log('[map] document click — inside mapContainer, ignoring natively');
             return;
         }
+
         console.log('[map] document click — outside, removing highlights | target:', e.target);
         removeAllHighlights('outside-click');
     });
@@ -105,18 +112,14 @@ document.addEventListener('DOMContentLoaded', function () {
         activeCursor: 'grabbing',
         zIndexBoost: false,
         onClick(e) {
-
-            // if (e) {
-            //     e.preventDefault();
-            //     e.stopPropagation();
-            // }
-
-            // const matchedId = findMatchingId(e.target);
-            // if (matchedId) {
-            //     handleMarkerClick(matchedId);
-            // } else {
-            //     removeAllHighlights('map-background-click');
-            // }
+            // GSAPs onClick ist für Touch+Maus optimiert (Tap-Detection).
+            console.log('[map] Draggable onClick fired');
+            const matchedId = findMatchingId(e.target);
+            if (matchedId) {
+                handleMarkerClick(matchedId);
+            } else {
+                removeAllHighlights('map-background-click');
+            }
         },
     });
 
