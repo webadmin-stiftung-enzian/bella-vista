@@ -697,22 +697,27 @@ section.lage figure svg>g {
 
 section.lage figure:not(div > figure) {
     position: relative !important;
-    overflow: hidden !important;
+    /* overflow: hidden !important; */
 }
 
 section.lage figure svg:nth-of-type(2) {
     transform: scale(1.25);
     position: absolute;
-    left: calc(50% + 325px);
-    top: calc(50% - 425px);
-    right: auto;
+    right: 2rem;
+    /* Fester Abstand vom rechten Rand */
+    left: auto;
+    top: 2rem;
+    /* Y-Position */
     bottom: auto;
+    z-index: 10;
+    /* Stellen sicher, dass die Legende immer oben liegt */
 }
 
 @media (max-width: 767px) {
     section.lage figure svg:nth-of-type(2) {
-        left: calc(50% + 58px);
-        top: calc(50% - 250px);
+        transform: scale(1);
+        right: 1.5rem;
+        top: 1rem;
     }
 }
 
@@ -1526,6 +1531,18 @@ section.vier-null-vier>h1 {
         display: flex;
     }
 
+    .wp-block-post-content section.lage .wp-block-shortcode,
+    section.lage>figure:nth-of-type(1) {
+        margin-left: -1.75rem !important;
+        margin-right: -1.75rem !important;
+        width: calc(100% + 3.5rem) !important;
+        max-width: calc(var(--wp--style--global--wide-size) - 1.75rem) !important;
+    }
+
+    section.lage figure svg:nth-of-type(2) {
+        right: clamp(1.75rem, -1.2857rem + 8.0952vw, 6rem);
+    }
+
 }
 
 
@@ -1676,6 +1693,28 @@ section.vier-null-vier>h1 {
         flex-wrap: wrap !important;
     }
 
+    .sticky-col:nth-of-type(1) {
+        position: sticky;
+        left: 0;
+        background: var(--wp--preset--color--light-brown-grey);
+        z-index: 2;
+    }
+
+    .sticky-col:nth-of-type(2) {
+        position: sticky;
+        left: 5rem;
+        background: var(--wp--preset--color--light-brown-grey);
+        z-index: 2;
+    }
+
+    .sell-index {
+        overflow-x: auto;
+        overflow-y: clip;
+        -webkit-overflow-scrolling: touch;
+        width: 100%;
+        padding-bottom: 40px;
+    }
+
 }
 
 
@@ -1732,20 +1771,6 @@ section.vier-null-vier>h1 {
         background: var(--wp--preset--color--light-brown-grey);
         z-index: 2;
         pointer-events: none;
-    }
-
-    .sticky-col:nth-of-type(1) {
-        position: sticky;
-        left: 0;
-        background: var(--wp--preset--color--light-brown-grey);
-        z-index: 2;
-    }
-
-    .sticky-col:nth-of-type(2) {
-        position: sticky;
-        left: 5rem;
-        background: var(--wp--preset--color--light-brown-grey);
-        z-index: 2;
     }
 }
 
@@ -1877,13 +1902,13 @@ section.vier-null-vier>h1 {
 
 
 
-    h1 ~ p,
-    h2 ~ p {
+    h1~p,
+    h2~p {
         margin-block-start: 2.25rem !important;
     }
 
-    :where(.is-layout-grid, .is-layout-flex, .wp-block-columns, .wp-block-gallery) > h1 ~ p,
-    :where(.is-layout-grid, .is-layout-flex, .wp-block-columns, .wp-block-gallery) > h2 ~ p {
+    :where(.is-layout-grid, .is-layout-flex, .wp-block-columns, .wp-block-gallery)>h1~p,
+    :where(.is-layout-grid, .is-layout-flex, .wp-block-columns, .wp-block-gallery)>h2~p {
         /* Ziehe den Grid-Gap vom gewünschten 3rem Abstand ab */
         margin-block-start: calc(2.25rem - 0.25rem) !important;
     }
@@ -2059,12 +2084,7 @@ section.vier-null-vier>h1 {
         grid-column: 1 / span 12;
     }
 
-    .wp-block-post-content section.lage .wp-block-shortcode,
-    section.lage>figure:nth-of-type(1) {
-        margin-left: -1rem !important;
-        margin-right: -1rem !important;
-        width: calc(100% + 2rem);
-    }
+
 
     section.hero>figure.stoerer {
         grid-column: 9 / span 4;

@@ -81,7 +81,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     const figure = mapContainer ? mapContainer.parentElement : null;
-    const legendSvg = figure ? figure.querySelector('svg:not(#Ebene_1)') : null;
 
     if (typeof Draggable === 'undefined' || !mapContainer) {
         // Fallback ohne Draggable: direkte Click-Listener auf Markern
@@ -91,29 +90,6 @@ document.addEventListener('DOMContentLoaded', function () {
             element.addEventListener('click', () => handleMarkerClick(id));
         });
         return;
-    }
-
-    const stickyMargin = 20;
-    let cachedFigRight = 0;
-    let cachedBaseLeft = 0;
-
-    function updateCache() {
-        if (!figure || !legendSvg) return;
-        gsap.set(legendSvg, { x: 0, y: 0 });
-        const figRect = figure.getBoundingClientRect();
-        const legendRect = legendSvg.getBoundingClientRect();
-        cachedFigRight = figRect.right;
-        cachedBaseLeft = legendRect.left - figRect.left;
-    }
-
-    function updateLegend(mapX) {
-        if (!legendSvg) return;
-        // Die Legende bewegt sich mit der Karte (mapX),
-        // klebt aber am rechten Viewport-Rand fest (Math.min).
-        const legendWidth = legendSvg.offsetWidth;
-        const maxX = window.innerWidth - stickyMargin - cachedFigRight - cachedBaseLeft - legendWidth;
-        const finalX = Math.min(mapX, maxX);
-        gsap.set(legendSvg, { x: finalX });
     }
 
     let lastClickTime = 0;
@@ -142,22 +118,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 removeAllHighlights('map-background-click');
             }
         },
-        onDrag() { updateLegend(this.x); },
     });
 
     // Draggable setzt touch-action:none → blockiert nativen vertikalen Scroll.
     // pan-y erlaubt dem Browser vertikales Scrolling nativ, Draggable steuert nur x.
     mapContainer.style.touchAction = 'pan-y';
-
-    window.addEventListener('load', () => {
-        requestAnimationFrame(() => {
-            updateCache();
-            updateLegend(0);
-        });
-    });
-
-    window.addEventListener('resize', () => {
-        updateCache();
-        updateLegend(draggable ? draggable.x : 0);
-    });
 });
