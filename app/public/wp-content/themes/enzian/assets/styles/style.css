@@ -11,11 +11,12 @@ header>.wp-block-spacer {
     height: 5rem !important;
 }
 
-p {
+:root :where(p):not(.wp-block-quote p) {
     letter-spacing: 0.02em;
-    line-height: 120%;
+    line-height: 145%;
     hyphens: auto;
     hyphenate-limit-chars: 6 3 3;
+    font-size: clamp(0.85rem, 0.6536rem + 0.5238vw, 1.125rem) !important;
 }
 
 h1,
@@ -266,6 +267,11 @@ div:has(.grecaptcha-badge) {
 .wpcf7-form-control-wrap {
     flex-direction: column;
 
+}
+
+.wpcf7-submit {
+    line-height: 100%;
+    font-size: 1rem;
 }
 
 /* .wpcf7-not-valid-tip {
@@ -1098,13 +1104,13 @@ section.naechste-schritte .naechste-schritte-wrapper {
 }
 
 section.naechste-schritte h2 {
-    grid-column: 1 / span 6;
+    grid-column: 1 / span 10;
     grid-row: 1 / span 1;
     margin-left: 0 !important;
 }
 
 section.naechste-schritte .wp-block-buttons {
-    grid-column: 1 / span 6;
+    grid-column: 1 / span 10;
     grid-row: 2 / span 1;
     width: 100%;
     display: flex;
@@ -1159,7 +1165,7 @@ section.naechste-schritte .wp-block-buttons .wp-block-button:last-child::after {
 }
 
 section.naechste-schritte article {
-    grid-column: 1 / span 5;
+    grid-column: 1 / span 10;
     grid-row: 3 / span 1;
     margin-left: 0 !important;
     margin-top: 4rem;
@@ -1458,6 +1464,16 @@ section.vier-null-vier>h1 {
         width: 100%;
     }
 
+    section.naechste-schritte .naechste-schritte-wrapper {
+        grid-column: 2 / span 10;
+        grid-row: 1 / span 3;
+        padding: 3.5rem;
+    }
+
+    section.naechste-schritte {
+        grid-template-columns: repeat(12, minmax(auto, 1fr));
+    }
+
     .wp-block-details> :where( :not(summary)) {
         margin-left: 0rem;
         margin-right: 0rem;
@@ -1490,7 +1506,7 @@ section.vier-null-vier>h1 {
     }
 
     section.naechste-schritte .naechste-schritte-wrapper {
-        grid-column: 1 / span 6;
+        /* grid-column: 1 / span 6; */
         grid-row: 1 / span 3;
         padding: 3.5rem;
     }
@@ -1772,6 +1788,18 @@ section.vier-null-vier>h1 {
         z-index: 2;
         pointer-events: none;
     }
+
+    section.naechste-schritte .naechste-schritte-wrapper {
+        grid-column: 1 / span 12;
+    }
+
+    section.naechste-schritte .wp-block-buttons {
+        grid-column: 1 / span 12;
+    }
+
+    section.naechste-schritte article {
+        grid-column: 1 / span 12;
+    }
 }
 
 
@@ -2031,7 +2059,7 @@ section.vier-null-vier>h1 {
 
 
     section.facts-figures div.wp-block-group>h3 {
-        font-size: 2.5rem;
+        font-size: 2.75rem;
     }
 
     section.facts-figures .figure-box {
@@ -2207,7 +2235,6 @@ section.vier-null-vier>h1 {
 
     section.naechste-schritte article {
         margin-top: 2rem;
-        grid-column: 1 / span 6;
     }
 
     .wp-block-post-content section.lage>figure.wp-block-table,
