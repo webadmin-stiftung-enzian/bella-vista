@@ -145,6 +145,7 @@
 					"fontFace": [
 						{
 							"fontFamily": "PP Neue Montreal",
+							"fontDisplay": "swap",
 							"fontWeight": "100",
 							"fontStyle": "normal",
 							"src": [
@@ -153,6 +154,7 @@
 						},
 						{
 							"fontFamily": "PP Neue Montreal",
+							"fontDisplay": "swap",
 							"fontWeight": "100",
 							"fontStyle": "italic",
 							"src": [
@@ -161,6 +163,7 @@
 						},
 						{
 							"fontFamily": "PP Neue Montreal",
+							"fontDisplay": "swap",
 							"fontWeight": "300",
 							"fontStyle": "normal",
 							"src": [
@@ -169,6 +172,7 @@
 						},
 						{
 							"fontFamily": "PP Neue Montreal",
+							"fontDisplay": "swap",
 							"fontWeight": "400",
 							"fontStyle": "normal",
 							"src": [
@@ -177,6 +181,7 @@
 						},
 						{
 							"fontFamily": "PP Neue Montreal",
+							"fontDisplay": "swap",
 							"fontWeight": "400",
 							"fontStyle": "italic",
 							"src": [
@@ -185,6 +190,7 @@
 						},
 						{
 							"fontFamily": "PP Neue Montreal",
+							"fontDisplay": "swap",
 							"fontWeight": "450",
 							"fontStyle": "normal",
 							"src": [
@@ -193,6 +199,7 @@
 						},
 						{
 							"fontFamily": "PP Neue Montreal",
+							"fontDisplay": "swap",
 							"fontWeight": "500",
 							"fontStyle": "normal",
 							"src": [
@@ -201,6 +208,7 @@
 						},
 						{
 							"fontFamily": "PP Neue Montreal",
+							"fontDisplay": "swap",
 							"fontWeight": "700",
 							"fontStyle": "normal",
 							"src": [
@@ -209,6 +217,7 @@
 						},
 						{
 							"fontFamily": "PP Neue Montreal",
+							"fontDisplay": "swap",
 							"fontWeight": "700",
 							"fontStyle": "italic",
 							"src": [
@@ -226,6 +235,7 @@
 							"fontFamily": "PP Fragment Sans",
 							"fontWeight": "100",
 							"fontStyle": "normal",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-SansThin.woff2"
 							]
@@ -234,6 +244,7 @@
 							"fontFamily": "PP Fragment Sans",
 							"fontWeight": "100",
 							"fontStyle": "italic",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-SansThinitalic.woff2"
 							]
@@ -242,6 +253,7 @@
 							"fontFamily": "PP Fragment Sans",
 							"fontWeight": "300",
 							"fontStyle": "normal",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-SansLight.woff2"
 							]
@@ -250,6 +262,7 @@
 							"fontFamily": "PP Fragment Sans",
 							"fontWeight": "300",
 							"fontStyle": "italic",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-SansLightItalic.woff2"
 							]
@@ -258,6 +271,7 @@
 							"fontFamily": "PP Fragment Sans",
 							"fontWeight": "400",
 							"fontStyle": "normal",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-SansRegular.woff2"
 							]
@@ -266,6 +280,7 @@
 							"fontFamily": "PP Fragment Sans",
 							"fontWeight": "400",
 							"fontStyle": "italic",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-SansRegularitalic.woff2"
 							]
@@ -274,6 +289,7 @@
 							"fontFamily": "PP Fragment Sans",
 							"fontWeight": "800",
 							"fontStyle": "normal",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-SansExtraBold.woff2"
 							]
@@ -282,6 +298,7 @@
 							"fontFamily": "PP Fragment Sans",
 							"fontWeight": "800",
 							"fontStyle": "italic",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-SansExtraBoldItalic.woff2"
 							]
@@ -290,6 +307,7 @@
 							"fontFamily": "PP Fragment Sans",
 							"fontWeight": "900",
 							"fontStyle": "normal",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-SansBlack.woff2"
 							]
@@ -298,6 +316,7 @@
 							"fontFamily": "PP Fragment Sans",
 							"fontWeight": "900",
 							"fontStyle": "italic",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-SansBlackItalic.woff2"
 							]
@@ -313,6 +332,7 @@
 							"fontFamily": "PP Fragment Serif",
 							"fontWeight": "100",
 							"fontStyle": "normal",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-SerifThin.woff2"
 							]
@@ -321,6 +341,7 @@
 							"fontFamily": "PP Fragment Serif",
 							"fontWeight": "100",
 							"fontStyle": "italic",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-SerifThinItalic.woff2"
 							]
@@ -329,6 +350,7 @@
 							"fontFamily": "PP Fragment Serif",
 							"fontWeight": "300",
 							"fontStyle": "normal",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-SerifLight.woff2"
 							]
@@ -337,6 +359,7 @@
 							"fontFamily": "PP Fragment Serif",
 							"fontWeight": "300",
 							"fontStyle": "italic",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-SerifLightItalic.woff2"
 							]
@@ -345,6 +368,7 @@
 							"fontFamily": "PP Fragment Serif",
 							"fontWeight": "400",
 							"fontStyle": "normal",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-SerifRegular.woff2"
 							]
@@ -353,6 +377,7 @@
 							"fontFamily": "PP Fragment Serif",
 							"fontWeight": "400",
 							"fontStyle": "italic",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-SerifRegularItalic.woff2"
 							]
@@ -361,6 +386,7 @@
 							"fontFamily": "PP Fragment Serif",
 							"fontWeight": "800",
 							"fontStyle": "normal",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-SerifExtraBold.woff2"
 							]
@@ -369,6 +395,7 @@
 							"fontFamily": "PP Fragment Serif",
 							"fontWeight": "800",
 							"fontStyle": "italic",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-SerifExtraBoldItalic.woff2"
 							]
@@ -377,6 +404,7 @@
 							"fontFamily": "PP Fragment Serif",
 							"fontWeight": "900",
 							"fontStyle": "normal",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-SerifBlack.woff2"
 							]
@@ -385,6 +413,7 @@
 							"fontFamily": "PP Fragment Serif",
 							"fontWeight": "900",
 							"fontStyle": "italic",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-SerifBlackItalic.woff2"
 							]
@@ -408,6 +437,7 @@
 							"fontFamily": "PP Fragment Text",
 							"fontWeight": "400",
 							"fontStyle": "italic",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-TextRegularItalic.woff2"
 							]
@@ -416,6 +446,7 @@
 							"fontFamily": "PP Fragment Text",
 							"fontWeight": "700",
 							"fontStyle": "normal",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-TextBold.woff2"
 							]
@@ -424,6 +455,7 @@
 							"fontFamily": "PP Fragment Text",
 							"fontWeight": "700",
 							"fontStyle": "italic",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-TextBoldItalic.woff2"
 							]
@@ -439,6 +471,7 @@
 							"fontFamily": "PP Fragment Glare",
 							"fontWeight": "100",
 							"fontStyle": "normal",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-GlareThin.woff2"
 							]
@@ -447,6 +480,7 @@
 							"fontFamily": "PP Fragment Glare",
 							"fontWeight": "100",
 							"fontStyle": "italic",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-GlareThinItalic.woff2"
 							]
@@ -455,6 +489,7 @@
 							"fontFamily": "PP Fragment Glare",
 							"fontWeight": "300",
 							"fontStyle": "normal",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-GlareLight.woff2"
 							]
@@ -463,6 +498,7 @@
 							"fontFamily": "PP Fragment Glare",
 							"fontWeight": "300",
 							"fontStyle": "italic",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-GlareLightItalic.woff2"
 							]
@@ -471,6 +507,7 @@
 							"fontFamily": "PP Fragment Glare",
 							"fontWeight": "400",
 							"fontStyle": "normal",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-GlareRegular.woff2"
 							]
@@ -479,6 +516,7 @@
 							"fontFamily": "PP Fragment Glare",
 							"fontWeight": "400",
 							"fontStyle": "italic",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-GlareRegularItalic.woff2"
 							]
@@ -487,6 +525,7 @@
 							"fontFamily": "PP Fragment Glare",
 							"fontWeight": "800",
 							"fontStyle": "normal",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-GlareExtraBold.woff2"
 							]
@@ -495,6 +534,7 @@
 							"fontFamily": "PP Fragment Glare",
 							"fontWeight": "800",
 							"fontStyle": "italic",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-GlareExtraBoldItalic.woff2"
 							]
@@ -503,6 +543,7 @@
 							"fontFamily": "PP Fragment Glare",
 							"fontWeight": "900",
 							"fontStyle": "normal",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-GlareBlack.woff2"
 							]
@@ -511,6 +552,7 @@
 							"fontFamily": "PP Fragment Glare",
 							"fontWeight": "900",
 							"fontStyle": "italic",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/files/fonts/PPFragment-GlareBlackItalic.woff2"
 							]
