@@ -129,9 +129,11 @@ document.addEventListener('DOMContentLoaded', function () {
         onClick(e) {
             // Touch-Geräte erzeugen nach touchend einen synthetischen click —
             // Draggable feuert onClick für beide. Zweiten Aufruf ignorieren.
-            const now = Date.now();
-            if (now - lastClickTime < 300) return;
-            lastClickTime = now;
+
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
 
             const matchedId = findMatchingId(e.target);
             if (matchedId) {
