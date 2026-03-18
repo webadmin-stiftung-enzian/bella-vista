@@ -1932,7 +1932,7 @@ section.vier-null-vier>h1 {
         margin-block-start: 1.5rem !important;
     } */
 
-    :root :where(h1, h2):not(.naechste-schritte h2) {
+    :root :where(h1, h2):not(.naechste-schritte h2, .facts-figures h2) {
         margin-block-start: 3.25rem;
     }
 
