@@ -13,7 +13,7 @@ header>.wp-block-spacer {
 
 :root :where(.wp-block-list > li),
 :root :where(p):not(.wp-block-quote p) {
-    letter-spacing: 0.02em;
+    letter-spacing: 0.03em;
     line-height: 145%;
     hyphens: auto;
     hyphenate-limit-chars: 6 3 3;
@@ -877,6 +877,11 @@ section.facts-figures>h2 {
     grid-column: 2 / span 6;
     grid-row: 1 / span 1;
     margin-left: 0 !important;
+
+}
+
+section.facts-figures .counter {
+    font-size: clamp(3rem, 3.7143rem + -1.9048vw, 2rem);
 }
 
 section.facts-figures>h2:nth-of-type(2) {
