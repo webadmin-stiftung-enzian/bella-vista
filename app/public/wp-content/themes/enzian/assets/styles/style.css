@@ -1205,7 +1205,7 @@ footer p {
 }
 
 footer figure img {
-    height:4rem;
+    height:4rem !important;
 }
 
 footer div.is-layout-flex {
