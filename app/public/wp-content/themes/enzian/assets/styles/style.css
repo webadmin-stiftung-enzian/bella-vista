@@ -882,6 +882,7 @@ section.facts-figures>h2 {
 
 section.facts-figures .counter {
     font-size: clamp(3rem, 0.8571rem + 5.7143vw, 6rem);
+    margin: 0;
 }
 
 section.facts-figures>h2:nth-of-type(2) {
@@ -1210,6 +1211,10 @@ footer p {
 section.vier-null-vier>h1 {
     font-size: clamp(10rem, 2.8571rem + 19.0476vw, 20rem) !important;
     flex-basis: 60%;
+}
+
+section.datenschutz h2 {
+    font-size: var(--wp--custom--heading-sizes--h-2-small--font-size);
 }
 
 /* Tablet */

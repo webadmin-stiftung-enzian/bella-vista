@@ -152,7 +152,7 @@
 					"lineHeight": "1.2"
 				},
 				"h2-small": {
-					"fontSize": "fclamp(1.75rem, 0.8571rem + 2.381vw, 3rem);",
+					"fontSize": "clamp(1.75rem, 0.8571rem + 2.381vw, 3rem);",
 					"lineHeight": "1.2"
 				},
 				"h3-small": {
