@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
           duration: 1.5,
           scrollTo: {
             y: targetElement,
-            offsetY: 100,
+            offsetY: 150,
             autoKill: false
           },
           ease: "power2.inOut",
