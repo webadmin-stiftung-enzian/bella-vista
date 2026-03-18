@@ -279,6 +279,7 @@ div:has(.grecaptcha-badge) {
 .wpcf7-submit {
     line-height: 100%;
     font-size: 1rem;
+    width: fit-content;
 }
 
 /* .wpcf7-not-valid-tip {
