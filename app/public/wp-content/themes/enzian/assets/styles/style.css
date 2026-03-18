@@ -1204,6 +1204,14 @@ footer p {
     line-height: 150%;
 }
 
+footer figure img {
+    height:4rem;
+}
+
+footer div.is-layout-flex {
+    gap: 1rem;
+}
+
 /* .vier-null-vier {
         flex-wrap: wrap !important;
     } */
