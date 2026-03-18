@@ -881,7 +881,7 @@ section.facts-figures>h2 {
 }
 
 section.facts-figures .counter {
-    font-size: clamp(3rem, 3.7143rem + -1.9048vw, 2rem);
+    font-size: clamp(3rem, 0.8571rem + 5.7143vw, 6rem);
 }
 
 section.facts-figures>h2:nth-of-type(2) {
