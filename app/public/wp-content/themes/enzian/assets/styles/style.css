@@ -77,6 +77,11 @@ li>span.toSansSerif {
     background-color: var(--wp--preset--color--light-brown-grey);
 }
 
+.wp-block-details h3{
+    font-size: var(--wp--custom--heading-sizes--h-3-small--font-size) !important;
+    line-height: 1.1 !important;
+}
+
 .wp-block-details:hover {
     transition: all 0.3s ease;
     background-color: var(--wp--preset--color--dark-brown-grey);
