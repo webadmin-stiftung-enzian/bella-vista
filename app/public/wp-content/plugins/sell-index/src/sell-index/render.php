@@ -98,7 +98,7 @@ if ($query->have_posts()) {
 							<td>
 								<?php if (!empty($apartment['details']['floor_plan_url'])): ?>
 									<a class="sell-index-table-download-pdf" href="<?php echo esc_url($apartment['details']['floor_plan_url']); ?>" target="_blank" aria-label="<?php esc_attr_e('Grundriss ansehen', 'sell-index'); ?>">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-down-icon lucide-file-down">
+										<svg xmlns="http://www.w3.org/2000/svg" target="_blank" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-down-icon lucide-file-down">
 											<path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
 											<path d="M14 2v5a1 1 0 0 0 1 1h5" />
 											<path d="M12 18v-6" />
