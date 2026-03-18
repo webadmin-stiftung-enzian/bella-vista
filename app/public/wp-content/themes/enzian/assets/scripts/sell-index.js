@@ -128,6 +128,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // ── Click komplett unterdrücken (verhindert ungewollte Effekte) ──
             row.addEventListener('click', function (event) {
+                if (event.target.closest('a')) return; // Links durchlassen
                 event.preventDefault();
                 event.stopPropagation();
                 console.log('[Sell Index] click suppressed on row:', this.id);
