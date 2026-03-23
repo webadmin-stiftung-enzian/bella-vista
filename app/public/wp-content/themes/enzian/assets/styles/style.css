@@ -3,6 +3,11 @@
 /* ── Scroll-Animation Optimierungen ──
    overflow-anchor: none → verhindert, dass der Browser bei transform/textContent-
    Änderungen die Scroll-Position korrigiert (Scroll Anchoring). */
+section.lage figure svg text {
+    text-rendering: geometricPrecision;
+    font-kerning: none;
+}
+
 .parallax {
     overflow-anchor: none;
 }
@@ -77,7 +82,7 @@ li>span.toSansSerif {
     background-color: var(--wp--preset--color--light-brown-grey);
 }
 
-.wp-block-details h3{
+.wp-block-details h3 {
     font-size: var(--wp--custom--heading-sizes--h-3-small--font-size) !important;
     line-height: 1.1 !important;
 }
@@ -1210,7 +1215,7 @@ footer p {
 }
 
 footer figure img {
-    height:4rem !important;
+    height: 4rem !important;
 }
 
 footer div.is-layout-flex {
@@ -2306,7 +2311,7 @@ section.datenschutz h2 {
         margin-top: 0rem;
     }
 
-    footer>section>div{
+    footer>section>div {
         align-items: center !important;
     }
 

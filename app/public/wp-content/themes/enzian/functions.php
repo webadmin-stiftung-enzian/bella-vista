@@ -26,7 +26,7 @@ add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
 
 function render_svg_map()
 {
-    $svg_file = get_stylesheet_directory() . '/assets/files/map.svg';
+    $svg_file = get_stylesheet_directory() . '/assets/files/map_convert_to_paths.svg';
     $svg_file_additional = get_stylesheet_directory() . '/assets/files/map_legend.svg';
     if (file_exists($svg_file)) {
         $svg_content = file_get_contents($svg_file);
