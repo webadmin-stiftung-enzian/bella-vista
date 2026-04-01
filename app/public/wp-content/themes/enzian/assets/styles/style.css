@@ -851,7 +851,7 @@ section.hero>figure.stoerer {
 
 section.hero>figure.stoerer img {
     max-height: 14rem;
-    transform: rotate(-15deg);
+    transform: rotate(-20deg);
     height: 14rem;
 }
 
@@ -1157,7 +1157,7 @@ section.naechste-schritte .wp-block-buttons .wp-block-button:nth-of-type(5) {
     flex-basis: auto;
 }
 
-section.naechste-schritte .wp-block-buttons .wp-block-button a {
+section.naechste-schritte .wp-block-buttons .wp-block-button__link {
     display: inline-flex;
     flex-direction: row;
     width: 3.75rem;
@@ -1170,7 +1170,7 @@ section.naechste-schritte .wp-block-buttons .wp-block-button a {
     font-size: 1.25rem;
 }
 
-section.naechste-schritte .wp-block-buttons .wp-block-button a.active {
+section.naechste-schritte .wp-block-buttons .wp-block-button__link.active {
     background-color: var(--wp--preset--color--accent-orange);
     color: var(--wp--preset--color--light-brown-grey);
 }
@@ -1197,6 +1197,11 @@ section.naechste-schritte article {
     overflow: hidden;
     opacity: 0;
     transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+
+.block-editor-block-list__block section.naechste-schritte article {
+    max-height: none;
+    opacity: 1;
 }
 
 section.naechste-schritte article.active {

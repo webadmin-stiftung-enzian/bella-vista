@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initCounters();
 
   const articles = document.querySelectorAll('section.naechste-schritte article');
-  const buttons = document.querySelectorAll('section.naechste-schritte .wp-block-button a');
+  const buttons = document.querySelectorAll('section.naechste-schritte .wp-block-button__link');
   articles[0].classList.add('active'); // Erster Artikel standardmäßig aktiv
   buttons[0].classList.add('active'); // Erster Button standardmäßig aktiv
 
