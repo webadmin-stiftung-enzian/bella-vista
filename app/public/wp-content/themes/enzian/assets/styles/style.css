@@ -3,6 +3,20 @@
 /* ── Scroll-Animation Optimierungen ──
    overflow-anchor: none → verhindert, dass der Browser bei transform/textContent-
    Änderungen die Scroll-Position korrigiert (Scroll Anchoring). */
+
+
+/* Block Editor Styles */
+
+.wp-block-group.is-layout-grid > .block-editor-block-list__layout {
+    pointer-events: none;
+}
+
+.wp-block-group.is-layout-grid > .block-editor-block-list__layout > * {
+    pointer-events: auto;
+}
+
+/* Global Styles */
+
 section.lage figure svg text {
     text-rendering: geometricPrecision;
     font-kerning: none;
