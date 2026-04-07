@@ -140,7 +140,7 @@
     cursor: pointer;
 }
 
-.wp-block-enzian-sell-index {
+.block-editor-block-list__block .wp-block-enzian-sell-index{
     pointer-events: none !important;
 }
 
