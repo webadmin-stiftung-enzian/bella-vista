@@ -141,7 +141,7 @@
 }
 
 .wp-block-enzian-sell-index {
-    pointer-events: none;
+    pointer-events: none !important;
 }
 
 .wp-block-enzian-sell-index .sell-index,
