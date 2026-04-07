@@ -1145,7 +1145,7 @@ section.naechste-schritte .naechste-schritte-wrapper {
     padding: 2.5rem;
 }
 
-.block-editor-block-list__block.naechste-schritte-wrapper {
+:where(.editor-styles-wrapper) section.naechste-schritte .naechste-schritte-wrapper {
     display: flex;
     flex-direction: column;
 }
