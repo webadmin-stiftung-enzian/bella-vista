@@ -139,3 +139,12 @@
     background-color: var(--wp--preset--color--accent-orange) !important;
     cursor: pointer;
 }
+
+.wp-block-enzian-sell-index {
+    pointer-events: none;
+}
+
+.wp-block-enzian-sell-index .sell-index,
+.wp-block-enzian-sell-index .sell-index * {
+    pointer-events: auto;
+}
