@@ -15,6 +15,10 @@
     pointer-events: auto;
 }
 
+.block-editor-block-list__block.wohnungen {
+    pointer-events: none;
+}
+
 /* Global Styles */
 
 section.lage figure svg text {
