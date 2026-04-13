@@ -1902,499 +1902,500 @@ section.datenschutz h2 {
         background: var(--wp--preset--color--light-brown-grey);
         z-index: 2;
     }
+}
 
 
-    @media (max-width: 600px) {
+@media (max-width: 600px) {
 
-        section,
-        .is-layout-grid,
-        .wpcf7.js {
-            gap: 0.25rem !important;
-            /* overflow: hidden; */
-        }
+    section,
+    .is-layout-grid,
+    .wpcf7.js {
+        gap: 0.25rem !important;
+        /* overflow: hidden; */
+    }
 
-        :root :where(section):not(.sell-index) {
-            margin-block-start: 3rem;
-        }
+    :root :where(section):not(.sell-index) {
+        margin-block-start: 3rem;
+    }
 
-        section.kontakt,
-        section.naechste-schritte {
-            margin-block-start: 3rem !important;
-        }
+    section.kontakt,
+    section.naechste-schritte {
+        margin-block-start: 3rem !important;
+    }
 
-        section>h2:nth-of-type(1),
-        section>h1:nth-of-type(1),
-        section>div:nth-of-type(1)>h2:nth-of-type(1),
-        section>div:nth-of-type(1)>h1:nth-of-type(1) {
-            margin-block-start: 0rem !important;
-        }
+    section>h2:nth-of-type(1),
+    section>h1:nth-of-type(1),
+    section>div:nth-of-type(1)>h2:nth-of-type(1),
+    section>div:nth-of-type(1)>h1:nth-of-type(1) {
+        margin-block-start: 0rem !important;
+    }
 
-        /* section > section:nth-of-type(1),
+    /* section > section:nth-of-type(1),
     section > div:nth-of-type(1):not(:has(.figure-box)) {
         margin-block-start: 0rem !important;
     } */
 
-        section>section:nth-of-type(1),
-        section> :first-child:not(:has(.figure-box)) {
-            margin-block-start: 0rem !important;
-        }
+    section>section:nth-of-type(1),
+    section> :first-child:not(:has(.figure-box)) {
+        margin-block-start: 0rem !important;
+    }
 
-        .wp-block-post-content .wpcf7.js,
-        .wpcf7.js,
-        .wp-block-post-content section.kontakt,
-        section.kontakt,
-        .wp-block-post-content section.dokumentation,
-        section.dokumentation,
-        .wp-block-post-content section.facts-figures,
-        section.facts-figures,
-        .wp-block-post-content section.hero,
-        section.hero,
-        .wp-block-post-content section.zitat,
-        section.zitat,
-        .wp-block-post-content section.wohnungen,
-        section.wohnungen,
-        .wp-block-post-content section.lage,
-        section.lage,
-        .wp-block-post-content section.lage .is-layout-grid,
-        section.lage .is-layout-grid {
-            grid-template-columns: 0.5fr repeat(10, 1fr) 0.5fr;
-        }
+    .wp-block-post-content .wpcf7.js,
+    .wpcf7.js,
+    .wp-block-post-content section.kontakt,
+    section.kontakt,
+    .wp-block-post-content section.dokumentation,
+    section.dokumentation,
+    .wp-block-post-content section.facts-figures,
+    section.facts-figures,
+    .wp-block-post-content section.hero,
+    section.hero,
+    .wp-block-post-content section.zitat,
+    section.zitat,
+    .wp-block-post-content section.wohnungen,
+    section.wohnungen,
+    .wp-block-post-content section.lage,
+    section.lage,
+    .wp-block-post-content section.lage .is-layout-grid,
+    section.lage .is-layout-grid {
+        grid-template-columns: 0.5fr repeat(10, 1fr) 0.5fr;
+    }
 
-        .is-layout-flex {
-            gap: 0.75rem !important;
-        }
+    .is-layout-flex {
+        gap: 0.75rem !important;
+    }
 
-        :not(section)>section:not(.sell-index, footer>section) {
-            margin-block-start: 3rem !important;
-            margin-block-end: 3rem !important;
-        }
+    :not(section)>section:not(.sell-index, footer>section) {
+        margin-block-start: 3rem !important;
+        margin-block-end: 3rem !important;
+    }
 
-        :root :where(.is-layout-flow)>* {
-            margin-block-start: 0.75rem;
+    :root :where(.is-layout-flow)>* {
+        margin-block-start: 0.75rem;
 
-        }
+    }
 
-        .wp-block-details:has(summary) {
-            padding: 1.5rem !important;
-        }
+    .wp-block-details:has(summary) {
+        padding: 1.5rem !important;
+    }
 
-        section.hero,
-        .has-global-padding:not(.figure-box>div, .naechste-schritte article) {
-            padding-left: 1.75rem !important;
-            padding-right: 1.75rem !important;
-        }
+    section.hero,
+    .has-global-padding:not(.figure-box>div, .naechste-schritte article) {
+        padding-left: 1.75rem !important;
+        padding-right: 1.75rem !important;
+    }
 
-        .wp-block-site-logo {
-            z-index: 10000;
-            padding: 0 1.5rem;
-        }
+    .wp-block-site-logo {
+        z-index: 10000;
+        padding: 0 1.5rem;
+    }
 
 
-        .wp-block-group:has(>nav.nav-mobile) .wp-block-button {
-            padding-right: 1.5rem;
-        }
+    .wp-block-group:has(>nav.nav-mobile) .wp-block-button {
+        padding-right: 1.5rem;
+    }
 
-        .wp-block-site-logo img {
-            height: 1.75rem;
-        }
+    .wp-block-site-logo img {
+        height: 1.75rem;
+    }
 
-        /* h1 {
+    /* h1 {
         font-size: 2.5rem;
     } */
 
-        /* h2 {
+    /* h2 {
         font-size: 2.5rem;
     } */
 
-        .wp-block-quote p {
-            font-size: 2rem;
-        }
+    .wp-block-quote p {
+        font-size: 2rem;
+    }
 
-        :root :where(p):not(form p, blockquote p) {
-            font-size: 1rem;
-            /* margin-block-start: 1.75rem; */
-        }
+    :root :where(p):not(form p, blockquote p) {
+        font-size: 1rem;
+        /* margin-block-start: 1.75rem; */
+    }
 
-        /* .wp-block-post-content section.lage>div:first-of-type>p,
+    /* .wp-block-post-content section.lage>div:first-of-type>p,
     .is-layout-grid>p {
         margin-block-start: 1.5rem !important;
     } */
 
-        :root :where(h1, h2):not(.naechste-schritte h2, .facts-figures h2) {
-            margin-block-start: 3.25rem;
-        }
+    :root :where(h1, h2):not(.naechste-schritte h2, .facts-figures h2) {
+        margin-block-start: 3.25rem;
+    }
 
-        /* .is-layout-grid>h2,
+    /* .is-layout-grid>h2,
     .is-layout-grid>h1 {
         margin-block-start: 3rem !important;
     } */
 
 
 
-        h1~p,
-        h2~p {
-            margin-block-start: 2.25rem !important;
-        }
+    h1~p,
+    h2~p {
+        margin-block-start: 2.25rem !important;
+    }
 
-        :where(.is-layout-grid, .is-layout-flex, .wp-block-columns, .wp-block-gallery)>h1~p,
-        :where(.is-layout-grid, .is-layout-flex, .wp-block-columns, .wp-block-gallery)>h2~p {
-            /* Ziehe den Grid-Gap vom gewünschten 3rem Abstand ab */
-            margin-block-start: calc(2.25rem - 0.25rem) !important;
-        }
-
-
-        .google-notice {
-            padding: 0 1.25rem;
-            line-height: 130%;
-            font-size: 0.75rem;
-        }
-
-        .wp-block-details summary {
-            padding: 0rem 0.5rem;
-            font-size: 1.75rem;
-        }
-
-        div.wp-block-group:has(>nav) {
-            width: calc(100dvw - 2.25rem);
-            max-width: calc(100dvw - 2.25rem);
-        }
-
-        section.hero>figure:nth-of-type(1) img {
-            aspect-ratio: 2.25/4 !important;
-            object-fit: cover;
-        }
-
-        .wp-block-post-content section.zitat figure:nth-of-type(1),
-        section.zitat figure:nth-of-type(1),
-        section.facts-figures>figure,
-        .wp-block-post-content section.lage>figure.wp-block-image:nth-last-of-type(1),
-        section.lage>figure.wp-block-image:nth-last-of-type(1),
-        .wp-block-post-content section.lage .is-layout-grid figure,
-        section.lage .is-layout-grid figure,
-        .wp-block-post-content section.lage>div:first-of-type>figure,
-        section.lage>div:first-of-type>figure {
-            display: none;
-        }
-
-        .wp-block-post-content section.zitat figure:nth-of-type(1),
-        section.zitat figure:nth-of-type(1) {
-            grid-column: 1 / span 3;
-            grid-row: 1 / span 1;
-        }
-
-        .wp-block-post-content section.zitat figure:nth-of-type(2),
-        section.zitat figure:nth-of-type(2) {
-            grid-column: 2 / span 11;
-            grid-row: 1 / span 3;
-        }
-
-        .wp-block-post-content section.zitat blockquote,
-        section.zitat blockquote {
-            grid-column: 1 / span 12;
-            grid-row: 4 / span 1;
-        }
-
-        .sell-index-table tr,
-        .wp-block-post-content section.lage>figure.wp-block-table table thead tr,
-        .wp-block-post-content section.lage>figure.wp-block-table table tbody tr,
-        section.lage>figure.wp-block-table table thead tr,
-        section.lage>figure.wp-block-table table tbody tr {
-            border-bottom: 1px solid;
-            height: 2.5rem;
-        }
-
-        .sell-index-table tr td,
-        .sell-index-table tr th,
-        .wp-block-post-content section.lage>figure.wp-block-table table tbody tr td,
-        section.lage>figure.wp-block-table table tbody tr td {
-            font-size: 0.75rem;
-            max-width: 25%;
-            width: auto;
-        }
-
-        .sell-index-table td,
-        .sell-index-table th {
-            min-width: 0;
-            max-width: 18%;
-        }
-
-        .wp-block-post-content section.lage .wp-block-shortcode,
-        section.lage>figure:nth-of-type(1) {
-            grid-column: 1 / span 12;
-            grid-row: 3 / span 1;
-            width: 100%;
-            height: auto;
-            display: flex;
-            justify-content: center;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-
-        .wp-block-post-content section.lage>figure.wp-block-table,
-        section.lage>figure.wp-block-table {
-            grid-column: 3 / span 8;
-            padding: 1.5rem;
-            /* top: -5rem; */
-            z-index: 100;
-        }
-
-        .wp-block-post-content section.lage>figure.wp-block-table table thead tr th,
-        .wp-block-post-content section.lage>figure.wp-block-table table tbody tr td,
-        section.lage>figure.wp-block-table table thead tr th,
-        section.lage>figure.wp-block-table table tbody tr td {
-
-            padding: 0rem;
-            max-width: none;
-        }
-
-        /* ── Scroll-Container ist .sell-index, NICHT die Tabelle selbst ── */
-        .sell-index {
-            overflow-x: auto;
-            overflow-y: clip;
-            -webkit-overflow-scrolling: touch;
-            /* smooth scroll auf iOS */
-            width: 100%;
-            padding-bottom: 40px;
-        }
+    :where(.is-layout-grid, .is-layout-flex, .wp-block-columns, .wp-block-gallery)>h1~p,
+    :where(.is-layout-grid, .is-layout-flex, .wp-block-columns, .wp-block-gallery)>h2~p {
+        /* Ziehe den Grid-Gap vom gewünschten 3rem Abstand ab */
+        margin-block-start: calc(2.25rem - 0.25rem) !important;
+    }
 
 
+    .google-notice {
+        padding: 0 1.25rem;
+        line-height: 130%;
+        font-size: 0.75rem;
+    }
 
-        section.facts-figures div.wp-block-group>h3 {
-            font-size: 2.75rem;
-        }
+    .wp-block-details summary {
+        padding: 0rem 0.5rem;
+        font-size: 1.75rem;
+    }
 
-        section.facts-figures .figure-box {
-            padding: 1.5rem !important;
-        }
+    div.wp-block-group:has(>nav) {
+        width: calc(100dvw - 2.25rem);
+        max-width: calc(100dvw - 2.25rem);
+    }
 
-        section.facts-figures>h2 {
-            grid-column: 2 / span 10 !important;
-            margin-top: 3rem;
-        }
+    section.hero>figure:nth-of-type(1) img {
+        aspect-ratio: 2.25/4 !important;
+        object-fit: cover;
+    }
 
-        section.facts-figures .figure-box:nth-of-type(1) {
-            grid-column: 1 / span 6;
+    .wp-block-post-content section.zitat figure:nth-of-type(1),
+    section.zitat figure:nth-of-type(1),
+    section.facts-figures>figure,
+    .wp-block-post-content section.lage>figure.wp-block-image:nth-last-of-type(1),
+    section.lage>figure.wp-block-image:nth-last-of-type(1),
+    .wp-block-post-content section.lage .is-layout-grid figure,
+    section.lage .is-layout-grid figure,
+    .wp-block-post-content section.lage>div:first-of-type>figure,
+    section.lage>div:first-of-type>figure {
+        display: none;
+    }
 
-        }
+    .wp-block-post-content section.zitat figure:nth-of-type(1),
+    section.zitat figure:nth-of-type(1) {
+        grid-column: 1 / span 3;
+        grid-row: 1 / span 1;
+    }
 
-        section.facts-figures .figure-box:nth-of-type(2) {
-            grid-column: 7 / span 6;
-            grid-row: 1 / span 1;
-        }
+    .wp-block-post-content section.zitat figure:nth-of-type(2),
+    section.zitat figure:nth-of-type(2) {
+        grid-column: 2 / span 11;
+        grid-row: 1 / span 3;
+    }
 
-        section.facts-figures .figure-box:nth-of-type(4) {
-            grid-column: 1 / span 6;
-        }
+    .wp-block-post-content section.zitat blockquote,
+    section.zitat blockquote {
+        grid-column: 1 / span 12;
+        grid-row: 4 / span 1;
+    }
 
-        section.facts-figures .figure-box:nth-of-type(5) {
-            grid-column: 7 / span 6;
-        }
+    .sell-index-table tr,
+    .wp-block-post-content section.lage>figure.wp-block-table table thead tr,
+    .wp-block-post-content section.lage>figure.wp-block-table table tbody tr,
+    section.lage>figure.wp-block-table table thead tr,
+    section.lage>figure.wp-block-table table tbody tr {
+        border-bottom: 1px solid;
+        height: 2.5rem;
+    }
 
-        /* ── Alle 2/span 10 → 1/span 12 auf ≤600px ── */
-        section.hero>figure:nth-of-type(1),
-        section.wohnungen>p,
-        section.wohnungen>h2 {
-            grid-column: 2 / span 10;
-        }
+    .sell-index-table tr td,
+    .sell-index-table tr th,
+    .wp-block-post-content section.lage>figure.wp-block-table table tbody tr td,
+    section.lage>figure.wp-block-table table tbody tr td {
+        font-size: 0.75rem;
+        max-width: 25%;
+        width: auto;
+    }
 
-        .sell-index,
-        section.facts-figures .figure-box:nth-of-type(3),
-        section.facts-figures>div.is-layout-flex,
-        .wpcf7-form {
-            grid-column: 1 / span 12;
-        }
+    .sell-index-table td,
+    .sell-index-table th {
+        min-width: 0;
+        max-width: 18%;
+    }
 
-        /* .wp-block-post-content section.lage .is-layout-grid, section.lage .is-layout-grid {
+    .wp-block-post-content section.lage .wp-block-shortcode,
+    section.lage>figure:nth-of-type(1) {
+        grid-column: 1 / span 12;
+        grid-row: 3 / span 1;
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .wp-block-post-content section.lage>figure.wp-block-table,
+    section.lage>figure.wp-block-table {
+        grid-column: 3 / span 8;
+        padding: 1.5rem;
+        /* top: -5rem; */
+        z-index: 100;
+    }
+
+    .wp-block-post-content section.lage>figure.wp-block-table table thead tr th,
+    .wp-block-post-content section.lage>figure.wp-block-table table tbody tr td,
+    section.lage>figure.wp-block-table table thead tr th,
+    section.lage>figure.wp-block-table table tbody tr td {
+
+        padding: 0rem;
+        max-width: none;
+    }
+
+    /* ── Scroll-Container ist .sell-index, NICHT die Tabelle selbst ── */
+    .sell-index {
+        overflow-x: auto;
+        overflow-y: clip;
+        -webkit-overflow-scrolling: touch;
+        /* smooth scroll auf iOS */
+        width: 100%;
+        padding-bottom: 40px;
+    }
+
+
+
+    section.facts-figures div.wp-block-group>h3 {
+        font-size: 2.75rem;
+    }
+
+    section.facts-figures .figure-box {
+        padding: 1.5rem !important;
+    }
+
+    section.facts-figures>h2 {
+        grid-column: 2 / span 10 !important;
+        margin-top: 3rem;
+    }
+
+    section.facts-figures .figure-box:nth-of-type(1) {
+        grid-column: 1 / span 6;
+
+    }
+
+    section.facts-figures .figure-box:nth-of-type(2) {
+        grid-column: 7 / span 6;
+        grid-row: 1 / span 1;
+    }
+
+    section.facts-figures .figure-box:nth-of-type(4) {
+        grid-column: 1 / span 6;
+    }
+
+    section.facts-figures .figure-box:nth-of-type(5) {
+        grid-column: 7 / span 6;
+    }
+
+    /* ── Alle 2/span 10 → 1/span 12 auf ≤600px ── */
+    section.hero>figure:nth-of-type(1),
+    section.wohnungen>p,
+    section.wohnungen>h2 {
+        grid-column: 2 / span 10;
+    }
+
+    .sell-index,
+    section.facts-figures .figure-box:nth-of-type(3),
+    section.facts-figures>div.is-layout-flex,
+    .wpcf7-form {
+        grid-column: 1 / span 12;
+    }
+
+    /* .wp-block-post-content section.lage .is-layout-grid, section.lage .is-layout-grid {
         grid-template-columns: repeat(12, minmax(auto, 1fr));
     } */
 
-        .wp-block-post-content section.lage>div:nth-of-type(2),
-        section.lage>div:nth-of-type(2) {
-            grid-column: 1 / span 12;
-        }
-
-
-
-        section.hero>figure.stoerer {
-            grid-column: 9 / span 4;
-            grid-row: 1 / span 6;
-            z-index: 3;
-        }
-
-        section.hero>figure:nth-of-type(3) {
-            grid-column: 1 / span 6;
-            grid-row: 6 / span 1;
-            z-index: 2;
-        }
-
-        .wp-block-post-content section.lage>div:first-of-type,
-        section.lage>div:first-of-type {
-            grid-column: 2 / span 10;
-            grid-row: 1 / span 1;
-            display: grid;
-            grid-template-columns: subgrid;
-            gap: 0.25rem;
-            padding: 0 !important;
-        }
-
-        .wp-block-post-content section.lage>div:first-of-type>h1,
-        section.lage>div:first-of-type>h1 {
-            grid-column: 1 / span 12;
-            grid-row: 1 / span 1;
-            z-index: 3;
-        }
-
-        .wp-block-post-content section.lage>div:first-of-type>p,
-        section.lage>div:first-of-type>p {
-            grid-column: 1 / span 12;
-            grid-row: 3 / span 1;
-            z-index: 3;
-        }
-
-        section.facts-figures>p:nth-of-type(2) {
-            grid-row: 3 / span 1;
-            grid-column: 2 / span 10;
-            /* margin-block-start: 3rem; */
-        }
-
-        section.facts-figures>p:nth-of-type(1) {
-            grid-column: 2 / span 10;
-            grid-row: 6 / span 1;
-            align-self: end;
-            /* margin-block-start: 3rem; */
-        }
-
-        section.facts-figures>div.is-layout-flex {
-            grid-column: 1 / span 12;
-            grid-row: 7 / span 1;
-            width: 100%;
-        }
-
-        section.facts-figures div.wp-block-cb-carousel-v2,
-        .wp-block-post-content section.lage div.wp-block-cb-carousel-v2,
-        section.lage>div:first-of-type>div.cb-carousel-block {
-            grid-column: 1 / span 12;
-            grid-row: 4 / span 1;
-            max-width: 100%;
-            margin: 3rem 1rem 0 1rem !important;
-            width: auto;
-        }
-
-        section.facts-figures div.is-layout-grid {
-            gap: 0.75rem !important;
-            margin-block-start: 2.5rem;
-        }
-
-        .wp-block-post-content section.lage .is-layout-grid h2,
-        section.lage .is-layout-grid h2 {
-            grid-column: 2 / span 10;
-        }
-
-        .wp-block-post-content section.lage .is-layout-grid p,
-        section.lage .is-layout-grid p {
-            grid-column: 2 / span 10;
-        }
-
-        section.kontakt-wrapper {
-            flex-direction: column;
-            padding: 0rem;
-        }
-
-        section.naechste-schritte .naechste-schritte-wrapper {
-            gap: 0.25rem;
-        }
-
-        section.naechste-schritte .wp-block-buttons .wp-block-button a {
-            display: inline-flex;
-            width: 2.75rem;
-            height: auto;
-            font-size: 1.125rem;
-            padding: 0rem;
-        }
-
-        section.naechste-schritte .wp-block-buttons .wp-block-button::after {
-            margin-left: 0.125rem;
-            margin-right: 0.125rem;
-        }
-
-        section.naechste-schritte .wp-block-buttons {
-            gap: 0 !important;
-            padding: 0
-        }
-
-        section.naechste-schritte>div>article {
-            margin-top: 2.5rem;
-            padding: 0 !important;
-        }
-
-        section.dokumentation>.wp-block-buttons,
-        section.dokumentation>p,
-        section.dokumentation>h2 {
-            grid-column: 2 / span 10;
-            /* margin-top: 3rem; */
-        }
-
-        section.naechste-schritte article {
-            margin-top: 2rem;
-        }
-
-        .wp-block-post-content section.lage>figure.wp-block-table,
-        section.lage>figure.wp-block-table {
-            grid-column: 1 / span 12;
-            /* padding: 1.5rem; */
-            z-index: 100;
-            width: auto;
-            max-width: 100%;
-            margin-left: 0 !important;
-            margin-right: 0 !important;
-        }
-
-        section.kontakt {
-            padding-top: 0;
-            padding-bottom: 0;
-        }
-
-        section.kontakt>h2 {
-            grid-column: 2 / span 10;
-            grid-row: 1 / span 1;
-            margin-left: 0 !important;
-        }
-
-        section.kontakt>p {
-            grid-column: 2 / span 10;
-            grid-row: 2 / span 1;
-            margin-left: 0 !important;
-        }
-
-        .wpcf7-form p label span.wpcf7-form-label-text {
-            padding: 0.5rem 1.25rem 0.5rem 1.25rem;
-        }
-
-
-        footer {
-            margin-top: 0rem;
-        }
-
-        footer>section>div {
-            align-items: center !important;
-        }
-
-        footer div.wp-block-group:has(>div) {
-            flex-direction: column;
-            gap: 1rem;
-            margin: 0 0 1rem 0 !important;
-        }
-
-        footer div.wp-block-group:has(>div) div:last-of-type {
-            gap: 0.25rem !important;
-        }
-
-        footer div.wp-block-group:has(>div)>div {
-            align-items: center;
-            gap: 1rem;
-        }
-
-        footer div.wp-block-group:has(>div)>div * {
-            text-align: center;
-        }
+    .wp-block-post-content section.lage>div:nth-of-type(2),
+    section.lage>div:nth-of-type(2) {
+        grid-column: 1 / span 12;
     }
+
+
+
+    section.hero>figure.stoerer {
+        grid-column: 9 / span 4;
+        grid-row: 1 / span 6;
+        z-index: 3;
+    }
+
+    section.hero>figure:nth-of-type(3) {
+        grid-column: 1 / span 6;
+        grid-row: 6 / span 1;
+        z-index: 2;
+    }
+
+    .wp-block-post-content section.lage>div:first-of-type,
+    section.lage>div:first-of-type {
+        grid-column: 2 / span 10;
+        grid-row: 1 / span 1;
+        display: grid;
+        grid-template-columns: subgrid;
+        gap: 0.25rem;
+        padding: 0 !important;
+    }
+
+    .wp-block-post-content section.lage>div:first-of-type>h1,
+    section.lage>div:first-of-type>h1 {
+        grid-column: 1 / span 12;
+        grid-row: 1 / span 1;
+        z-index: 3;
+    }
+
+    .wp-block-post-content section.lage>div:first-of-type>p,
+    section.lage>div:first-of-type>p {
+        grid-column: 1 / span 12;
+        grid-row: 3 / span 1;
+        z-index: 3;
+    }
+
+    section.facts-figures>p:nth-of-type(2) {
+        grid-row: 3 / span 1;
+        grid-column: 2 / span 10;
+        /* margin-block-start: 3rem; */
+    }
+
+    section.facts-figures>p:nth-of-type(1) {
+        grid-column: 2 / span 10;
+        grid-row: 6 / span 1;
+        align-self: end;
+        /* margin-block-start: 3rem; */
+    }
+
+    section.facts-figures>div.is-layout-flex {
+        grid-column: 1 / span 12;
+        grid-row: 7 / span 1;
+        width: 100%;
+    }
+
+    section.facts-figures div.wp-block-cb-carousel-v2,
+    .wp-block-post-content section.lage div.wp-block-cb-carousel-v2,
+    section.lage>div:first-of-type>div.cb-carousel-block {
+        grid-column: 1 / span 12;
+        grid-row: 4 / span 1;
+        max-width: 100%;
+        margin: 3rem 1rem 0 1rem !important;
+        width: auto;
+    }
+
+    section.facts-figures div.is-layout-grid {
+        gap: 0.75rem !important;
+        margin-block-start: 2.5rem;
+    }
+
+    .wp-block-post-content section.lage .is-layout-grid h2,
+    section.lage .is-layout-grid h2 {
+        grid-column: 2 / span 10;
+    }
+
+    .wp-block-post-content section.lage .is-layout-grid p,
+    section.lage .is-layout-grid p {
+        grid-column: 2 / span 10;
+    }
+
+    section.kontakt-wrapper {
+        flex-direction: column;
+        padding: 0rem;
+    }
+
+    section.naechste-schritte .naechste-schritte-wrapper {
+        gap: 0.25rem;
+    }
+
+    section.naechste-schritte .wp-block-buttons .wp-block-button a {
+        display: inline-flex;
+        width: 2.75rem;
+        height: auto;
+        font-size: 1.125rem;
+        padding: 0rem;
+    }
+
+    section.naechste-schritte .wp-block-buttons .wp-block-button::after {
+        margin-left: 0.125rem;
+        margin-right: 0.125rem;
+    }
+
+    section.naechste-schritte .wp-block-buttons {
+        gap: 0 !important;
+        padding: 0
+    }
+
+    section.naechste-schritte>div>article {
+        margin-top: 2.5rem;
+        padding: 0 !important;
+    }
+
+    section.dokumentation>.wp-block-buttons,
+    section.dokumentation>p,
+    section.dokumentation>h2 {
+        grid-column: 2 / span 10;
+        /* margin-top: 3rem; */
+    }
+
+    section.naechste-schritte article {
+        margin-top: 2rem;
+    }
+
+    .wp-block-post-content section.lage>figure.wp-block-table,
+    section.lage>figure.wp-block-table {
+        grid-column: 1 / span 12;
+        /* padding: 1.5rem; */
+        z-index: 100;
+        width: auto;
+        max-width: 100%;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    section.kontakt {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    section.kontakt>h2 {
+        grid-column: 2 / span 10;
+        grid-row: 1 / span 1;
+        margin-left: 0 !important;
+    }
+
+    section.kontakt>p {
+        grid-column: 2 / span 10;
+        grid-row: 2 / span 1;
+        margin-left: 0 !important;
+    }
+
+    .wpcf7-form p label span.wpcf7-form-label-text {
+        padding: 0.5rem 1.25rem 0.5rem 1.25rem;
+    }
+
+
+    footer {
+        margin-top: 0rem;
+    }
+
+    footer>section>div {
+        align-items: center !important;
+    }
+
+    footer div.wp-block-group:has(>div) {
+        flex-direction: column;
+        gap: 1rem;
+        margin: 0 0 1rem 0 !important;
+    }
+
+    footer div.wp-block-group:has(>div) div:last-of-type {
+        gap: 0.25rem !important;
+    }
+
+    footer div.wp-block-group:has(>div)>div {
+        align-items: center;
+        gap: 1rem;
+    }
+
+    footer div.wp-block-group:has(>div)>div * {
+        text-align: center;
+    }
+}
