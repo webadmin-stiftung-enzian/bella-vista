@@ -1,0 +1,2 @@
+document.addEventListener('DOMContentLoaded',function(){const form=document.querySelector('.wpcf7-form');if(!form)return;form.addEventListener('input',function(e){const wrap=e.target.closest('.wpcf7-form-control-wrap');if(!wrap)return;e.target.classList.remove('wpcf7-not-valid');e.target.removeAttribute('aria-invalid');const tip=wrap.querySelector('.wpcf7-not-valid-tip');if(tip){tip.remove()}})})
+;
