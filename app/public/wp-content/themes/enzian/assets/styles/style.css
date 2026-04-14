@@ -1395,6 +1395,30 @@ section.datenschutz h2 {
         background-size: contain;
     }
 
+    .wp-block-post-content section.lage>figure.wp-block-table table tbody tr td:nth-of-type(2),
+    .wp-block-post-content section.lage>figure.wp-block-table table thead tr th:nth-of-type(2),
+    section.lage>figure.wp-block-table table tbody tr td:nth-of-type(2),
+    section.lage>figure.wp-block-table table thead tr th:nth-of-type(2) {
+        width: 15%;
+        text-align: center;
+    }
+
+    .wp-block-post-content section.lage>figure.wp-block-table table tbody tr td:nth-of-type(3),
+    .wp-block-post-content section.lage>figure.wp-block-table table thead tr th:nth-of-type(3),
+    section.lage>figure.wp-block-table table tbody tr td:nth-of-type(3),
+    section.lage>figure.wp-block-table table thead tr th:nth-of-type(3) {
+        width: 15%;
+        text-align: center;
+    }
+
+    .wp-block-post-content section.lage>figure.wp-block-table table tbody tr td:nth-of-type(4),
+    .wp-block-post-content section.lage>figure.wp-block-table table thead tr th:nth-of-type(4),
+    section.lage>figure.wp-block-table table tbody tr td:nth-of-type(4),
+    section.lage>figure.wp-block-table table thead tr th:nth-of-type(4) {
+        width: 15%;
+        text-align: center;
+    }
+
     .wp-block-post-content section.lage>figure.wp-block-image:nth-last-of-type(1),
     section.lage>figure.wp-block-image:nth-last-of-type(1) {
         grid-column: 3 / span 2;
@@ -1846,6 +1870,11 @@ section.datenschutz h2 {
         width: min(var(--wp--style--global--wide-size), calc(100dvw - 2rem));
         padding: 0 1rem;
     } */
+
+    .wp-block-post-content section.lage>figure.wp-block-table table,
+    section.lage>figure.wp-block-table table {
+        table-layout:auto;
+    }
 
     section.lage,
     section.wohnungen,
