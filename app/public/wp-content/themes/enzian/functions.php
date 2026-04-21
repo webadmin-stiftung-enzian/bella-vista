@@ -1,5 +1,26 @@
 <?php
 
+// Preload critical fonts
+add_filter('wp_preload_resources', function ($preload_resources) {
+    $font_url = get_stylesheet_directory_uri() . '/assets/files/fonts/';
+
+    $fonts = [
+        'PPFragment-GlareRegular.woff2',
+        'PPNeueMontreal-Regular.woff2'
+    ];
+
+    foreach ($fonts as $font) {
+        $preload_resources[] = [
+            'href'        => $font_url . $font,
+            'as'          => 'font',
+            'crossorigin' => 'anonymous',
+            'type'        => 'font/woff2',
+        ];
+    }
+
+    return $preload_resources;
+});
+
 // enable SVG uploads
 function cc_mime_types($mimes)
 {
