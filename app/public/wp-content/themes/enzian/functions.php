@@ -6,8 +6,9 @@ add_filter('wp_preload_resources', function ($preload_resources) {
 
     $fonts = [
         'PPFragment-GlareRegular.woff2',
-        'PPNeueMontreal-Regular.woff2',
-        'PPNeueMontreal-ThinItalic.woff2',
+        'PPFragment-GlareLight.woff2',
+        'PPFragment-GlareLightItalic.woff2',
+        'PPNeueMontreal-Regular.woff2'
     ];
 
     foreach ($fonts as $font) {
