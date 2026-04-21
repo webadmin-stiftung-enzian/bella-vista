@@ -31,17 +31,17 @@ document.addEventListener('DOMContentLoaded', function () {
         // Nur Highlights innerhalb des Sell-Index-SVGs entfernen
         const highlighted = svg.querySelectorAll('.highlight');
         const translated = svg.querySelectorAll('.translate');
-        console.log('[Sell Index] clearHighlights', {
-            reason: reason || 'unspecified',
-            highlightedCount: highlighted.length,
-            translatedCount: translated.length
-        });
+        // console.log('[Sell Index] clearHighlights', {
+        //     reason: reason || 'unspecified',
+        //     highlightedCount: highlighted.length,
+        //     translatedCount: translated.length
+        // });
         highlighted.forEach(el => el.classList.remove('highlight'));
         translated.forEach(el => el.classList.remove('translate'));
     }
 
     function highlightByRowId(rowId) {
-        console.log('[Sell Index] highlightByRowId called with:', rowId);
+        // console.log('[Sell Index] highlightByRowId called with:', rowId);
         if (!svg) return false;
 
         const rowConfig = {
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return false;
         }
 
-        console.log('[Sell Index] highlightByRowId', { rowId, config });
+        // console.log('[Sell Index] highlightByRowId', { rowId, config });
 
         clearHighlights('before-highlight');
         translateFloorsAbove(config.floor);
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (table) {
-        console.log('Sell Index table found.');
+        // console.log('Sell Index table found.');
         const rows = table.querySelectorAll('tbody tr');
 
         rows.forEach(row => {
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
             row.addEventListener('pointerenter', function (event) {
                 if (event.pointerType !== 'mouse') return;
                 activeTouchRowId = null; // Touch-State zurücksetzen
-                console.log('[Sell Index] mouse hover:', this.id);
+                // console.log('[Sell Index] mouse hover:', this.id);
                 this.classList.add('highlight-row');
                 highlightByRowId(this.id);
             });
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 event.preventDefault();
 
                 const rowId = this.id;
-                console.log('[Sell Index] touch tap:', rowId, 'active:', activeTouchRowId);
+                // console.log('[Sell Index] touch tap:', rowId, 'active:', activeTouchRowId);
 
                 // Toggle: erneuter Tap auf gleiche Zeile → Effekt entfernen
                 if (activeTouchRowId === rowId) {
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             row.addEventListener('pointerleave', function (event) {
                 if (event.pointerType !== 'mouse') return;
-                console.log('[Sell Index] mouse leave:', this.id);
+                // console.log('[Sell Index] mouse leave:', this.id);
                 this.classList.remove('highlight-row');
                 clearHighlights('mouse-leave');
             });
@@ -131,14 +131,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (event.target.closest('a')) return; // Links durchlassen
                 event.preventDefault();
                 event.stopPropagation();
-                console.log('[Sell Index] click suppressed on row:', this.id);
+                // console.log('[Sell Index] click suppressed on row:', this.id);
             });
         });
 
         // ── Maus-Reset: pointerleave mit pointerType === 'mouse' ──
         table.addEventListener('pointerleave', function (event) {
             if (event.pointerType !== 'mouse') return;
-            console.log('[Sell Index] mouse left table');
+            // console.log('[Sell Index] mouse left table');
             const highlightedRow = table.querySelector('.highlight-row');
             if (highlightedRow) {
                 highlightedRow.classList.remove('highlight-row');
@@ -154,12 +154,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 highlightedRow.classList.remove('highlight-row');
             }
             if (!table.contains(event.target)) {
-                console.log('[Sell Index] touch outside table');
+                // console.log('[Sell Index] touch outside table');
                 clearHighlights('touch-outside-table');
                 activeTouchRowId = null;
             }
         });
     } else {
-        console.log('Sell Index table not found.');
+        // console.log('Sell Index table not found.');
     }
 });

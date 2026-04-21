@@ -71,8 +71,8 @@ document.addEventListener('DOMContentLoaded', function () {
   buttons.forEach((button, index) => {
     button.addEventListener('click', () => {
       if (articles[index]) {
-        console.log('Toggling article visibility for index:', index);
-        console.log('Button clicked:', button);
+        // console.log('Toggling article visibility for index:', index);
+        // console.log('Button clicked:', button);
 
         buttons.forEach((b, i) => {
           if (i !== index) {

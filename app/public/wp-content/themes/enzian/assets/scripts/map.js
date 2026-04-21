@@ -11,20 +11,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Funktion zum Entfernen aller Highlights
     function removeAllHighlights(reason) {
-        console.log('[map] removeAllHighlights — reason:', reason);
+        // console.log('[map] removeAllHighlights — reason:', reason);
         mapContainer?.querySelectorAll('.highlight').forEach(el => el.classList.remove('highlight'));
         legendContainer?.closest('svg')?.querySelectorAll('.highlight').forEach(el => el.classList.remove('highlight'));
     }
     function addHighlight(element, elementInList) {
         const wasActive = element?.classList.contains('highlight') || elementInList?.classList.contains('highlight');
-        console.log('[map] addHighlight — wasActive:', wasActive, '| map:', element?.id, '| legend:', elementInList?.id);
+        // console.log('[map] addHighlight — wasActive:', wasActive, '| map:', element?.id, '| legend:', elementInList?.id);
         if (wasActive) {
             removeAllHighlights('toggle-off');
         } else {
             removeAllHighlights('before-set');
             if (element) element.classList.add('highlight');
             if (elementInList) elementInList.classList.add('highlight');
-            console.log('[map] highlight SET — map.highlight:', element?.classList.contains('highlight'), '| legend.highlight:', elementInList?.classList.contains('highlight'));
+            // console.log('[map] highlight SET — map.highlight:', element?.classList.contains('highlight'), '| legend.highlight:', elementInList?.classList.contains('highlight'));
         }
     }
 
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // 1. Klicks auf die Legende abfangen
         const legendSvgRoot = legendContainer ? legendContainer.closest('svg') : null;
         if (legendSvgRoot?.contains(e.target)) {
-            console.log('[map] document click — inside legend, checking ID');
+            // console.log('[map] document click — inside legend, checking ID');
             const matchedId = findMatchingId(e.target);
             if (matchedId) handleMarkerClick(matchedId);
             return;
@@ -81,11 +81,11 @@ document.addEventListener('DOMContentLoaded', function () {
         // hier anschlagen würde, Touch aber nicht. Wir überlassen deshalb alle Klicks
         // in der Karte dem Draggable.onClick Event.)
         if (mapContainer?.contains(e.target)) {
-            console.log('[map] document click — inside mapContainer, ignoring natively');
+            // console.log('[map] document click — inside mapContainer, ignoring natively');
             return;
         }
 
-        console.log('[map] document click — outside, removing highlights | target:', e.target);
+        // console.log('[map] document click — outside, removing highlights | target:', e.target);
         removeAllHighlights('outside-click');
     });
 
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
         zIndexBoost: false,
         onClick(e) {
             // GSAPs onClick ist für Touch+Maus optimiert (Tap-Detection).
-            console.log('[map] Draggable onClick fired');
+            // console.log('[map] Draggable onClick fired');
             const matchedId = findMatchingId(e.target);
             if (matchedId) {
                 handleMarkerClick(matchedId);

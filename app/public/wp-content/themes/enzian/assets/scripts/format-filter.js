@@ -3,7 +3,7 @@
     const { RichTextToolbarButton } = wp.blockEditor;
     const { createElement: el } = wp.element;
 
-    console.log('Registering toSansSerif format type');
+    // console.log('Registering toSansSerif format type');
 
     registerFormatType('enzian/to-sans-serif', {
         title: 'toSansSerif',
