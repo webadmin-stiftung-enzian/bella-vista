@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    console.log('Sell Index script loaded.');
+    // console.log('Sell Index script loaded.');
     const table = document.querySelector('.sell-index-table');
     const svg = document.querySelector('.wp-block-enzian-sell-index svg #bella-vista');
 
@@ -68,12 +68,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const target = svg.querySelector(config.target);
         if (target) {
             target.classList.add('highlight');
-            console.log('[Sell Index] highlight added', {
-                selector: config.target,
-                id: target.id,
-                classList: target.classList.toString(),
-                totalHighlights: svg.querySelectorAll('.highlight').length
-            });
+            // console.log('[Sell Index] highlight added', {
+            //     selector: config.target,
+            //     id: target.id,
+            //     classList: target.classList.toString(),
+            //     totalHighlights: svg.querySelectorAll('.highlight').length
+            // });
             return true;
         } else {
             console.warn('[Sell Index] target not found for selector:', config.target);
