@@ -1289,6 +1289,11 @@ section.datenschutz h2 {
     font-size: var(--wp--custom--heading-sizes--h-2-small--font-size);
 }
 
+section.naechste-schritte span.toSansSerif {
+    font-family: var(--wp--preset--font-family--pp-fragment-glare);
+    font-style: italic;
+}
+
 /* Tablet */
 @media (max-width: 1280px) {
 
