@@ -229,24 +229,6 @@
 							"src": [
 								"file:./assets/files/fonts/PPFragment-GlareLightItalic.woff2"
 							]
-						},
-						{
-							"fontFamily": "PP Fragment Glare",
-							"fontWeight": "400",
-							"fontStyle": "normal",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/files/fonts/PPFragment-GlareRegular.woff2"
-							]
-						},
-						{
-							"fontFamily": "PP Fragment Glare",
-							"fontWeight": "400",
-							"fontStyle": "italic",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/files/fonts/PPFragment-GlareRegularItalic.woff2"
-							]
 						}
 					]
 				}
@@ -423,7 +405,7 @@
 				"typography": {
 					"lineHeight": "lg",
 					"fontFamily": "PP Fragment Glare",
-					"fontWeight": "400"
+					"fontWeight": "300"
 				}
 			},
 			"core/details": {
