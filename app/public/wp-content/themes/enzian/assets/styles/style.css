@@ -1873,7 +1873,7 @@ section.datenschutz h2 {
 
     .wp-block-post-content section.lage>figure.wp-block-table table,
     section.lage>figure.wp-block-table table {
-        table-layout:auto;
+        table-layout: auto;
     }
 
     section.lage,
@@ -2142,9 +2142,33 @@ section.datenschutz h2 {
     .wp-block-post-content section.lage>figure.wp-block-table table tbody tr,
     section.lage>figure.wp-block-table table thead tr,
     section.lage>figure.wp-block-table table tbody tr {
-        border-bottom: 1px solid;
+        border-bottom: none;
         height: 2.5rem;
     }
+
+    .wp-block-post-content section.lage>figure.wp-block-table table tbody tr td,
+    section.lage>figure.wp-block-table table tbody tr td,
+    .wp-block-post-content section.lage>figure.wp-block-table table thead tr th,
+    section.lage>figure.wp-block-table table thead tr th {
+        padding-right: 0.5rem !important;
+    }
+
+    .wp-block-post-content section.lage>figure.wp-block-table table thead,
+    .wp-block-post-content section.lage>figure.wp-block-table table tbody,
+    section.lage>figure.wp-block-table table thead,
+    section.lage>figure.wp-block-table table tbody,
+    section.lage>figure.wp-block-table table {
+        border-bottom: none;
+    }
+
+    .sell-index-table tr> :not(:first-child),
+    .wp-block-post-content section.lage>figure.wp-block-table table thead tr> :not(:first-child),
+    .wp-block-post-content section.lage>figure.wp-block-table table tbody tr> :not(:first-child),
+    section.lage>figure.wp-block-table table thead tr> :not(:first-child),
+    section.lage>figure.wp-block-table table tbody tr> :not(:first-child) {
+        border-bottom: 1px solid var(--wp--preset--color--dark-brown) !important;
+    }
+
 
     .sell-index-table tr td,
     .sell-index-table tr th,
