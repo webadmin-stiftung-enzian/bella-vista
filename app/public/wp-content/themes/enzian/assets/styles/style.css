@@ -1944,6 +1944,11 @@ section.datenschutz h2 {
         background: var(--wp--preset--color--light-brown-grey);
         z-index: 2;
     }
+
+    figure.wp-block-table.distances td:first-child {
+
+        box-shadow: inset 0 1px 0 0 var(--wp--preset--color--dark-brown);
+    }
 }
 
 
@@ -2161,12 +2166,14 @@ section.datenschutz h2 {
         border-bottom: none;
     }
 
-    .sell-index-table tr> :not(:first-child),
-    .wp-block-post-content section.lage>figure.wp-block-table table thead tr> :not(:first-child),
-    .wp-block-post-content section.lage>figure.wp-block-table table tbody tr> :not(:first-child),
-    section.lage>figure.wp-block-table table thead tr> :not(:first-child),
-    section.lage>figure.wp-block-table table tbody tr> :not(:first-child) {
+    .sell-index-table tr> :not(:first-child) {
         border-bottom: 1px solid var(--wp--preset--color--dark-brown) !important;
+    }
+
+    .wp-block-post-content section.lage>figure.wp-block-table table tbody tr> :not(:first-child),
+    section.lage>figure.wp-block-table table tbody tr> :not(:first-child) {
+        border: none !important;
+        box-shadow: inset 0 1px 0 0 var(--wp--preset--color--dark-brown);
     }
 
 
