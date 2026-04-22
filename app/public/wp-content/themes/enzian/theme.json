@@ -181,19 +181,19 @@
 						{
 							"fontFamily": "PP Neue Montreal",
 							"fontDisplay": "swap",
-							"fontWeight": "300",
+							"fontWeight": "400",
 							"fontStyle": "normal",
 							"src": [
-								"file:./assets/files/fonts/PPNeueMontreal-Light.woff2"
+								"file:./assets/files/fonts/PPNeueMontreal-Book.woff2"
 							]
 						},
 						{
 							"fontFamily": "PP Neue Montreal",
 							"fontDisplay": "swap",
-							"fontWeight": "400",
+							"fontWeight": "450",
 							"fontStyle": "normal",
 							"src": [
-								"file:./assets/files/fonts/PPNeueMontreal-Book.woff2"
+								"file:./assets/files/fonts/PPNeueMontreal-Regular.woff2"
 							]
 						}
 					]
