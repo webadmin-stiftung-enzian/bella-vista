@@ -195,15 +195,6 @@
 							"src": [
 								"file:./assets/files/fonts/PPNeueMontreal-Regular.woff2"
 							]
-						},
-						{
-							"fontFamily": "PP Neue Montreal",
-							"fontDisplay": "swap",
-							"fontWeight": "400",
-							"fontStyle": "italic",
-							"src": [
-								"file:./assets/files/fonts/PPNeueMontreal-Italic.woff2"
-							]
 						}
 					]
 				},
