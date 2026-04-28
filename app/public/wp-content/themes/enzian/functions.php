@@ -24,6 +24,19 @@ add_filter('wp_preload_resources', function ($preload_resources) {
     return $preload_resources;
 });
 
+// Support für Kommentare und Trackbacks aus Beitrags-Typen entfernen
+add_action('init', function () {
+    remove_post_type_support('post', 'comments');
+    remove_post_type_support('page', 'comments');
+    remove_post_type_support('post', 'trackbacks');
+    remove_post_type_support('page', 'trackbacks');
+});
+
+// Den Menüpunkt im Admin-Dashboard ausblenden
+add_action('admin_menu', function () {
+    remove_menu_page('edit-comments.php');
+});
+
 // enable SVG uploads
 function cc_mime_types($mimes)
 {
