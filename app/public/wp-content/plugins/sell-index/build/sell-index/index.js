@@ -2,16 +2,6 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/sell-index/block.json"
-/*!***********************************!*\
-  !*** ./src/sell-index/block.json ***!
-  \***********************************/
-(module) {
-
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"enzian/sell-index","version":"0.1.0","title":"Wohnungsspiegel","category":"widgets","icon":"","description":"Block zum Anzeigen des Wohnspiegels für Verkaufsobjekte.","example":{},"supports":{"html":false},"textdomain":"sell-index","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
-
-/***/ },
-
 /***/ "./src/sell-index/edit.js"
 /*!********************************!*\
   !*** ./src/sell-index/edit.js ***!
@@ -78,7 +68,7 @@ function Edit() {
     }).then(data => {
       setApartments(data);
       setLoading(false);
-      // console.log(data);
+      console.log(data);
     }).catch(error => {
       console.error('Error fetching apartments:', error);
       setLoading(false);
@@ -193,18 +183,6 @@ function Edit() {
 
 /***/ },
 
-/***/ "./src/sell-index/editor.scss"
-/*!************************************!*\
-  !*** ./src/sell-index/editor.scss ***!
-  \************************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ },
-
 /***/ "./src/sell-index/index.js"
 /*!*********************************!*\
   !*** ./src/sell-index/index.js ***!
@@ -270,6 +248,18 @@ const myCustomIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_
 
 /***/ },
 
+/***/ "./src/sell-index/editor.scss"
+/*!************************************!*\
+  !*** ./src/sell-index/editor.scss ***!
+  \************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ },
+
 /***/ "./src/sell-index/style.scss"
 /*!***********************************!*\
   !*** ./src/sell-index/style.scss ***!
@@ -279,6 +269,16 @@ const myCustomIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
+
+/***/ },
+
+/***/ "react/jsx-runtime"
+/*!**********************************!*\
+  !*** external "ReactJSXRuntime" ***!
+  \**********************************/
+(module) {
+
+module.exports = window["ReactJSXRuntime"];
 
 /***/ },
 
@@ -332,13 +332,13 @@ module.exports = window["wp"]["i18n"];
 
 /***/ },
 
-/***/ "react/jsx-runtime"
-/*!**********************************!*\
-  !*** external "ReactJSXRuntime" ***!
-  \**********************************/
+/***/ "./src/sell-index/block.json"
+/*!***********************************!*\
+  !*** ./src/sell-index/block.json ***!
+  \***********************************/
 (module) {
 
-module.exports = window["ReactJSXRuntime"];
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"enzian/sell-index","version":"0.1.0","title":"Mietspiegel","category":"widgets","icon":"","description":"Block zum Anzeigen des Mietspiegels für Verkaufsobjekte.","example":{},"supports":{"html":false},"textdomain":"sell-index","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }
 
@@ -354,12 +354,6 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Check if module exists (development only)
-/******/ 		if (__webpack_modules__[moduleId] === undefined) {
-/******/ 			var e = new Error("Cannot find module '" + moduleId + "'");
-/******/ 			e.code = 'MODULE_NOT_FOUND';
-/******/ 			throw e;
-/******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
 /******/ 			// no module.id needed
@@ -368,6 +362,12 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
+/******/ 		if (!(moduleId in __webpack_modules__)) {
+/******/ 			delete __webpack_module_cache__[moduleId];
+/******/ 			var e = new Error("Cannot find module '" + moduleId + "'");
+/******/ 			e.code = 'MODULE_NOT_FOUND';
+/******/ 			throw e;
+/******/ 		}
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
 /******/ 		// Return the exports of the module

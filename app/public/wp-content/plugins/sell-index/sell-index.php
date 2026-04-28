@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Plugin Name:       sell-Index
- * Description:       Example block scaffolded with Create Block tool.
- * Version:           0.1.0
+ * Plugin Name:       Sell-Index
+ * Description:       Dieser Block ermöglicht es einen Mietspiegel auf der Webseite anzuzeigen.
+ * Version:           1.0
  * Requires at least: 6.7
  * Requires PHP:      7.4
- * Author:            The WordPress Contributors
+ * Author:            Stiftung Enzian
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       sell-index

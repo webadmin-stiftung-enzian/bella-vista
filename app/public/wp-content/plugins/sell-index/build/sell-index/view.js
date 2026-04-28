@@ -25,7 +25,7 @@
  */
 
 /* eslint-disable no-console */
-// console.log('Hello World! (from enzian-sell-index block)');
+// console.log( 'Hello World! (from enzian-sell-index block)' );
 /* eslint-enable no-console */
 /******/ })()
 ;

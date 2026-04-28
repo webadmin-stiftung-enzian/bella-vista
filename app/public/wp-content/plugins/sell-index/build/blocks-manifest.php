@@ -6,10 +6,10 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'enzian/sell-index',
 		'version' => '0.1.0',
-		'title' => 'Wohnungsspiegel',
+		'title' => 'Mietspiegel',
 		'category' => 'widgets',
 		'icon' => '',
-		'description' => 'Block zum Anzeigen des Wohnspiegels für Verkaufsobjekte.',
+		'description' => 'Block zum Anzeigen des Mietspiegels für Verkaufsobjekte.',
 		'example' => array(
 			
 		),

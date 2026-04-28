@@ -1,8 +1,8 @@
 {
 	"name": "sell-index",
 	"version": "0.1.0",
-	"description": "Example block scaffolded with Create Block tool.",
-	"author": "The WordPress Contributors",
+	"description": "Dieser Block ermöglicht es einen Mietspiegel auf der Webseite anzuzeigen.",
+	"author": "Stiftung Enzian",
 	"license": "GPL-2.0-or-later",
 	"main": "build/index.js",
 	"scripts": {
@@ -15,7 +15,7 @@
 		"start": "wp-scripts start --webpack-copy-php --blocks-manifest"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^31.1.0"
+		"@wordpress/scripts": "^32.0.0"
 	},
 	"dependencies": {
 		"@wordpress/api-fetch": "^7.36.0"
