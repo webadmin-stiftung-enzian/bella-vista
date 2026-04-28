@@ -17,7 +17,7 @@ $svg_file = get_stylesheet_directory() . '/assets/files/bella-vista.svg';
 $query = new WP_Query([
 	'post_type' => 'apartments',
 	'posts_per_page' => -1,
-	'orderby' => 'title',
+	'orderby' => 'menu_order',
 	'order' => 'DESC',
 ]);
 
