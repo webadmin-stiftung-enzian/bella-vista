@@ -1294,6 +1294,10 @@ section.naechste-schritte span.toSansSerif {
     font-style: italic;
 }
 
+[data-rich-text-placeholder="Header-Beschriftung"] {
+    display: none;
+}
+
 /* Tablet */
 @media (max-width: 1280px) {
 
