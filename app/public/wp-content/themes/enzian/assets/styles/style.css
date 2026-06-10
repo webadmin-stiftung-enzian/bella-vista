@@ -88,7 +88,7 @@ li>span.toSansSerif {
 }
 
 .ss-form-badge {
-    display: none;
+    display: none !important;
 }
 
 /* Details Block Styles */
@@ -1703,6 +1703,18 @@ section.naechste-schritte span.toSansSerif {
         right: clamp(1.75rem, -1.2857rem + 8.0952vw, 6rem);
     }
 
+    section.naechste-schritte .wp-block-buttons {
+        grid-column: 1 / span 10;
+    }
+
+    .naechste-schritte h2 {
+        grid-column: 1 / span 10;
+    }
+
+    section.naechste-schritte article {
+        grid-column: 1 / span 10;
+    }
+
 }
 
 
@@ -1873,18 +1885,6 @@ section.naechste-schritte span.toSansSerif {
         -webkit-overflow-scrolling: touch;
         width: 100%;
         padding-bottom: 40px;
-    }
-
-    section.naechste-schritte .wp-block-buttons {
-        grid-column: 1 / span 10;
-    }
-
-    .naechste-schritte h2 {
-        grid-column: 1 / span 10;
-    }
-
-    section.naechste-schritte article {
-        grid-column: 1 / span 10;
     }
 
 }
