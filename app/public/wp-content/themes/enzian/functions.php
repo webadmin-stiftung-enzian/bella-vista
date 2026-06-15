@@ -542,6 +542,19 @@ function get_map_data_by_name($map_title = 'Map 1')
 }
 
 // Enqueue Styles and Scripts
+add_action('silent_shield_integration', function () {
+    wp_enqueue_script(
+        'silentshield',
+        'https://api.silentshield.io/client.js?key=3d827b904f1423a507b51b44c37714f4f182b4d7a52df63890492e8f88c68dd6',
+        array(),
+        null, // null = keine WP-Version anhängen, key bleibt sauber in der URL
+        array(
+            'strategy'  => 'defer', // oder 'async'
+            'in_footer' => false,   // false = im <head>, wie im Original-Snippet
+        )
+    );
+});
+
 add_action('wp_enqueue_scripts', function () {
     wp_enqueue_style(
         'sell-index',
